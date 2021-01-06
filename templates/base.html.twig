@@ -1,12 +1,69 @@
+{% set actual_route = app.request.attribute.get('_route')  %}
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+	<head>
+		<title>{% block title %}Association Sportive St-Vincent{{% endblock %}}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		{% block stylesheets %} 
+			<link rel="stylesheet" type="text/css" href="styleprojet.css"> 		
+			<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+			<script src="https://kit.fontawesome.com/b33430525b.js" crossorigin="anonymous"></script>
+		{% endblock %}
+	</head>
+	<body>
+		{% block body %}
+		<nav class="navbar navbar-inverse" style="background-color: #0F1B2C;">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <img src="Images/logo.jpg">
+		    </div>
+		    <ul class="nav navbar-nav">
+		      <li class="active"><a href="#">ACCUEIL</a></li>
+		      <li><a href="#">EVENEMENTS</a></li>
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+		      <li><a href="#"><i class="fas fa-user-circle"></i> S'IDENTIFIER </a></li>
+		    </ul>
+		  </div>
+		</nav>
+		{% endblock%}
+	</body>
+		<footer>
+			<div class="coordonnees">
+				<h3>Association Sportive Saint Vincent</h3>
+				<li>
+					<p>36 Rue de Meaux</p>
+					<p>60300 Senlis</p>
+				</li>
+				<h3>Association Saint-Vincent</h3>
+				<p> <a href="https://www.lycee-stvincent.fr/" target="_blank">https://www.lycee.stvincent.fr/</a></p>
+			</div>
+
+			<div class="contact">
+				<h3>Nous contacter</h3>
+				<li>
+					<p>Tel : 09 66 85 64 98</p>
+					<p>Fax : 04 28 73 25 64</p>
+					<p>Email : AssociationSportive@gmail.com</p>
+					<p>Web : https//:www.LyceestVincent.fr</p>
+				</li>
+			</div>
+
+			<div class="access">
+				<h3>Accès rapide</h3>
+				<li>
+					<p>Accueil</p>
+					<p>Actualites</p>
+					<p>Evenements</p>
+					<p>Contact</p>
+				</li>
+			</div>
+
+			<div class="networks">
+				<h3>Suivez-nous</h3>
+				<i class="fab fa-twitter-square"></i> 
+				<i class="fab fa-facebook-square"></i>
+			</div>
+	</footer>
 </html>
