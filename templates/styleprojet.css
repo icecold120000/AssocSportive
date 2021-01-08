@@ -1,3 +1,25 @@
+/**Barre de navigation**/
+
+h1
+{
+	font-weight: bold;
+
+}
+
+*
+{
+	 margin: auto;
+	 text-align: center;
+
+}
+
+
+nav
+{
+	padding: 8px;
+}
+
+
 i
 {
 	color: #fff;
@@ -10,25 +32,40 @@ i
 
 }
 
-footer
-{
- 
-   background-color: #000000;
-   color: white;
-   list-style: none;
 
-}
-
-.coordonnees, .contact, .access, .networks
+.coordonnees, .contact, .access, .networks 
 {
 	display: inline-block;
 	padding: 55px;
+	
 
 }
+
+.coordonnees p, .contact p, .access p
+{
+	
+	text-align: left;
+
+}
+
+.coordonnees h3, .contact h3, .access h3
+{
+	
+	text-align: left;
+
+}
+
+form
+{
+	text-align: left;
+}
+
 
 .title
 {
 	font-weight: bold;
+	
+
 }
 
 img
@@ -37,7 +74,45 @@ img
 	height: 50px;
 }
 
-nav
+
+/** Bouton de connexion et bouton d'inscription**/
+.buttonconnexion
 {
-	padding: 8px;
+	margin-top: 10px;
+
+}
+
+.buttoninscription
+{
+	background-color: #235024;
+	color: #fff;
+	font-weight: bold;
+	border-radius: 7px;
+	border-style: none;
+	padding: 6px;
+}
+
+
+/** Partie de l'inscription **/
+#part2
+{
+
+	margin-bottom: 15px;	
+}
+
+/** Footer  **/
+footer
+{
+ 	
+    background-color: #000000;
+    color: white;
+    list-style: none;
+
+}
+
+.buttonreinitialisation
+{
+	margin-top: 50px;
+	padding-bottom: 50px;
+
 }
