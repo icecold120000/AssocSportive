@@ -1,34 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Connexion{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+   
+    <div class="container">
+        <div id="part1">
+            <h1 class="title">Connectez-vous</h1>
+            <form id="form" method="POST">
+                <label class="labels">Email</label>
+                <div>
+                    <input type="text" name="email" class="form-control">
+                </div>
+                <label class="labels">Mot de passe</label>
+                <div>
+                    <input type="password" name="password" class="form-control">
+                </div>
+                
+                <div class="buttonconnexion">
+                    <button type="button" class="btn btn-success">Se connecter</button><a href="../OubliMotdePasse/oublimotdepasse.php" target="_blank"> Mot de passe oublié ?</a>
+                </div>
+            </form>
         </div>
-    {% endif %}
+        <div id="part2">
+            <h1 class="title">Pas encore de compte ?</h1>
+            <h6>Vous êtes étudiant et vous n'avez pas encore de compte sur la plateforme ?</h6>
+            <button class="buttoninscription">Accéder au formulaire d'inscription</button>
+        </div>
+    </div>
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" name="email" id="inputEmail" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password"
-    id="inputPassword" class="form-control" required>
-
-    <input type="hidden" name="_csrf_token"
-        value="{{ csrf_token('authenticate') }}"
-    >
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
-
-<p><a href="{{path('oubli_mdp_new')}}"</a>Mot de passe oublié</p>
 {% endblock %}
