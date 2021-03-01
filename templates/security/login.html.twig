@@ -3,29 +3,56 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-   
+   {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger"
+         role="alert">{{ flashError }}</div>
+    {% endfor %}
     <div class="container">
         <div id="part1">
             <h1 class="title">Connectez-vous</h1>
-            <form id="form" method="POST">
-                <label class="labels">Email</label>
+            <form id="formConnexion" action="
+            {{ path('app_login') }}" method="POST">
+                <label class="labels" id="lblEmail">Email</label>
                 <div>
-                    <input type="text" name="email" class="form-control">
+                    <input type="email" name=
+                    "email" class="form-control">
                 </div>
-                <label class="labels">Mot de passe</label>
+                {% if error %}
+                    <div class="erreur">Saisie incorrect. Veuillez resaisir votre email valide</div>
+                {% endif %}
+                <label class="labels">
+                Mot de passe</label>
                 <div>
-                    <input type="password" name="password" class="form-control">
+                    <input type="password" name=
+                    "password" class="form-control">
                 </div>
-                
-                <div class="buttonconnexion">
-                    <button type="button" class="btn btn-success">Se connecter</button><a href="../OubliMotdePasse/oublimotdepasse.php" target="_blank"> Mot de passe oublié ?</a>
+                {% if error %}
+                    <div class="erreur">Saisie incorrect. Veuillez resaisir votre mot de passe valide</div>
+                {% endif %}
+                <input type="hidden" name="_csrf_token" 
+                value="{{ csrf_token('authenticate') }}">
+                <div>
+                    <button type="submit" 
+                    class="btn btn-success" id="btnConnexion">
+                    Se connecter</button>
                 </div>
             </form>
+            <a href="{{path('oubli_mdp')}}" target="_blank">
+                <button class="btn btn-info">
+                    Mot de passe oublié ?
+                </button>
+            </a>
         </div>
         <div id="part2">
             <h1 class="title">Pas encore de compte ?</h1>
-            <h6>Vous êtes étudiant et vous n'avez pas encore de compte sur la plateforme ?</h6>
-            <button class="buttoninscription">Accéder au formulaire d'inscription</button>
+            <h6>Vous êtes étudiant et 
+            vous n'avez pas encore de 
+            compte sur la plateforme ?</h6>
+            <a href={{path('app_register')}} target="_blank">
+                <button id="btnRegister">
+                    Accéder au formulaire d'inscription
+                </button>
+            </a>
         </div>
     </div>
 
