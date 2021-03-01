@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre Profile{% endblock %}
+
+{% block body %}
+	<div id="profilHeader">
+		<h1>Bienvenue {{app.user.getPrenomUser}} {{app.user.getNomUser}}</h1> 
+
+		<p>Vous êtes enregistrer en tant <span id="typeUser">qu'enseignant sur cette plateforme</span></p>
+	</div>
+
+	<div class="dropdown" id="dropdownUser">
+		<button class="btn btn-info dropdown-toggle" type="button" id="mesAcces" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Mes accès
+		    <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="mesAcces">
+		    <li><a href="{{path('document_index')}}">Liste de document</a></li>
+		    <li><a href="{{path('evenement_index')}}">Liste d'événement</a></li>
+		</ul>
+	</div>
+
+{% endblock %}
