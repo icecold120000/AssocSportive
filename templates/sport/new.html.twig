@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un nouveau sport{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un nouveau sport</h1>
+
+    {% for message in app.flashes('SuccessSport') %}
+        <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div>
+        <div class="container-fluid formEntité">
+            {{ include('sport/_form.html.twig') }}
+        </div>
+    </div>
+    <div>
+        <a href="{{ path('sport_index') }}">
+            <button class="btn btn-secondary" id="btnRetour">
+                Revenir dans la liste
+            </button>
+        </a>
+    </div>
+{% endblock %}

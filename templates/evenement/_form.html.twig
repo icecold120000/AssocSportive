@@ -1,4 +1,123 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+    {{form_start(form)}}
+        <div id="part1">
+            <div>
+                {{form_label(form.nomEvenement)}}
+            </div>
+            <div id="divInput">
+                {{form_widget(form.nomEvenement)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.nomEvenement)}}
+            </div>
+            <div>
+                {{form_label(form.dateDebut)}}
+            </div>
+            <div id="divInput">
+                {{form_widget(form.dateDebut)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.dateDebut)}}
+            </div>
+            <div>
+                {{form_label(form.dateFin)}}
+            </div>
+            <div id="divInput">
+                {{form_widget(form.dateFin)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.dateFin)}}
+            </div>
+            <div>
+                {{form_label(form.lieuEvenement)}}
+            </div>
+            <div id="divInput">
+                {{form_widget(form.lieuEvenement)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.lieuEvenement)}}
+            </div>
+            <div>
+                {{form_label(form.coutEvenement)}}
+            </div>
+            <div id="divInput">
+                {{form_widget(form.coutEvenement)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.coutEvenement)}}
+            </div>
+            <div>
+                {{form_label(form.descripEvenement)}}
+            </div>
+            <div id="divInput">
+                {{form_widget(form.descripEvenement)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.descripEvenement)}}
+            </div>
+        </div>
+        <div id="part2">
+            <div>
+                {{form_label(form.nbPlace)}}
+            </div>
+            <div id="divInput">
+                {{form_widget(form.nbPlace)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.nbPlace)}}
+            </div>
+            <div>
+                {{form_label(form.imgEvent)}}
+            </div>
+            <div id="divInput" class="fileEvent">
+                {{form_widget(form.imgEvent)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.imgEvent)}}
+            </div>
+            <div>
+                {{form_label(form.vigEvent)}}
+            </div>
+            <div id="divInput" class="fileEvent">
+                {{form_widget(form.vigEvent)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.vigEvent)}}
+            </div>
+            <div>
+                {{form_label(form.Type)}}
+            </div>
+            <div id="selectType">
+                {{form_widget(form.Type)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.Type)}}
+            </div>
+            <div>
+                {{form_label(form.Sport)}}
+            </div>
+            <div id="selectSport">
+                {{form_widget(form.Sport)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.Sport)}}
+            </div>
+            <div>
+                {{form_label(form.CategorieEleve)}}
+            </div>
+            <div id="selectCategEleve">
+                {{form_widget(form.CategorieEleve)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.CategorieEleve)}}
+            </div>
+            <div>
+                <div id="divAjout" class="form-actions">
+                    <button type="submit" class="btn btn-success">
+                        Enregistrer l'événement
+                    </button>
+                </div>
+            </div>
+        </div>
+    {{form_end(form)}}
+            
+

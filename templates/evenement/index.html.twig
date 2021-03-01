@@ -1,46 +1,81 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Evenement index{% endblock %}
+{% block title %}Liste des événements{% endblock %}
 
 {% block body %}
-    <h1>Evenement index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>NbPlace</th>
-                <th>Image</th>
-                <th>Vignette</th>
-                <th>DateFin</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for evenement in evenements %}
-            <tr>
-                <td>{{ evenement.id }}</td>
-                <td>{{ evenement.nom }}</td>
-                <td>{{ evenement.description }}</td>
-                <td>{{ evenement.date ? evenement.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ evenement.nbPlace }}</td>
-                <td>{{ evenement.image }}</td>
-                <td>{{ evenement.vignette }}</td>
-                <td>{{ evenement.dateFin ? evenement.dateFin|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('evenement_show', {'id': evenement.id}) }}">show</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('evenement_new') }}">Create new</a>
+    <h1>Liste des événements</h1>
+    <div id="formFilter">
+        <div class="filtre">
+            <div id="left">
+                <p>{{evenements|length}} événements</p>
+            </div>
+            {{form_start(form)}}
+                <div class="selectFiltre">
+                    <span>{{form_label(form.CategorieEleve)}} </span>
+                    {{form_widget(form.CategorieEleve)}}
+                </div>
+                <div class="selectFiltre">
+                    <span>{{form_label(form.Type)}}</span>
+                    {{form_widget(form.Type)}}
+                </div>
+                <div class="selectFiltre">
+                    <span>{{form_label(form.Sport)}}</span>
+                    {{form_widget(form.Sport)}}
+                </div>
+                <div id="switch">
+                    <label class="switch">
+                        {{form_widget(form.actif)}}
+                        <span class="slider round"></span>
+                    </label>
+                    <span>{{form_label(form.actif)}}</span>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-info">
+                        Afficher
+                    </button>
+                </div>
+            {{form_end(form)}}
+        </div>
+    </div>
+    <div>
+        {{ knp_pagination_render(evenements) }}
+    </div>
+    {% for evenement in evenements %}
+        <section id="evenement">
+            <div class="container-fluid">
+                <img src="{{ asset('uploads/eventVig/' ~ evenement.vignetteEvenement) }}" id="vignette">
+                <div id="event">
+                    <div>
+                        <h3>{{ evenement.nomEvenement }}</h3>
+                    </div>
+                    <div>
+                        <div id="dateInscrip">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>
+                                {{ evenement.dateDebut ? evenement.
+                                dateDebut|date('d/m/Y') : '' }}
+                            </span>
+                        </div>
+                        <div id="place">
+                            <p>
+                                <i class="fas fa-exclamation-circle"></i> {{evenement.inscriptions|length}}
+                                inscrit sur
+                                {{ evenement.nbPlace }}
+                            </p>
+                        </div>
+                    </div>
+                    <div id="descripEvent">
+                        <p>{{ evenement.descripEvenement|u.truncate(105,'...') }}</p>
+                    </div>
+                    <div id="btnShow">
+                        <a href="{{ path('evenement_show',
+                         {'id': evenement.id}) }}"><button class="btn btn-primary">> Voir évenement</button></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endfor %}
+    <div>
+        {{ knp_pagination_render(evenements) }}
+    </div>
 {% endblock %}

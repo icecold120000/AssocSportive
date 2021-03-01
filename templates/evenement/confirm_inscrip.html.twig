@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation d'inscription{% endblock %}
+
+{% block body %}
+    <h1>Confirmation d'inscription à l'événement {{evenement.nomEvenement}}</h1>
+
+    <h2>Vous vous êtes incrit à l'événement {{evenement.nomEvenement}}</h2>
+
+    <div>
+        <h3> Veuillez télécharger ses documents pour plus d'information sur l'événenement</h3>
+
+
+        <table class="table table-striped tableAdmin">
+            <thead>
+                <tr>
+                    <th scope="col">Nom du document</th>
+                    <th scope="col">Date d'ajout</th>
+                    <th scope="col">Catégorie</th>
+                    <th scope="col">Lien de téléchargement</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for docs in evenement.Documents %}
+                    <tr>
+                        <td scope="row">{{docs.nomDocument}}</td>
+                        <td scope="row">{{docs.dateAjout ? docs.
+                        dateAjout|date('d/m/Y') : '' }}</td>
+                        <td scope="row">{{docs.categorieDocument.getLibelleCategorieDoc}}</td>
+                        <td>
+                            <a href="{{docs.lienDocument}}"
+                             download="{{docs.lienDocument}}">
+                                <button class="btn btn-primary">
+                                    Télécharger
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <div>
+        <a href="{{ path('evenement_index') }}">
+        	<button class="btn btn-secondary" id="btnRetour">
+                Revenir dans la liste des événements
+            </button>
+        </a>
+    </div>
+
+
+{%endblock %}

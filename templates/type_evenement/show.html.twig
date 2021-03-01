@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Type d'événement{% endblock %}
+
+{% block body %}
+    <h1>Suppression d'un type d'événement</h1>
+
+    <p>Cliquez sur le bouton Supprimer pour supprimer le type d'événement choisi : {type_evenement.nom}}</p>
+
+    <div id="warning">
+        <p><i class="fas fa-exclamation-triangle"></i> Attention : tous les événement qui utilisent ce type d'événement</p>
+        <p>vont être changé à la valeur "aucun"</p>
+    </div>
+
+
+    {{ include('type_evenement/_delete_form.html.twig') }}
+
+    <div>
+        <a href="{{ path('type_evenement_index') }}">
+            <button class="btn btn-secondary" id="btnRetour">
+                Revenir dans la liste
+            </button>
+        </a>
+    </div>
+{% endblock %}

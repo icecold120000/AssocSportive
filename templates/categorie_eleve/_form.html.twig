@@ -1,0 +1,19 @@
+	{{form_start(form)}}
+		<div>
+			{{form_label(form.libelleCategorie)}}
+		</div>
+        <div id="divInput">
+            {{form_widget(form.libelleCategorie)}}
+        </div>
+        <div class="erreur">
+            {{form_errors(form.libelleCategorie)}}
+        </div>
+        <div>
+            <div id="divAjout" class="form-actions">
+                <button type="submit" class="btn btn-success">
+                    Enregistrer la catégorie d'élève
+                </button>
+            </div>
+        </div>
+    {{form_end(form)}}
+

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter un nouveau événement{% endblock %}
+{% block title %}Editer un événement{% endblock %}
 
 {% block body %}
-    <h1>Ajouter un nouveau événement</h1>
+    <h1>Editer un événement</h1>
 
     {% for message in app.flashes('SuccessEvent') %}
         <div class="flash-success">
@@ -18,7 +18,7 @@
 
     <div>
         <a href="{{ path('evenement_admin') }}">
-        	<button class="btn btn-secondary" id="btnRetour">
+            <button class="btn btn-secondary" id="btnRetour">
                 Revenir dans la liste
             </button>
         </a>

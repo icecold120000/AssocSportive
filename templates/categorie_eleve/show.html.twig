@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie d'élève{% endblock %}
+{% block body %}
+	<h1>Suppression</h1>
+	
+	<p>Cliquez sur le bouton Supprimer pour supprimer la categorie d'élève choisie : {{categorie_eleve.libelleCategorie}}</p>
+
+	<div id="warning">
+		<p><i class="fas fa-exclamation-triangle"></i> Attention : tous les évènements et élèves qui utilisent cette catégorie</p>
+		<p>vont être changé à la catégorie dont la valeur "aucune"</p>
+	</div>
+
+    {{ include('categorie_eleve/_delete_form.html.twig') }}
+
+    <div>
+	    <a href="{{ path('categorie_eleve_index') }}">
+	    	<button class="btn btn-secondary" id="btnRetour">
+	            Revenir dans la liste
+	        </button> 
+	    </a>
+    </div>
+{% endblock %}

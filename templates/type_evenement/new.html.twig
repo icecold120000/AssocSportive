@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un nouveau type d'événement{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un nouveau type d'événement</h1>
+
+    {% for message in app.flashes('SuccessTypeEvent') %}
+        <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div>
+        <div class="container-fluid formEntité">
+            {{ include('type_evenement/_form.html.twig') }}
+        </div>
+    </div>
+    <div>
+        <a href="{{ path('type_evenement_index') }}">
+            <button class="btn btn-secondary" id="btnRetour">
+                Revenir dans la liste
+            </button>
+        </a>
+    </div>
+    
+{% endblock %}

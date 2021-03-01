@@ -1,47 +1,92 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Evenement{% endblock %}
+{% block title %}{{ evenement.nomEvenement }}{% endblock %}
 
 {% block body %}
-    <h1>Evenement</h1>
+    <div id="showEvent">
+        <h1>{{ evenement.nomEvenement }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ evenement.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ evenement.nom }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ evenement.description }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ evenement.date ? evenement.date|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>NbPlace</th>
-                <td>{{ evenement.nbPlace }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ evenement.image }}</td>
-            </tr>
-            <tr>
-                <th>Vignette</th>
-                <td>{{ evenement.vignette }}</td>
-            </tr>
-            <tr>
-                <th>DateFin</th>
-                <td>{{ evenement.dateFin ? evenement.dateFin|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <p><i class="fas fa-calendar-alt"></i> {{ evenement.dateDebut ? evenement.dateDebut|date('d/m/Y  H:i') : '' }} au {{ evenement.dateFin ? evenement.dateFin|date('d/m/Y H:i') : '' }}</p>
 
-    <a href="{{ path('evenement_index') }}">back to list</a>
+        <p><i class="fas fa-exclamation-circle"></i> {{evenement.inscriptions|length}} inscriptions sur {{ evenement.nbPlace }}</p>
 
+        <p>Type d'événement : {{evenement.Type.getNom}}</p>
+
+        <p>Sport : {{evenement.Sport.getNomSport}}</p>
+
+        <p>Catégorie : {{evenement.categorieEleve.getLibelleCategorie}}</p>
+
+        <p>Lieu : {{ evenement.lieuEvenement}}</p>
+
+        <img src="{{ asset('uploads/eventImg/' ~ evenement.imageEvenement) }}" id="imgEvent" placeholder="image de l'événement">
+        
+        <h2>Description de l'événement</h2>
+
+        <p>{{ evenement.descripEvenement }}</p>
+
+        <h2>Condition d'inscription</h2>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.<p>
+
+        <h2> {{evenement.Documents|length}} documents à télécharger</h2>
+
+        <table class="table table-striped tableAdmin">
+            <thead>
+                <tr>
+                    <th scope="col">Nom du document</th>
+                    <th scope="col">Date d'ajout</th>
+                    <th scope="col">Catégorie</th>
+                    <th scope="col">Lien de téléchargement</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for docs in evenement.Documents %}
+                    <tr>
+                        <td scope="row">{{docs.nomDocument}}</td>
+                        <td scope="row">{{docs.dateAjout ? docs.
+                        dateAjout|date('d/m/Y') : '' }}</td>
+                        <td scope="row">{{docs.categorieDocument.getLibelleCategorieDoc}}</td>
+                        <td>
+                            <a href="{{docs.lienDocument}}"
+                             download="{{docs.lienDocument}}">
+                                <button class="btn btn-primary">
+                                    Télécharger
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <p>
+            {% for inscription in app.user.getEleve.inscriptions %}
+                {{inscription.Evenement.id}}
+            {% endfor %}
+        </p>
+
+        <a href="{{ path('evenement_index') }}">
+            <button class="btn btn-secondary" id="btnRetour">
+                Revenir dans la liste
+            </button>
+        </a>
+        {% if is_granted('ROLE_ELEVE') and app.user.getEleve.
+        getCategorie.getLibelleCategorie == evenement.categorieEleve.getLibelleCategorie or
+         evenement.categorieEleve.getLibelleCategorie == 'Toutes' and evenement.inscriptions|length < evenement.nbPlace and evenement.dateDebut|date('d/m/Y') < "now"|date("d/m/Y") < evenement.dateFin|date('d/m/Y') or app.user.getEleve.inscription.Evenement.id == evenement.id %}
+            <a href="{{ path('evenement_inscrire', {'id': evenement.id,'eleveId': app.user.getEleve.id}) }}">
+                <button class="btn btn-success" id="btnAjout">
+                    S'inscrire
+                </button>
+            </a>
+        {% else %}
+            <a href="{{ path('evenement_inscrire') }}">
+                <button class="btn btn-success" disabled id="btnAjout">
+                    S'inscrire
+                </button>
+            </a>
+        {% endif %} 
+    </div>
+
+    
 {% endblock %}
