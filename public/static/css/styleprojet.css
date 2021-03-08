@@ -1,117 +1,168 @@
-/**Barre de navigation**/
-*
-{
-	 margin: auto;
-	 text-align: center;
-
+/**Général**/
+*{
+	margin: auto;
+	text-align: center;
 }
 
-h1
-{
+h1{
 	font-weight: bold;
-
 }
 
-h6
-{
+h6{
 	font-size: 20px;
 }
 
-nav
-{
+/*Barre de navigation*/
+nav#mainNav {
 	padding: 8px;
+	background-color: #0F1B2C;
 }
 
-i
-{
-	color: #fff;
-	font-size: 26px;
+ul.navbar-nav{
+	display: contents;
 }
 
-.profil
-{
-	color: #fff;
-
+li.nav-item:first-child {
+	margin: 0 30px;
 }
 
-.erreur
-{
-	color: red;
-	font-size: 30px;
+li.nav-item, li.page-item{
+	margin: 0;
 }
 
-.coordonnees, .contact, .access, .networks 
-{
-	display: inline-block;
-	padding: 55px;
-	
-
+div.navbar-brand {
+	margin-left: 0;
 }
 
-.coordonnees p, .contact p, .access p
-{
-	
-	text-align: left;
-
+a.nav-link{
+	color: white!important;
 }
 
-.coordonnees h3, .contact h3, .access h3
-{
-	
-	text-align: left;
-
+ul#connexion{
+	display: flex;
 }
 
-button.btn.btn-success
-{
-	padding: 45px;
-	font-size: 20px;
-
+a{
+	color: white;
 }
 
-form
-{
-	text-align: left;
+li{
+	list-style: none;
+}
+
+#links{
+	color: black;
+}
+
+form{
+	text-align: center;
 	font-size: 40px;
 	padding: 40px;
 }
 
-
-.title
-{
-	font-weight: bold;
-	font-size: 50px;
+form div{
+	padding-bottom: 20px;
 }
 
-img
-{
-	width: 50px;
-	height: 50px;
+label{
+	font-size: 20px;
+	position: relative;
+	margin: 0;
+	float: left;
 }
 
+#divInput{
+	position: relative;
+	width: 45%;
+	right: 27%;
+}
 
-/** Bouton de connexion et bouton d'inscription**/
-.buttonconnexion
-{
-	margin-top: 10px;
+#divAjout{
+	position: relative;
+	display: flex;
+}
+
+button a:hover{
+	text-decoration: none;
+}
+
+p{
+	font-size: 20px;
+}
+
+button.btn.btn-success{
 	padding: 15px;
-
-}
-
-.buttonconnexion a
-{
 	font-size: 20px;
 }
 
-.buttonconnexion button.btn.btn-success
-{
-	padding: 25px;
-	font-size: 20px;
-
+.title{
+	font-weight: bold;
+	font-size: 40px;
 }
 
-.buttoninscription
-{
+/** Footer  **/
+
+footer{
+    background-color: #0F1B2C;
+    color: white;
+    list-style: none;
+}
+
+footer i{
+	color: #fff;
+	font-size: 26px;
+}
+
+.coordonnees, .contact, .access, .networks {
+	display: inline-block;
+	padding: 45px;
+}
+
+.coordonnees p, .contact p, .access p{
+	text-align: left;
+	font-size: 20px;
+}
+
+.coordonnees h3, .contact h3, .access h3{
+	text-align: left;
+	font-size: 25px;
+}
+
+/*formulaire de connexion*/
+
+#part1{
+	float: left;
+	width: 50%;
+}
+
+#formConnexion div{
+	padding-bottom: 30px;
+}
+
+#connexion a{
+	margin: 0;
+	padding: 0;
+}
+
+#connexion i{
+	font-size: 30px;
+}
+
+#connexion li{
+	display: contents;
+}
+
+#btnConnexion{
+	margin-top: 30px;
+}
+
+#part2{
+	margin: 0;
+	width: 45%;
+	float: right;
+}
+
+#btnRegister{
 	background-color: #235024;
 	color: #fff;
 	font-weight: bold;
@@ -120,30 +171,686 @@ img
 	padding: 15px;
 }
 
-
-/** Partie de l'inscription **/
-#part2
-{
-	margin-bottom: 15px;	
+.profil{
+	color: #fff;
 }
 
-#part2 a
-{
-	color: white;
+.erreur{
+	color: red;
+	font-size: 30px;
+	font-weight: bold;
+	padding: 5px;
 }
 
-/** Footer  **/
-footer
-{
- 	
-    background-color: #0F1B2C;
-    color: white;
-    list-style: none;
-
+.erreur li{
+	list-style: none;
+	position: relative;
 }
 
-.buttonreinitialisation
-{
+/*formulaire d'inscription*/
+
+#formRegister #check input{
+	height: 22px;
+	position: relative;
+	right: 33%;
+}
+
+#formRegister #divInput{
+	font-size: 20px;
+	margin-top: 20px;
+	right: 17%;
+	width: 80%;
+}
+
+#formRegister input{
+	width: 80%;
+}
+
+/*formulaire d'oubli de mot de passe*/
+
+#btnReset{
 	margin-top: 50px;
-	padding-bottom: 50px;
+}
+
+#formOubli div{
+	position: relative;
+	right: 37%;
+	width: 45%;
+}
+
+#formOubli label{
+	right: 57%;
+}
+
+#formOubli #divAjout{
+	right: 37%;
+}
+
+/*Les Formulaires d'ajout et de modification des types et des catégories*/
+
+.flash-success{
+	font-size: 30px;
+	color: green;
+}
+
+.formEntité div.container-fluid{
+	display: inline-block;
+	position: relative;
+	right: 20%;
+}
+
+.formEntité #divInput{
+	position: relative;
+	width: 102%;
+	float: left;
+}
+
+.formEntité #divAjout{
+	float: left;
+}
+
+.formEntité input{
+	width: 25%;
+	position: relative;
+	right: 11%;
+	height: 35px;
+	font-size: 20px;
+}
+
+.formEntité .erreur li{
+    right: 3%;
+    text-align: left;
+}
+
+/*Les Formulaires d'ajout et de modification des documents*/
+
+.formEntité2 .erreur li{
+    right: 6%;
+    text-align: left;
+}
+
+.formEntité2 button.btn.btn-success{
+	position: relative;
+	left: 15%;
+}
+
+.formEntité2 input{
+	width: 80%;
+	position: relative;
+	right: 10%;
+	height: 35px;
+	font-size: 20px;
+}
+
+.formEntité2 select{
+	font-size: 25px;
+	position: relative;
+}
+
+#formDoc.formEntité2 #eventDoc select{
+    right: 52%;
+}
+
+#formDoc.formEntité2 #categDoc select{
+    right: 54%;
+}
+
+/*Les Formulaires d'ajout et de modification des élèves*/
+
+#formEleve.formEntité2 #selectCategorie select{
+	right:52%;
+}
+
+#formEleve.formEntité2 #selectClasse select{
+	right:33%;
+}
+
+#formEleve.formEntité2 #selectGenre select{
+	right:54%;
+}
+
+#formEleve.formEntité2 #selectArchive select{
+	right:53%;
+}
+
+#formEleve.formEntité2 #selectAutoPrelev select{
+	right:63%;
+}
+
+#divRetour{
+	margin-top: 20px;
+}
+
+/*Les Formulaires d'ajout et de modification des utilisateurs*/
+
+#formUser.formEntité2 #selectRole select{
+	right: 54%;
+}
+
+#formUser.formEntité2 #selectRole label, 
+#formUser.formEntité2 #selectRole select#user_roles_1{
+	display: none;
+}
+
+#formUser.formEntité2 #selectRole div{
+	padding-bottom: 0;
+}
+
+#formUser.formEntité2 #selectEleve select{
+	right: 56%;
+}
+
+/*Les Formulaires d'ajout et de modification des événements*/
+
+#formEvent.formEntité2 form{
+	padding-bottom: 15px;
+}
+
+#formEvent.formEntité2 input{
+	right: 0;
+}
+
+#formEvent.formEntité2 #divInput{
+	width: 85%;
+    right: 15%;
+}
+#formEvent.formEntité2 select{
+    margin-top: 20px;
+}
+
+#formEvent.formEntité2 #selectType select{
+	right:67%;
+}
+
+#formEvent.formEntité2 #selectSport select{
+	right: 63%;
+}
+
+#formEvent.formEntité2 #selectCategEleve select{
+	right: 64%;
+}
+
+/*Formulaire de fichier CSV ou XLSX des utilisateurs*/
+
+#fileInputUser input{
+	margin-top: 20px;
+}
+
+/*Formulaire des flux*/
+
+#formFlux.formEntité2 #fluxFacture select,
+#formFlux.formEntité2 #fluxEvent select{
+	right: 53%;
+}
+
+#formFlux.formEntité2 #fluxType select{
+	right: 51%;
+}
+
+#formFlux.formEntité2 #fluxBudget select{
+	right: 58%;
+}
+
+/*Page de gestion des documents*/
+
+#search{
+	text-align: center;
+}
+
+#search form{
+	padding: 30px 0 20px 0;
+}
+
+#search form div{
+	padding-bottom: 20px;
+	display: inline;
+}
+
+#search label{
+	font-size: 30px;
+	float: none;
+}
+
+#search input{
+	width: 20%;
+	display: inline-block;
+	height: 35px;
+    font-size: 25px;
+	margin-left: 20px;
+}
+
+#search button{
+	margin-top: 5px;
+}
+
+/*Filtre des pages de gestions*/
+
+.filtre{
+	display: inline-block;
+}
+
+.filtre span{
+	font-size: 20px;
+}
+
+.filtre select, .filtre input{
+	height: 30px;
+	font-size: 20px;
+}
+
+.filtre button{
+	padding: 5px 10px 5px 10px;
+	font-size: 20px;
+}
+
+.filtre div{
+	margin: 0 10px 0 0;
+	float: left;
+}
+
+.filtre div#submitFiltre{
+	margin: -5px 10px 0 0;
+}
+
+.filtre .selectFiltre{
+	margin-top: 15px;
+}
+
+.filtre #switch{
+	margin-top: 15px;
+}
+
+.filtre #left p{
+	font-size: 30px;
+	margin: 8px 0 0 0;
+}
+
+/*Filtre des élèves*/
+
+#filtreEleve form{
+	font-size: small;
+	padding: 0;
+}
+
+div#filtreEleve.filtre{
+	position: relative;
+    left: 5%;
+}
+
+div#filtreEleve.filtre label{
+	margin: 0 20px;
+}
+
+ul.pagination{
+	margin-top: 20px;
+	position: relative;
+	left: 35%;
+}
+
+/*Filtre des événements*/
+
+div#formFilter .filtre{
+	width: 79%;
+}
+
+#formFilter label{
+	margin: 3px 20px 0 0;
+}
+
+#formFilter form{
+	font-size: 22px;
+	padding: 0;
+}
+
+/*Le switch dans le filtre*/
+.switch{
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 24px;
+}
+
+.switch input{ 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider{
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before{
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider{
+  background-color: #2196F3;
+}
+
+input:focus + .slider{
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before{
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round{
+  border-radius: 34px;
+}
+
+.slider.round:before{
+  border-radius: 50%;
+}
+
+/*la page liste des événements vue élève et enseignant*/
+
+#vignette{
+	height: 160px;
+	width: 160px;
+	float: left;
+}
+
+#event{
+	font-size: 20px;
+	padding-bottom: 20px
+}
+
+#event i{
+	font-size: 20px;
+}
+
+#event #dateInscrip, #actu #dateInscrip{
+	float: left;
+	position: relative;
+	left: 5%;
+}
+
+#event #place{
+	position: relative;
+	right: 22%;
+	padding-top: 4px;
+}
+
+#event #descripEvent{
+	width: 75%;
+	display: inline-block;
+}
+
+#evenement{
+	padding: 0;
+	width: 80%;
+	margin-left: 10%;
+	margin-bottom: 5%;
+	background-color: whitesmoke;
+}
+
+#evenement p{
+	font-size: 15px;
+	margin: 0;
+}
+
+#evenement h3{
+	margin-top:10px;
+	position: relative;
+	left: 5%;
+	text-align: left;
+	font-weight: bold;
+}
+
+#evenement div.container-fluid{
+	padding: 0;
+	margin: 0;
+}
+
+#evenement i.fas.fa-calendar-alt{
+	padding: 5px;
+	font-size: 18px;
+	color: black;
+}
+
+#btnShow{
+	position: relative;
+	left: 5%;
+}
+
+#btnShow button{
+	font-weight: bold;
+	font-size: 15px;
+}
+
+/*Page de détails des événements pour s'inscrire*/
+#btnShow, #showEvent p, #showEvent h2{
+	text-align: left;
+}
+
+ #showEvent h1{
+ 	text-align: center;
+ }
+
+#showEvent table.tableAdmin, #showEvent p,#showEvent h2{
+	position: relative;
+	left: 10%;
+	width: 80%;
+}
+
+#showEvent p{
+	font-size: 25px;
+	margin-left: 0;
+
+}
+
+#showEvent h2{
+	font-weight: bold;
+	margin-left: 0;
+	margin-top: 40px;
+}
+
+#showEvent #imgEvent{
+	height: 300px;
+	width: 80%;
+	margin: 1% 0;
+}
+
+/*Espace d'administration*/
+
+.tableAdmin{
+	margin: 30px 0; 
+	border: solid black;
+}
+
+.tableAdmin button a{
+	font-size: 30px;
+}
+
+.tableAdmin th, .tableAdmin td{
+	text-align: center;
+	font-size: 25px;
+	border: solid black;
+	vertical-align: inherit!important;
+}
+
+.tableAdmin p{
+	font-size: 25px;
+}
+
+i.far.fa-edit, i.fas.fa-trash{
+	font-size: 20px;
+	padding: 15px;
+}
+
+table img{
+	width: 100px;
+	height: 100px;
+}
+
+table button.btn.btn-info{
+	margin: 12px 0;
+	padding: 25px;
+	font-size: 20px;
+}
+
+#btninfo1{
+	padding: 25px 85px;
+}
+
+#btninfo2{
+	padding: 25px 52px;
+}
+
+#btninfo3{
+	padding: 25px 115px;
+}
+
+#btninfo4{
+	padding: 25px 55px;
+}
+
+#btninfo5{
+	padding: 25px 90px;
+}
+
+#btninfo6{
+	padding: 25px 110px;
+}
+
+#btnAjout, #btnRetour{
+	padding: 30px;
+    font-size: 20px;
+}
+
+#btnSuppr{
+	padding: 40px;
+	font-size: 30px;
+}
+
+#warning{
+	color: red;
+	font-size: 40px;
+	border: solid;
+	width: 65%;
+}
+
+
+/*Espace de statistique*/
+
+canvas {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	background-color: whitesmoke;
+	border: solid;
+}
+
+#canvas1,#canvas2, #canvas3, #canvas4, #canvas5,#canvas6{
+	position: relative;
+	float: left;
+	left: 15%;
+	width: 70%;
+	margin-top: 40px;
+}
+
+#tableStat{
+	width: 50%;
+	margin: 40px 25%;
+}
+
+.selectStat ,.selectStat div{
+	margin:15px 0;
+}
+
+.selectStat span{
+	font-size: 25px;
+}
+
+.selectStat select{
+	font-size: 20px;
+}
+
+.selectStat button.btn.btn-info{
+	font-size: 15px;
+	padding: 10px;
+	margin: 0 0 5px 15px;
+}
+
+#stat #filtre #left{
+	margin: 25px 0;
+}
+
+#stat label{
+	float: none;
+}
+
+#stat form{
+	font-size: 20px;
+	padding:0;
+}
+
+#stat #filtre div{
+	margin:0;
+}
+
+#stat ul.pagination{
+	position: relative;
+	left: 23%;
+}
+
+/*Page de profile*/
+
+#profilHeader{
+	margin: 5% 0 5% 10%;
+}
+
+#profilHeader h1{
+	font-size: 40px;
+}
+
+#profilHeader p{
+	font-size: 20px;
+}
+
+#profilHeader h1,#profilHeader p{
+	text-align: left;
+}
+
+#infoProfil p{
+	font-size: 20px;
+}
+
+#typeUser{
+	font-weight: bold;
+	font-style: italic;
+}
+
+#btnProfil{
+	margin-top: 20px;
+}
+
+#dropdownUser{
+	margin-bottom: 30px;
+}
+
+#dropdownUser button, #btnProfil{
+	padding: 20px;
+	font-size: 20px;
 }
