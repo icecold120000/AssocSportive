@@ -1,168 +1,236 @@
 /**Général**/
-*{
+*
+{
 	margin: auto;
 	text-align: center;
 }
 
-h1{
+h1
+{
 	font-weight: bold;
 }
 
-h6{
+h6
+{
 	font-size: 20px;
 }
 
 /*Barre de navigation*/
-nav#mainNav {
+nav#mainNav 
+
+{
 	padding: 8px;
 	background-color: #0F1B2C;
 }
 
-ul.navbar-nav{
+ul.navbar-nav
+
+{
 	display: contents;
 }
 
-li.nav-item:first-child {
+li.nav-item:first-child 
+
+{
 	margin: 0 30px;
 }
 
-li.nav-item, li.page-item{
+li.nav-item, li.page-item
+
+{
 	margin: 0;
 }
 
-div.navbar-brand {
+div.navbar-brand 
+
+{
 	margin-left: 0;
 }
 
-a.nav-link{
+a.nav-link
+
+{
 	color: white!important;
 }
 
-ul#connexion{
+ul#connexion
+
+{
 	display: flex;
 }
 
-a{
+a
+
+{
 	color: white;
 }
 
-li{
+li
+
+{
 	list-style: none;
 }
 
-#links{
+#links
+
+{
 	color: black;
 }
 
-form{
+form
+
+{
 	text-align: center;
 	font-size: 40px;
 	padding: 40px;
 }
 
-form div{
+form div
+
+{
 	padding-bottom: 20px;
 }
 
-label{
+label
+
+{
 	font-size: 20px;
 	position: relative;
 	margin: 0;
 	float: left;
 }
 
-#divInput{
+#divInput
+
+{
 	position: relative;
 	width: 45%;
 	right: 27%;
 }
 
-#divAjout{
+#divAjout
+
+{
 	position: relative;
 	display: flex;
 }
 
-button a:hover{
+button a:hover
+
+{
 	text-decoration: none;
 }
 
-p{
+p
+
+{
 	font-size: 20px;
 }
 
-button.btn.btn-success{
+button.btn.btn-success
+
+{
 	padding: 15px;
 	font-size: 20px;
 }
 
-.title{
+.title
+
+{
 	font-weight: bold;
 	font-size: 40px;
 }
 
 /** Footer  **/
 
-footer{
+footer
+
+{
     background-color: #0F1B2C;
     color: white;
     list-style: none;
+    margin-top: 60px;
 }
 
-footer i{
+footer i
+
+{
 	color: #fff;
 	font-size: 26px;
 }
 
-.coordonnees, .contact, .access, .networks {
+.coordonnees, .contact, .access, .networks
+
+{
 	display: inline-block;
 	padding: 45px;
 }
 
-.coordonnees p, .contact p, .access p{
+.coordonnees p, .contact p, .access p
+
+{
 	text-align: left;
 	font-size: 20px;
 }
 
-.coordonnees h3, .contact h3, .access h3{
+.coordonnees h3, .contact h3, .access h3
+
+{
 	text-align: left;
 	font-size: 25px;
 }
 
 /*formulaire de connexion*/
 
-#part1{
+#part1
+
+{
 	float: left;
 	width: 50%;
 }
 
-#formConnexion div{
+#formConnexion div
+
+{
 	padding-bottom: 30px;
 }
 
-#connexion a{
+#connexion a
+
+{
 	margin: 0;
 	padding: 0;
 }
 
-#connexion i{
+#connexion i
+
+{
 	font-size: 30px;
 }
 
-#connexion li{
+#connexion li
+
+{
 	display: contents;
 }
 
-#btnConnexion{
+#btnConnexion
+
+{
 	margin-top: 30px;
 }
 
-#part2{
+#part2
+
+{
 	margin: 0;
 	width: 45%;
 	float: right;
 }
 
-#btnRegister{
+#btnRegister
+
+{
 	background-color: #235024;
 	color: #fff;
 	font-weight: bold;
@@ -171,85 +239,115 @@ footer i{
 	padding: 15px;
 }
 
-.profil{
+.profil
+
+{
 	color: #fff;
 }
 
-.erreur{
+.erreur
+
+{
 	color: red;
 	font-size: 30px;
 	font-weight: bold;
 	padding: 5px;
 }
 
-.erreur li{
+.erreur li
+
+{
 	list-style: none;
 	position: relative;
 }
 
 /*formulaire d'inscription*/
 
-#formRegister #check input{
+#formRegister #check input
+
+{
 	height: 22px;
 	position: relative;
 	right: 33%;
 }
 
-#formRegister #divInput{
+#formRegister #divInput
+
+{
 	font-size: 20px;
 	margin-top: 20px;
 	right: 17%;
 	width: 80%;
 }
 
-#formRegister input{
+#formRegister input
+
+{
 	width: 80%;
 }
 
 /*formulaire d'oubli de mot de passe*/
 
-#btnReset{
+#btnReset
+
+{
 	margin-top: 50px;
 }
 
-#formOubli div{
+#formOubli div
+
+{
 	position: relative;
 	right: 37%;
 	width: 45%;
 }
 
-#formOubli label{
+#formOubli label
+
+{
 	right: 57%;
 }
 
-#formOubli #divAjout{
+#formOubli #divAjout
+
+{
 	right: 37%;
 }
 
 /*Les Formulaires d'ajout et de modification des types et des catégories*/
 
-.flash-success{
+.flash-success
+
+{
 	font-size: 30px;
 	color: green;
 }
 
-.formEntité div.container-fluid{
+.formEntité div.container-fluid
+
+{
 	display: inline-block;
 	position: relative;
 	right: 20%;
 }
 
-.formEntité #divInput{
+.formEntité #divInput
+
+{
 	position: relative;
 	width: 102%;
 	float: left;
 }
 
-.formEntité #divAjout{
+.formEntité #divAjout
+
+{
 	float: left;
 }
 
-.formEntité input{
+.formEntité input
+
+{
 	width: 25%;
 	position: relative;
 	right: 11%;
@@ -257,24 +355,29 @@ footer i{
 	font-size: 20px;
 }
 
-.formEntité .erreur li{
+.formEntité .erreur li
+{
     right: 3%;
     text-align: left;
 }
 
 /*Les Formulaires d'ajout et de modification des documents*/
 
-.formEntité2 .erreur li{
+.formEntité2 .erreur li
+{
     right: 6%;
     text-align: left;
 }
 
-.formEntité2 button.btn.btn-success{
+.formEntité2 button.btn.btn-success
+
+{
 	position: relative;
 	left: 15%;
 }
 
-.formEntité2 input{
+.formEntité2 input
+{
 	width: 80%;
 	position: relative;
 	right: 10%;
@@ -282,136 +385,151 @@ footer i{
 	font-size: 20px;
 }
 
-.formEntité2 select{
-	font-size: 25px;
+.formEntité2 select
+{
+	font-size: 15px;
 	position: relative;
 }
 
-#formDoc.formEntité2 #eventDoc select{
+#formDoc.formEntité2 #eventDoc select
+{
     right: 52%;
 }
 
-#formDoc.formEntité2 #categDoc select{
+#formDoc.formEntité2 #categDoc select
+{
     right: 54%;
 }
 
 /*Les Formulaires d'ajout et de modification des élèves*/
 
-#formEleve.formEntité2 #selectCategorie select{
+#formEleve.formEntité2 #selectCategorie select
+
+{
 	right:52%;
 }
 
-#formEleve.formEntité2 #selectClasse select{
+#formEleve.formEntité2 #selectClasse select
+
+{
 	right:33%;
 }
 
-#formEleve.formEntité2 #selectGenre select{
+#formEleve.formEntité2 #selectGenre select
+
+{
 	right:54%;
 }
 
-#formEleve.formEntité2 #selectArchive select{
+#formEleve.formEntité2 #selectArchive select
+
+{
 	right:53%;
 }
 
-#formEleve.formEntité2 #selectAutoPrelev select{
+#formEleve.formEntité2 #selectAutoPrelev select
+
+{
 	right:63%;
 }
 
-#divRetour{
+#divRetour
+{
 	margin-top: 20px;
 }
 
 /*Les Formulaires d'ajout et de modification des utilisateurs*/
 
-#formUser.formEntité2 #selectRole select{
+#formUser.formEntité2 #selectRole select
+
+{
 	right: 54%;
 }
 
 #formUser.formEntité2 #selectRole label, 
-#formUser.formEntité2 #selectRole select#user_roles_1{
+#formUser.formEntité2 #selectRole select#user_roles_1
+
+{
 	display: none;
 }
 
-#formUser.formEntité2 #selectRole div{
+#formUser.formEntité2 #selectRole div
+
+{
 	padding-bottom: 0;
 }
 
-#formUser.formEntité2 #selectEleve select{
+#formUser.formEntité2 #selectEleve select
+
+{
 	right: 56%;
 }
 
 /*Les Formulaires d'ajout et de modification des événements*/
 
-#formEvent.formEntité2 form{
+#formEvent.formEntité2 form
+{
 	padding-bottom: 15px;
 }
 
-#formEvent.formEntité2 input{
+#formEvent.formEntité2 input
+{
 	right: 0;
 }
 
-#formEvent.formEntité2 #divInput{
+#formEvent.formEntité2 #divInput
+{
 	width: 85%;
-    right: 15%;
+    right: 7%;
+
 }
-#formEvent.formEntité2 select{
+#formEvent.formEntité2 select
+{
     margin-top: 20px;
 }
 
-#formEvent.formEntité2 #selectType select{
-	right:67%;
-}
 
-#formEvent.formEntité2 #selectSport select{
-	right: 63%;
-}
-
-#formEvent.formEntité2 #selectCategEleve select{
-	right: 64%;
-}
 
 /*Formulaire de fichier CSV ou XLSX des utilisateurs*/
 
-#fileInputUser input{
+#fileInputUser input
+{
 	margin-top: 20px;
 }
 
-/*Formulaire des flux*/
 
-#formFlux.formEntité2 #fluxFacture select,
-#formFlux.formEntité2 #fluxEvent select{
-	right: 53%;
-}
-
-#formFlux.formEntité2 #fluxType select{
-	right: 51%;
-}
-
-#formFlux.formEntité2 #fluxBudget select{
-	right: 58%;
-}
 
 /*Page de gestion des documents*/
 
-#search{
+#search
+
+{
 	text-align: center;
 }
 
-#search form{
+#search form
+
+{
 	padding: 30px 0 20px 0;
 }
 
-#search form div{
+#search form div
+
+{
 	padding-bottom: 20px;
 	display: inline;
 }
 
-#search label{
+#search label
+
+{
 	font-size: 30px;
 	float: none;
 }
 
-#search input{
+#search input
+
+{
 	width: 20%;
 	display: inline-block;
 	height: 35px;
@@ -419,69 +537,97 @@ footer i{
 	margin-left: 20px;
 }
 
-#search button{
+#search button
+
+{
 	margin-top: 5px;
 }
 
 /*Filtre des pages de gestions*/
 
-.filtre{
+.filtre
+
+{
 	display: inline-block;
 }
 
-.filtre span{
+.filtre span
+
+{
 	font-size: 20px;
 }
 
-.filtre select, .filtre input{
+.filtre select, .filtre input
+
+{
 	height: 30px;
 	font-size: 20px;
 }
 
-.filtre button{
+.filtre button
+
+{
 	padding: 5px 10px 5px 10px;
 	font-size: 20px;
 }
 
-.filtre div{
+.filtre div
+
+{
 	margin: 0 10px 0 0;
 	float: left;
 }
 
-.filtre div#submitFiltre{
+.filtre div#submitFiltre
+
+{
 	margin: -5px 10px 0 0;
 }
 
-.filtre .selectFiltre{
+.filtre .selectFiltre
+
+{
 	margin-top: 15px;
 }
 
-.filtre #switch{
+.filtre #switch
+
+{
 	margin-top: 15px;
 }
 
-.filtre #left p{
+.filtre #left p
+
+{
 	font-size: 30px;
 	margin: 8px 0 0 0;
 }
 
 /*Filtre des élèves*/
 
-#filtreEleve form{
+#filtreEleve form
+
+{
 	font-size: small;
 	padding: 0;
 }
 
-div#filtreEleve.filtre{
+div#filtreEleve.filtre
+
+{
 	position: relative;
     left: 5%;
 }
 
-div#filtreEleve.filtre label{
+div#filtreEleve.filtre label
+
+{
 	margin: 0 20px;
 }
 
-ul.pagination{
+ul.pagination
+
+{
 	margin-top: 20px;
 	position: relative;
 	left: 35%;
@@ -489,34 +635,45 @@ ul.pagination{
 
 /*Filtre des événements*/
 
-div#formFilter .filtre{
+div#formFilter .filtre
+
+{
 	width: 79%;
 }
 
-#formFilter label{
-	margin: 3px 20px 0 0;
+#formFilter label
+
+{
+	margin: 3px 20px 0 50px;
 }
 
-#formFilter form{
+#formFilter form
+
+{
 	font-size: 22px;
 	padding: 0;
 }
 
 /*Le switch dans le filtre*/
-.switch{
+.switch
+
+{
   position: relative;
   display: inline-block;
   width: 52px;
   height: 24px;
 }
 
-.switch input{ 
+.switch input
+
+{ 
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-.slider{
+.slider
+{
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -528,7 +685,8 @@ div#formFilter .filtre{
   transition: .4s;
 }
 
-.slider:before{
+.slider:before
+{
   position: absolute;
   content: "";
   height: 18px;
@@ -540,64 +698,76 @@ div#formFilter .filtre{
   transition: .4s;
 }
 
-input:checked + .slider{
+input:checked + .slider
+{
   background-color: #2196F3;
 }
 
-input:focus + .slider{
+input:focus + .slider
+{
   box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .slider:before{
+input:checked + .slider:before
+{
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
 
 /* Rounded sliders */
-.slider.round{
+.slider.round
+{
   border-radius: 34px;
 }
 
-.slider.round:before{
+.slider.round:before
+{
   border-radius: 50%;
 }
 
 /*la page liste des événements vue élève et enseignant*/
 
-#vignette{
+#vignette
+{
 	height: 160px;
 	width: 160px;
 	float: left;
 }
 
-#event{
+#event
+{
 	font-size: 20px;
 	padding-bottom: 20px
 }
 
-#event i{
+#event i
+{
 	font-size: 20px;
 }
 
-#event #dateInscrip, #actu #dateInscrip{
+#event #dateInscrip, #actu #dateInscrip
+{
 	float: left;
 	position: relative;
 	left: 5%;
 }
 
-#event #place{
+#event #place
+{
 	position: relative;
 	right: 22%;
 	padding-top: 4px;
 }
 
-#event #descripEvent{
+#event #descripEvent
+{
 	width: 75%;
 	display: inline-block;
 }
 
-#evenement{
+#evenement
+{
 	padding: 0;
 	width: 80%;
 	margin-left: 10%;
@@ -605,12 +775,14 @@ input:checked + .slider:before{
 	background-color: whitesmoke;
 }
 
-#evenement p{
+#evenement p
+{
 	font-size: 15px;
 	margin: 0;
 }
 
-#evenement h3{
+#evenement h3
+{
 	margin-top:10px;
 	position: relative;
 	left: 5%;
@@ -618,55 +790,65 @@ input:checked + .slider:before{
 	font-weight: bold;
 }
 
-#evenement div.container-fluid{
+#evenement div.container-fluid
+{
 	padding: 0;
 	margin: 0;
 }
 
-#evenement i.fas.fa-calendar-alt{
+#evenement i.fas.fa-calendar-alt
+{
 	padding: 5px;
 	font-size: 18px;
 	color: black;
 }
 
-#btnShow{
+#btnShow
+{
 	position: relative;
 	left: 5%;
 }
 
-#btnShow button{
+#btnShow button
+{
 	font-weight: bold;
 	font-size: 15px;
 }
 
 /*Page de détails des événements pour s'inscrire*/
-#btnShow, #showEvent p, #showEvent h2{
+#btnShow, #showEvent p, #showEvent h2
+{
 	text-align: left;
 }
 
- #showEvent h1{
+ #showEvent h1
+ {
  	text-align: center;
  }
 
-#showEvent table.tableAdmin, #showEvent p,#showEvent h2{
+#showEvent table.tableAdmin, #showEvent p,#showEvent h2
+{
 	position: relative;
 	left: 10%;
 	width: 80%;
 }
 
-#showEvent p{
+#showEvent p
+{
 	font-size: 25px;
 	margin-left: 0;
 
 }
 
-#showEvent h2{
+#showEvent h2
+{
 	font-weight: bold;
 	margin-left: 0;
 	margin-top: 40px;
 }
 
-#showEvent #imgEvent{
+#showEvent #imgEvent
+{
 	height: 300px;
 	width: 80%;
 	margin: 1% 0;
@@ -674,77 +856,94 @@ input:checked + .slider:before{
 
 /*Espace d'administration*/
 
-.tableAdmin{
+.tableAdmin
+{
 	margin: 30px 0; 
 	border: solid black;
 }
 
-.tableAdmin button a{
+.tableAdmin button a
+{
 	font-size: 30px;
 }
 
-.tableAdmin th, .tableAdmin td{
+.tableAdmin th, .tableAdmin td
+{
 	text-align: center;
 	font-size: 25px;
 	border: solid black;
 	vertical-align: inherit!important;
 }
 
-.tableAdmin p{
+.tableAdmin p
+{
 	font-size: 25px;
 }
 
-i.far.fa-edit, i.fas.fa-trash{
+i.far.fa-edit, i.fas.fa-trash
+{
 	font-size: 20px;
 	padding: 15px;
 }
 
-table img{
+table img
+{
 	width: 100px;
 	height: 100px;
 }
 
-table button.btn.btn-info{
+table button.btn.btn-info
+{
 	margin: 12px 0;
 	padding: 25px;
 	font-size: 20px;
 }
 
-#btninfo1{
+#btninfo1
+{
 	padding: 25px 85px;
 }
 
-#btninfo2{
+#btninfo2
+{
 	padding: 25px 52px;
 }
 
-#btninfo3{
+#btninfo3
+{
 	padding: 25px 115px;
 }
 
-#btninfo4{
+#btninfo4
+{
 	padding: 25px 55px;
 }
 
-#btninfo5{
+#btninfo5
+{
 	padding: 25px 90px;
 }
 
-#btninfo6{
+#btninfo6
+{
 	padding: 25px 110px;
 }
 
-#btnAjout, #btnRetour{
+#btnAjout, #btnRetour
+{
 	padding: 30px;
     font-size: 20px;
+    margin: 10px;
 }
 
-#btnSuppr{
+#btnSuppr
+{
 	padding: 40px;
 	font-size: 30px;
 }
 
-#warning{
+#warning
+{
 	color: red;
 	font-size: 40px;
 	border: solid;
@@ -754,7 +953,8 @@ table button.btn.btn-info{
 
 /*Espace de statistique*/
 
-canvas {
+canvas 
+{
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
@@ -762,7 +962,8 @@ canvas {
 	border: solid;
 }
 
-#canvas1,#canvas2, #canvas3, #canvas4, #canvas5,#canvas6{
+#canvas1,#canvas2, #canvas3, #canvas4, #canvas5,#canvas6
+{
 	position: relative;
 	float: left;
 	left: 15%;
@@ -770,87 +971,106 @@ canvas {
 	margin-top: 40px;
 }
 
-#tableStat{
+#tableStat
+{
 	width: 50%;
 	margin: 40px 25%;
 }
 
-.selectStat ,.selectStat div{
+.selectStat ,.selectStat div
+{
 	margin:15px 0;
 }
 
-.selectStat span{
+.selectStat span
+{
 	font-size: 25px;
 }
 
-.selectStat select{
+.selectStat select
+{
 	font-size: 20px;
 }
 
-.selectStat button.btn.btn-info{
+.selectStat button.btn.btn-info
+{
 	font-size: 15px;
 	padding: 10px;
 	margin: 0 0 5px 15px;
 }
 
-#stat #filtre #left{
+#stat #filtre #left
+{
 	margin: 25px 0;
 }
 
-#stat label{
+#stat label
+{
 	float: none;
 }
 
-#stat form{
+#stat form
+{
 	font-size: 20px;
 	padding:0;
 }
 
-#stat #filtre div{
+#stat #filtre div
+{
 	margin:0;
 }
 
-#stat ul.pagination{
+#stat ul.pagination
+{
 	position: relative;
 	left: 23%;
 }
 
 /*Page de profile*/
 
-#profilHeader{
+#profilHeader
+{
 	margin: 5% 0 5% 10%;
 }
 
-#profilHeader h1{
+#profilHeader h1
+{
 	font-size: 40px;
 }
 
-#profilHeader p{
+#profilHeader p
+{
 	font-size: 20px;
 }
 
-#profilHeader h1,#profilHeader p{
-	text-align: left;
+#profilHeader h1,#profilHeader p
+{
+	text-align: center;
 }
 
-#infoProfil p{
+#infoProfil p
+{
 	font-size: 20px;
 }
 
-#typeUser{
+#typeUser
+{
 	font-weight: bold;
 	font-style: italic;
 }
 
-#btnProfil{
+#btnProfil
+{
 	margin-top: 20px;
 }
 
-#dropdownUser{
+#dropdownUser
+{
 	margin-bottom: 30px;
 }
 
-#dropdownUser button, #btnProfil{
+#dropdownUser button, #btnProfil
+{
 	padding: 20px;
 	font-size: 20px;
 }
