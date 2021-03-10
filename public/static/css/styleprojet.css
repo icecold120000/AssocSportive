@@ -16,69 +16,58 @@ h6
 }
 
 /*Barre de navigation*/
-nav#mainNav 
-
+nav#mainNav
 {
 	padding: 8px;
 	background-color: #0F1B2C;
 }
 
 ul.navbar-nav
-
 {
 	display: contents;
 }
 
-li.nav-item:first-child 
-
+li.nav-item:first-child
 {
 	margin: 0 30px;
 }
 
 li.nav-item, li.page-item
-
 {
 	margin: 0;
 }
 
-div.navbar-brand 
-
+div.navbar-brand
 {
 	margin-left: 0;
 }
 
 a.nav-link
-
 {
 	color: white!important;
 }
 
 ul#connexion
-
 {
 	display: flex;
 }
 
 a
-
 {
 	color: white;
 }
 
 li
-
 {
 	list-style: none;
 }
 
 #links
-
 {
 	color: black;
 }
 
 form
-
 {
 	text-align: center;
 	font-size: 40px;
@@ -86,13 +75,11 @@ form
 }
 
 form div
-
 {
 	padding-bottom: 20px;
 }
 
 label
-
 {
 	font-size: 20px;
 	position: relative;
@@ -101,7 +88,6 @@ label
 }
 
 #divInput
-
 {
 	position: relative;
 	width: 45%;
@@ -109,33 +95,28 @@ label
 }
 
 #divAjout
-
 {
 	position: relative;
 	display: flex;
 }
 
 button a:hover
-
 {
 	text-decoration: none;
 }
 
 p
-
 {
 	font-size: 20px;
 }
 
 button.btn.btn-success
-
 {
 	padding: 15px;
 	font-size: 20px;
 }
 
 .title
-
 {
 	font-weight: bold;
 	font-size: 40px;
@@ -144,37 +125,31 @@ button.btn.btn-success
 /** Footer  **/
 
 footer
-
 {
     background-color: #0F1B2C;
     color: white;
     list-style: none;
-    margin-top: 60px;
 }
 
 footer i
-
 {
 	color: #fff;
 	font-size: 26px;
 }
 
 .coordonnees, .contact, .access, .networks
-
 {
 	display: inline-block;
 	padding: 45px;
 }
 
 .coordonnees p, .contact p, .access p
-
 {
 	text-align: left;
 	font-size: 20px;
 }
 
 .coordonnees h3, .contact h3, .access h3
-
 {
 	text-align: left;
 	font-size: 25px;
@@ -183,45 +158,38 @@ footer i
 /*formulaire de connexion*/
 
 #part1
-
 {
 	float: left;
 	width: 50%;
 }
 
 #formConnexion div
-
 {
 	padding-bottom: 30px;
 }
 
 #connexion a
-
 {
 	margin: 0;
 	padding: 0;
 }
 
 #connexion i
-
 {
 	font-size: 30px;
 }
 
 #connexion li
-
 {
 	display: contents;
 }
 
 #btnConnexion
-
 {
 	margin-top: 30px;
 }
 
 #part2
-
 {
 	margin: 0;
 	width: 45%;
@@ -229,7 +197,6 @@ footer i
 }
 
 #btnRegister
-
 {
 	background-color: #235024;
 	color: #fff;
@@ -240,13 +207,11 @@ footer i
 }
 
 .profil
-
 {
 	color: #fff;
 }
 
 .erreur
-
 {
 	color: red;
 	font-size: 30px;
@@ -255,7 +220,6 @@ footer i
 }
 
 .erreur li
-
 {
 	list-style: none;
 	position: relative;
@@ -264,7 +228,6 @@ footer i
 /*formulaire d'inscription*/
 
 #formRegister #check input
-
 {
 	height: 22px;
 	position: relative;
@@ -272,7 +235,6 @@ footer i
 }
 
 #formRegister #divInput
-
 {
 	font-size: 20px;
 	margin-top: 20px;
@@ -281,7 +243,6 @@ footer i
 }
 
 #formRegister input
-
 {
 	width: 80%;
 }
@@ -289,13 +250,11 @@ footer i
 /*formulaire d'oubli de mot de passe*/
 
 #btnReset
-
 {
 	margin-top: 50px;
 }
 
 #formOubli div
-
 {
 	position: relative;
 	right: 37%;
@@ -303,13 +262,11 @@ footer i
 }
 
 #formOubli label
-
 {
 	right: 57%;
 }
 
 #formOubli #divAjout
-
 {
 	right: 37%;
 }
@@ -317,14 +274,12 @@ footer i
 /*Les Formulaires d'ajout et de modification des types et des catégories*/
 
 .flash-success
-
 {
 	font-size: 30px;
 	color: green;
 }
 
 .formEntité div.container-fluid
-
 {
 	display: inline-block;
 	position: relative;
@@ -332,21 +287,18 @@ footer i
 }
 
 .formEntité #divInput
-
 {
-	position: relative;
-	width: 102%;
-	float: left;
+	width: 100%;
+	left: 11%;
+	margin-top: 20px;
 }
 
 .formEntité #divAjout
-
 {
 	float: left;
 }
 
 .formEntité input
-
 {
 	width: 25%;
 	position: relative;
@@ -370,7 +322,6 @@ footer i
 }
 
 .formEntité2 button.btn.btn-success
-
 {
 	position: relative;
 	left: 15%;
@@ -387,7 +338,7 @@ footer i
 
 .formEntité2 select
 {
-	font-size: 15px;
+	font-size: 25px;
 	position: relative;
 }
 
@@ -404,31 +355,26 @@ footer i
 /*Les Formulaires d'ajout et de modification des élèves*/
 
 #formEleve.formEntité2 #selectCategorie select
-
 {
 	right:52%;
 }
 
 #formEleve.formEntité2 #selectClasse select
-
 {
 	right:33%;
 }
 
 #formEleve.formEntité2 #selectGenre select
-
 {
 	right:54%;
 }
 
 #formEleve.formEntité2 #selectArchive select
-
 {
 	right:53%;
 }
 
 #formEleve.formEntité2 #selectAutoPrelev select
-
 {
 	right:63%;
 }
@@ -441,26 +387,22 @@ footer i
 /*Les Formulaires d'ajout et de modification des utilisateurs*/
 
 #formUser.formEntité2 #selectRole select
-
 {
 	right: 54%;
 }
 
 #formUser.formEntité2 #selectRole label, 
 #formUser.formEntité2 #selectRole select#user_roles_1
-
 {
 	display: none;
 }
 
 #formUser.formEntité2 #selectRole div
-
 {
 	padding-bottom: 0;
 }
 
 #formUser.formEntité2 #selectEleve select
-
 {
 	right: 56%;
 }
@@ -475,19 +417,14 @@ footer i
 #formEvent.formEntité2 input
 {
 	right: 0;
+	margin-top: 20px;
 }
 
 #formEvent.formEntité2 #divInput
 {
 	width: 85%;
     right: 7%;
-
 }
-#formEvent.formEntité2 select
-{
-    margin-top: 20px;
-}
-
 
 
 /*Formulaire de fichier CSV ou XLSX des utilisateurs*/
@@ -497,38 +434,31 @@ footer i
 	margin-top: 20px;
 }
 
-
-
 /*Page de gestion des documents*/
 
 #search
-
 {
 	text-align: center;
 }
 
 #search form
-
 {
 	padding: 30px 0 20px 0;
 }
 
 #search form div
-
 {
 	padding-bottom: 20px;
 	display: inline;
 }
 
 #search label
-
 {
 	font-size: 30px;
 	float: none;
 }
 
 #search input
-
 {
 	width: 20%;
 	display: inline-block;
@@ -538,7 +468,6 @@ footer i
 }
 
 #search button
-
 {
 	margin-top: 5px;
 }
@@ -546,58 +475,49 @@ footer i
 /*Filtre des pages de gestions*/
 
 .filtre
-
 {
 	display: inline-block;
 }
 
 .filtre span
-
 {
 	font-size: 20px;
 }
 
 .filtre select, .filtre input
-
 {
 	height: 30px;
 	font-size: 20px;
 }
 
 .filtre button
-
 {
 	padding: 5px 10px 5px 10px;
 	font-size: 20px;
 }
 
 .filtre div
-
 {
 	margin: 0 10px 0 0;
 	float: left;
 }
 
 .filtre div#submitFiltre
-
 {
 	margin: -5px 10px 0 0;
 }
 
 .filtre .selectFiltre
-
 {
 	margin-top: 15px;
 }
 
 .filtre #switch
-
 {
 	margin-top: 15px;
 }
 
 .filtre #left p
-
 {
 	font-size: 30px;
 	margin: 8px 0 0 0;
@@ -606,57 +526,68 @@ footer i
 /*Filtre des élèves*/
 
 #filtreEleve form
-
 {
 	font-size: small;
 	padding: 0;
 }
 
 div#filtreEleve.filtre
-
 {
 	position: relative;
     left: 5%;
 }
 
 div#filtreEleve.filtre label
-
 {
 	margin: 0 20px;
 }
 
 ul.pagination
-
 {
 	margin-top: 20px;
 	position: relative;
 	left: 35%;
 }
 
+/*Recherche d'un élève*/
+
+div#searchEleveBtn
+{
+	float: none;
+	padding: 30px;
+}
+
+#searchEleveBtn button
+{
+	padding: 20px;
+}
+
 /*Filtre des événements*/
 
 div#formFilter .filtre
-
 {
 	width: 79%;
 }
 
 #formFilter label
-
 {
 	margin: 3px 20px 0 50px;
 }
 
 #formFilter form
-
 {
 	font-size: 22px;
 	padding: 0;
 }
 
+#formFilter button.btn.btn-info
+
+{
+	margin-left: 50px;
+}
+
 /*Le switch dans le filtre*/
 .switch
-
 {
   position: relative;
   display: inline-block;
@@ -665,7 +596,6 @@ div#formFilter .filtre
 }
 
 .switch input
-
 { 
   opacity: 0;
   width: 0;
@@ -741,6 +671,12 @@ input:checked + .slider:before
 	padding-bottom: 20px
 }
 
+#actu
+{
+	font-size: 20px;
+	padding-bottom: 23px
+}
+
 #event i
 {
 	font-size: 20px;
@@ -764,6 +700,15 @@ input:checked + .slider:before
 {
 	width: 75%;
 	display: inline-block;
+}
+
+#actu #descripActu
+{
+	width: 75%;
+	display: inline-block;
+	margin-top: 30px;
+	position: relative;
+	right: 7%;
 }
 
 #evenement
@@ -933,7 +878,6 @@ table button.btn.btn-info
 {
 	padding: 30px;
     font-size: 20px;
-    margin: 10px;
 }
 
 #btnSuppr
@@ -948,6 +892,25 @@ table button.btn.btn-info
 	font-size: 40px;
 	border: solid;
 	width: 65%;
+}
+
+/* formulaire de comptabilité*/
+table form
+{
+	font-size: smaller;
+	padding: 0px;
+}
+
+table select
+{
+	position: relative;
+	left: 30%;
+}
+
+table .btn.btn-success
+{
+	font-size: small;
+	padding: 6px 12px;
 }
 
 
@@ -1045,7 +1008,7 @@ canvas
 
 #profilHeader h1,#profilHeader p
 {
-	text-align: center;
+	text-align: left;
 }
 
 #infoProfil p
