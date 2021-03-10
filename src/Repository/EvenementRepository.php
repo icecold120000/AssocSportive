@@ -19,6 +19,44 @@ class EvenementRepository extends ServiceEntityRepository
         parent::__construct($registry, Evenement::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('dateDebut' => 'DESC'));
+    }
+
+    /**
+     * @return void
+     */
+    public function search($typeEvent = null, $categorie = null, $sport = null, $actif = null){
+        $query = $this->createQueryBuilder('ev');
+        if($typeEvent != null){
+            $query->leftJoin('ev.Type', 'te');
+            $query->andWhere('te.id = :id')
+                ->setParameter('id', $typeEvent);
+        }
+        if($categorie != null){
+            $query->leftJoin('ev.categorieEleve', 'ce');
+            $query->andWhere('ce.id = :id')
+                ->setParameter('id', $categorie);
+        }
+        if($sport != null){
+            $query->leftJoin('ev.Sport', 'sp');
+            $query->andWhere('sp.id = :id')
+                ->setParameter('id', $sport);
+        }
+        if($actif != null){
+            $date = new \DateTime('now');
+            if($actif === true){
+                $query->andWhere(':date Between
+                 ev.dateDebut And ev.dateFin')
+                    ->setParameter('date', $date);
+            }
+        }
+        return $query->getQuery()->getResult();
+    }
+    
+
+
     // /**
     //  * @return Evenement[] Returns an array of Evenement objects
     //  */

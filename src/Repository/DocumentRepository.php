@@ -19,6 +19,21 @@ class DocumentRepository extends ServiceEntityRepository
         parent::__construct($registry, Document::class);
     }
 
+    /**
+     * @return void
+     */
+    public function search($mots = null){
+        $query = $this->createQueryBuilder('d');
+        if($mots != null){
+            $query->andWhere('d.nomDocument LIKE :mots OR
+             d.descriptionDocument LIKE :mots OR d.lienDocument
+              LIKE :mots')
+                ->setParameter('mots','%'.$mots.'%');
+        }
+        return $query->getQuery()->getResult();
+    }
+
+
     // /**
     //  * @return Document[] Returns an array of Document objects
     //  */

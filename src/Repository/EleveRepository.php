@@ -19,6 +19,62 @@ class EleveRepository extends ServiceEntityRepository
         parent::__construct($registry, Eleve::class);
     }
 
+    /**
+     * @return void
+     */
+    public function search($classe = null, $genre = null, $archive = null){
+        $query = $this->createQueryBuilder('el');
+        if($classe != null){
+            $query->leftJoin('el.Classe', 'cl');
+            $query->andWhere('cl.id = :id')
+                ->setParameter('id', $classe);
+        }
+        if($genre != null){
+            $query->andWhere('el.genreEleve LIKE :genre')
+                ->setParameter('genre', $genre);
+        }
+        if($archive != null){
+            $query->andWhere('el.archiveEleve LIKE :archive')
+                ->setParameter('archive', $archive);
+        }
+        return $query->getQuery()->getResult();
+    }
+
+    /**
+     * @return void
+     */
+    public function searchEleve($nom = null, $classe = null, $genre = null){
+        $query = $this->createQueryBuilder('el');
+        if($nom != null){
+            $query->andWhere('el.nomEleve LIKE :nom OR el.prenomEleve LIKE :nom
+                OR el.id LIKE :nom')
+                ->setParameter('nom', $nom);
+        }
+        if($classe != null){
+            $query->leftJoin('el.Classe', 'cl');
+            $query->andWhere('cl.id = :id')
+                ->setParameter('id', $classe);
+        }
+        if($genre != null){
+            $query->andWhere('el.genreEleve LIKE :genre')
+                ->setParameter('genre', $genre);
+        }
+        return $query->getQuery()->getResult();
+    }
+
+    public function findOneEleveBy($nom, $prenom, $naissance): ?Eleve
+    {
+        return $this->createQueryBuilder('e')
+            ->Where('e.nomEleve = :val')
+            ->andWhere('e.prenomEleve = :val2')
+            ->andWhere('e.dateNaissance = :val3')
+            ->setParameters(array('val' => $nom, 'val2' => $prenom, 'val3' => $naissance),
+             array("string", "string","\DateTime"))
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
     // /**
     //  * @return Eleve[] Returns an array of Eleve objects
     //  */
