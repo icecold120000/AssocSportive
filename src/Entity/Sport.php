@@ -6,6 +6,8 @@ use App\Repository\SportRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @ORM\Entity(repositoryClass=SportRepository::class)
@@ -14,15 +16,16 @@ class Sport
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez saisir un sport")
      */
-    private $nom;
+    private $nomSport;
 
     /**
      * @ORM\OneToMany(targetEntity=Evenement::class, mappedBy="Sport")
@@ -39,14 +42,20 @@ class Sport
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function setId(int $id): self
     {
-        return $this->nom;
+        $this->id = $id;
+        return $this;
     }
 
-    public function setNom(string $nom): self
+    public function getNomSport(): ?string
     {
-        $this->nom = $nom;
+        return $this->nomSport;
+    }
+
+    public function setNomSport(string $nomSport): self
+    {
+        $this->nomSport = $nomSport;
 
         return $this;
     }
@@ -65,7 +74,6 @@ class Sport
             $this->evenements[] = $evenement;
             $evenement->setSport($this);
         }
-
         return $this;
     }
 
@@ -77,7 +85,6 @@ class Sport
                 $evenement->setSport(null);
             }
         }
-
         return $this;
     }
 }

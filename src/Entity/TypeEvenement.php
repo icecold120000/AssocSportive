@@ -6,6 +6,8 @@ use App\Repository\TypeEvenementRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @ORM\Entity(repositoryClass=TypeEvenementRepository::class)
@@ -14,13 +16,14 @@ class TypeEvenement
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez saisir un libellé pour le type d'événement") 
      */
     private $nom;
 
@@ -38,6 +41,12 @@ class TypeEvenement
     {
         return $this->id;
     }
+    
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
 
     public function getNom(): ?string
     {
@@ -47,7 +56,6 @@ class TypeEvenement
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
         return $this;
     }
 
@@ -65,7 +73,6 @@ class TypeEvenement
             $this->evenements[] = $evenement;
             $evenement->setType($this);
         }
-
         return $this;
     }
 
@@ -77,7 +84,6 @@ class TypeEvenement
                 $evenement->setType(null);
             }
         }
-
         return $this;
     }
 }

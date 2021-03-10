@@ -4,6 +4,10 @@ namespace App\Entity;
 
 use App\Repository\DocumentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @ORM\Entity(repositoryClass=DocumentRepository::class)
@@ -12,79 +16,96 @@ class Document
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez saisir un nom pour le document")
      */
-    private $nom;
+    private $nomDocument;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $lien;
+    private $lienDocument;
+
+    private $file;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Veuillez saisir une description pour le document")
      */
-    private $description;
+    private $descriptionDocument;
 
     /**
+     * @var \DateTime $dateAjout
      * @ORM\Column(type="datetime")
      */
     private $dateAjout;
 
     /**
      * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="documents")
+     * @Assert\NotBlank(message="Veuillez choisir l'événement auquel il est attaché")
      */
     private $Evenement;
 
     /**
-     * @ORM\ManyToOne(targetEntity=CategorieDocument::class, inversedBy="documents")
+     * @ORM\ManyToOne(targetEntity=CategorieDocument::class, inversedBy="Document")
+     * @Assert\NotBlank(message="Veuillez choisir la catégorie à laquelle il appartient")
      */
-    private $categorie;
+    private $categorieDocument;
+
+    public function __construct()
+    {
+        $this->evenement = new ArrayCollection();
+        $this->CategorieDocument = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function setId(int $id): self
     {
-        return $this->nom;
+        $this->id = $id;
+        return $this;
     }
 
-    public function setNom(string $nom): self
+    public function getNomDocument(): ?string
     {
-        $this->nom = $nom;
+        return $this->nomDocument;
+    }
+
+    public function setNomDocument(string $nomDocument): self
+    {
+        $this->nomDocument = $nomDocument;
+        return $this;
+    }
+
+    public function getLienDocument(): ?string
+    {
+        return $this->lienDocument;
+    }
+
+    public function setLienDocument(string $lienDocument): self
+    {
+        $this->lienDocument = $lienDocument;
 
         return $this;
     }
 
-    public function getLien(): ?string
+    public function getDescriptionDocument(): ?string
     {
-        return $this->lien;
+        return $this->descriptionDocument;
     }
 
-    public function setLien(string $lien): self
+    public function setDescriptionDocument(string $descriptionDocument): self
     {
-        $this->lien = $lien;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
-
+        $this->descriptionDocument = $descriptionDocument;
         return $this;
     }
 
@@ -96,7 +117,6 @@ class Document
     public function setDateAjout(\DateTimeInterface $dateAjout): self
     {
         $this->dateAjout = $dateAjout;
-
         return $this;
     }
 
@@ -105,22 +125,38 @@ class Document
         return $this->Evenement;
     }
 
+    /**
+     * @return Collection|Evenement[]
+     */
+    public function getEvenements(): Collection
+    {
+        return $this->evenement;
+    }
+
+
     public function setEvenement(?Evenement $Evenement): self
     {
         $this->Evenement = $Evenement;
-
         return $this;
     }
 
-    public function getCategorie(): ?CategorieDocument
+
+    public function getCategorieDocument(): ?CategorieDocument
     {
-        return $this->categorie;
+        return $this->categorieDocument;
     }
 
-    public function setCategorie(?CategorieDocument $categorie): self
+    /**
+     * @return Collection|CategorieDocument[]
+     */
+    public function getCategorieDocuments(): Collection
     {
-        $this->categorie = $categorie;
+        return $this->CategorieDocument;
+    }
 
+    public function setCategorieDocument(?CategorieDocument $categorieDocument): self
+    {
+        $this->categorieDocument = $categorieDocument;
         return $this;
     }
 }

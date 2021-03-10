@@ -6,6 +6,8 @@ use App\Repository\EleveRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @ORM\Entity(repositoryClass=EleveRepository::class)
@@ -14,69 +16,109 @@ class Eleve
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez saisir un nom de l'élève.")
      */
-    private $nom;
+    private $nomEleve;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez saisir un prénom de l'élève.")
      */
-    private $prenom;
+    private $prenomEleve;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var \Date $dateNaissance
+     * @ORM\Column(type="date")
+     * @Assert\NotNull(message="Veuillez saisir la date de naissance de l'élève.")
      */
     private $dateNaissance;
 
     /**
      * @ORM\Column(type="string", length=1)
+     * @Assert\NotBlank(message="Veuillez selectionner le sexe de l'élève.")
      */
-    private $genre;
+    private $genreEleve;
 
     /**
+     * @var \DateTime $dateCreation
      * @ORM\Column(type="datetime")
      */
     private $dateCreation;
 
     /**
+     * @var \DateTime $dateMaj
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateMaj;
 
     /**
-     * @ORM\Column(type="smallint")
-     */
-    private $archive;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="eleves")
+     * @Assert\NotBlank(message="Veuillez selectionner la classe de l'élève.")
      */
     private $Classe;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=CategorieEleve::class, inversedBy="eleves")
-     */
-    private $categorieEleve;
-
-    /**
-     * @ORM\OneToOne(targetEntity=Utilisateur::class, mappedBy="Eleve", cascade={"persist", "remove"})
-     */
-    private $utilisateur;
 
     /**
      * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="Eleve")
      */
     private $inscriptions;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=CategorieEleve::class, inversedBy="eleves")
+     * @Assert\NotBlank(message="Veuillez selectionner la catégorie de l'élève.")
+     */
+    private $Categorie;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Veuillez saisir le numéro de téléphone de l'élève avec ou sans le 0.")
+     * @Assert\Type(type="integer",message="Veuillez saisir des nombres.")
+     * @Assert\Length(
+     *      min = 8,
+     *      max = 11,
+     *      minMessage = "Votre saisie doit comporter un minimum de {{ limit }} caractères",
+     *      maxMessage = "Votre saisie doit comporter un maximum de {{ limit }} caractères"
+     * )
+     */
+    private $numTelEleve;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Veuillez saisir le numéro de téléphone d'un parent de l'élève avec ou sans le 0.")
+     * @Assert\Type(type="integer",message="Veuillez saisir des chiffres.")
+     * @Assert\Length(
+     *      min = 8,
+     *      max = 11,
+     *      minMessage = "Votre saisie doit comporter un minimum de {{ limit }} chiffre",
+     *      maxMessage = "Votre saisie doit comporter un maximum de {{ limit }} chiffre"
+     * )
+     */
+    private $numTelParent;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photoEleve;
+
+    private $imgFile;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="eleve", cascade={"persist", "remove"})
+     */
+    private $utilisateur;
+
+
     public function __construct()
     {
         $this->inscriptions = new ArrayCollection();
+        $this->categorieEleves = new ArrayCollection();
+        $this->classes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,51 +126,53 @@ class Eleve
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function setId(int $id): self
     {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
+        $this->id = $id;
         return $this;
     }
 
-    public function getPrenom(): ?string
+    public function getNomEleve(): ?string
     {
-        return $this->prenom;
+        return $this->nomEleve;
     }
 
-    public function setPrenom(string $prenom): self
+    public function setNomEleve(string $nomEleve): self
     {
-        $this->prenom = $prenom;
-
+        $this->nomEleve = $nomEleve;
         return $this;
     }
 
-    public function getDateNaissance(): ?\DateTimeInterface
+    public function getPrenomEleve(): ?string
+    {
+        return $this->prenomEleve;
+    }
+
+    public function setPrenomEleve(string $prenomEleve): self
+    {
+        $this->prenomEleve = $prenomEleve;
+        return $this;
+    }
+
+    public function getDateNaissance(): ?\Datetime
     {
         return $this->dateNaissance;
     }
 
-    public function setDateNaissance(\DateTimeInterface $dateNaissance): self
+    public function setDateNaissance(\Datetime $dateNaissance): self
     {
         $this->dateNaissance = $dateNaissance;
-
         return $this;
     }
 
-    public function getGenre(): ?string
+    public function getGenreEleve(): ?string
     {
-        return $this->genre;
+        return $this->genreEleve;
     }
 
-    public function setGenre(string $genre): self
+    public function setGenreEleve(string $genreEleve): self
     {
-        $this->genre = $genre;
-
+        $this->genreEleve = $genreEleve;
         return $this;
     }
 
@@ -140,7 +184,6 @@ class Eleve
     public function setDateCreation(\DateTimeInterface $dateCreation): self
     {
         $this->dateCreation = $dateCreation;
-
         return $this;
     }
 
@@ -152,20 +195,26 @@ class Eleve
     public function setDateMaj(?\DateTimeInterface $dateMaj): self
     {
         $this->dateMaj = $dateMaj;
-
         return $this;
     }
 
-    public function getArchive(): ?int
+    public function getArchiveEleve(): ?int
     {
-        return $this->archive;
+        return $this->archiveEleve;
     }
 
-    public function setArchive(int $archive): self
+    public function setArchiveEleve(int $archiveEleve): self
     {
-        $this->archive = $archive;
-
+        $this->archiveEleve = $archiveEleve;
         return $this;
+    }
+
+    /**
+     * @return Collection|Classes[]
+     */
+    public function getClasses(): Collection
+    {
+        return $this->classes;
     }
 
     public function getClasse(): ?Classe
@@ -176,41 +225,6 @@ class Eleve
     public function setClasse(?Classe $Classe): self
     {
         $this->Classe = $Classe;
-
-        return $this;
-    }
-
-    public function getCategorieEleve(): ?CategorieEleve
-    {
-        return $this->categorieEleve;
-    }
-
-    public function setCategorieEleve(?CategorieEleve $categorieEleve): self
-    {
-        $this->categorieEleve = $categorieEleve;
-
-        return $this;
-    }
-
-    public function getUtilisateur(): ?Utilisateur
-    {
-        return $this->utilisateur;
-    }
-
-    public function setUtilisateur(?Utilisateur $utilisateur): self
-    {
-        // unset the owning side of the relation if necessary
-        if ($utilisateur === null && $this->utilisateur !== null) {
-            $this->utilisateur->setEleve(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($utilisateur !== null && $utilisateur->getEleve() !== $this) {
-            $utilisateur->setEleve($this);
-        }
-
-        $this->utilisateur = $utilisateur;
-
         return $this;
     }
 
@@ -228,7 +242,6 @@ class Eleve
             $this->inscriptions[] = $inscription;
             $inscription->setEleve($this);
         }
-
         return $this;
     }
 
@@ -240,7 +253,69 @@ class Eleve
                 $inscription->setEleve(null);
             }
         }
+        return $this;
+    }
 
+    /**
+     * @return Collection|CategorieEleves[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categorieEleves;
+    }
+
+    public function getCategorie(): ?CategorieEleve
+    {
+        return $this->Categorie;
+    }
+
+    public function setCategorie(?CategorieEleve $Categorie): self
+    {
+        $this->Categorie = $Categorie;
+        return $this;
+    }
+
+    public function getNumTelEleve(): ?int
+    {
+        return $this->numTelEleve;
+    }
+
+    public function setNumTelEleve(int $numTelEleve): self
+    {
+        $this->numTelEleve = $numTelEleve;
+        return $this;
+    }
+
+    public function getNumTelParent(): ?int
+    {
+        return $this->numTelParent;
+    }
+
+    public function setNumTelParent(int $numTelParent): self
+    {
+        $this->numTelParent = $numTelParent;
+        return $this;
+    }
+
+    public function getPhotoEleve(): ?string
+    {
+        return $this->photoEleve;
+    }
+
+    public function setPhotoEleve(string $photoEleve): self
+    {
+        $this->photoEleve = $photoEleve;
+        return $this;
+    }
+
+    public function getUtilisateur(): ?User
+    {
+        return $this->utilisateur;
+    }
+
+    public function setUtilisateur(?User $utilisateur): self
+    {
+        $this->utilisateur = $utilisateur;
         return $this;
     }
 }

@@ -6,6 +6,8 @@ use App\Repository\ClasseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @ORM\Entity(repositoryClass=ClasseRepository::class)
@@ -14,13 +16,14 @@ class Classe
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez saisir un libellé pour le classe.")
      */
     private $libelle;
 
@@ -38,6 +41,12 @@ class Classe
     {
         return $this->id;
     }
+    
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
 
     public function getLibelle(): ?string
     {
@@ -47,7 +56,6 @@ class Classe
     public function setLibelle(string $libelle): self
     {
         $this->libelle = $libelle;
-
         return $this;
     }
 
@@ -65,7 +73,6 @@ class Classe
             $this->eleves[] = $elefe;
             $elefe->setClasse($this);
         }
-
         return $this;
     }
 
@@ -77,7 +84,6 @@ class Classe
                 $elefe->setClasse(null);
             }
         }
-
         return $this;
     }
 }

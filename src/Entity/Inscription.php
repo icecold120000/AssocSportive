@@ -18,9 +18,9 @@ class Inscription
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="inscriptions")
+     * @ORM\Column(type="datetime")
      */
-    private $Evenenement;
+    private $dateInscription;
 
     /**
      * @ORM\ManyToOne(targetEntity=Eleve::class, inversedBy="inscriptions")
@@ -28,24 +28,23 @@ class Inscription
     private $Eleve;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="inscriptions")
      */
-    private $date;
+    private $Evenement;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEvenenement(): ?Evenement
+    public function getDateInscription(): ?\DateTimeInterface
     {
-        return $this->Evenenement;
+        return $this->dateInscription;
     }
 
-    public function setEvenenement(?Evenement $Evenenement): self
+    public function setDateInscription(\DateTimeInterface $dateInscription): self
     {
-        $this->Evenenement = $Evenenement;
-
+        $this->dateInscription = $dateInscription;
         return $this;
     }
 
@@ -57,19 +56,17 @@ class Inscription
     public function setEleve(?Eleve $Eleve): self
     {
         $this->Eleve = $Eleve;
-
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getEvenement(): ?Evenement
     {
-        return $this->date;
+        return $this->Evenement;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setEvenement(?Evenement $Evenement): self
     {
-        $this->date = $date;
-
+        $this->Evenement = $Evenement;
         return $this;
     }
 }
