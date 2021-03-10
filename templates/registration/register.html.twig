@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <h1>Inscription</h1>
+
+    <div>
+        <p>Inscrivez vous maintenant dés maintenant pour vous connecter</p>
+    </div>
+    <section id="formRegister">
+        <div class="container-fluid">
+            {{form_start(registrationForm)}}
+                <div id="part1">
+                    <div>
+                        {{form_label(registrationForm.nomUser)}}
+                    </div>
+                    <div id="divInput">
+                        {{form_widget(registrationForm.nomUser)}}
+                    </div>
+                    <div class="erreur">
+                        {{form_errors(registrationForm.nomUser)}}
+                    </div>
+                    <div>
+                        {{form_label(registrationForm.prenomUser)}}
+                    </div>
+                    <div id="divInput">
+                        {{form_widget(registrationForm.prenomUser)}}
+                    </div>
+                    <div class="erreur">
+                        {{form_errors(registrationForm.prenomUser)}}
+                    </div>
+                    <div>
+                        {{form_label(registrationForm.email)}}
+                    </div>
+                    <div id="divInput">
+                        {{form_widget(registrationForm.email)}}
+                    </div>
+                    <div class="erreur">
+                        {{form_errors(registrationForm.email)}}
+                    </div>
+                </div>
+                <div id="part2">
+                    <div>
+                        {{form_label(registrationForm.plainPassword)}}
+                    </div>
+                    <div id="divInput">
+                        {{form_widget(registrationForm.plainPassword)}}
+                    </div>
+                    <div class="erreur">
+                        {{form_errors(registrationForm.plainPassword)}}
+                    </div>
+                    <div>
+                        {{form_label(registrationForm.agreeTerms)}}
+                    </div>
+                    <div id="check">
+                        {{form_widget(registrationForm.agreeTerms)}}
+                    </div>
+                    <div class="erreur">
+                        {{form_errors(registrationForm.agreeTerms)}}
+                    </div>
+                    <div>
+                        <div id="divAjout" class="form-actions">
+                            <button type="submit" class="btn btn-success">
+                                S'inscrire
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            {{form_end(registrationForm)}}
+        </div>
+    </section>
+{% endblock %}

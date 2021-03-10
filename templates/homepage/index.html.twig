@@ -1,11 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomepageController!{% endblock %}
+{% block title %}Page Accueil{% endblock %}
 
 {% block body %}
 
+	<h1>Accueil</h1>
 
-<div class="example-wrapper">
-    
-</div>
+	<h2>les dernières événements</h2>
+
+	    {% for evenement in evenements %}
+            <section id="evenement">
+                <div class="container-fluid">
+                    <img src="{{ evenement.vignetteEvenement }}" id="vignette">
+                    <div id="event">
+                        <div>
+                            <h3>{{ evenement.nomEvenement }}</h3>
+                        </div>
+                        <div>
+                            <div id="dateInscrip">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>
+                                    début d'inscription
+                                    {{ evenement.dateDebut ? evenement.
+                                    dateDebut|date('Y-m-d H:i:s') : '' }}
+                                </span>
+                                <span> / </span>
+                                <span>
+                                    fin d'inscription
+                                    {{ evenement.dateFin ? evenement.
+                                    dateFin|date('Y-m-d H:i:s') : '' }}
+                                </span>
+                            </div>
+                            <div id="place">
+                                <p>
+                                    nombre de place restant :
+                                    {{ evenement.nbPlace }}
+                                </p>
+                            </div>
+                        </div>
+                        <div id="descrip">
+                            <p>{{ evenement.descripEvenement }}</p>
+                        </div>
+                        <div>
+                            <a href="{{ path('evenement_show', {'id': evenement.id}) }}">>Voir évenement</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endfor %}
 {% endblock %}

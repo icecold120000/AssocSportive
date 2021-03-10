@@ -1,0 +1,102 @@
+    {{form_start(form)}}
+        <div id="part1">
+            <div>
+                {{form_label(form.nomEleve)}}
+            </div>
+            <div>
+                {{form_widget(form.nomEleve)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.nomEleve)}}
+            </div>
+            <div>
+                {{form_label(form.prenomEleve)}}
+            </div>
+            <div>
+                {{form_widget(form.prenomEleve)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.prenomEleve)}}
+            </div>
+            <div>
+                {{form_label(form.imgFile)}}
+            </div>
+            <div id="inputFile">
+                {{form_widget(form.imgFile)}}
+            </div>
+            <div>
+                {{form_label(form.dateNaissance)}}
+            </div>
+            <div>
+                {{form_widget(form.dateNaissance)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.dateNaissance)}}
+            </div>
+            <div>
+                {{form_label(form.genreEleve)}}
+            </div>
+            <div id="selectGenre">
+                {{form_widget(form.genreEleve)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.genreEleve)}}
+            </div>
+        </div>
+        <div id="part2">
+            <div>
+                {{form_label(form.numTelEleve)}}
+            </div>
+            <div>
+                {{form_widget(form.numTelEleve)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.numTelEleve)}}
+            </div>
+            <div>
+                {{form_label(form.numTelParent)}}
+            </div>
+            <div>
+                {{form_widget(form.numTelParent)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.numTelParent)}}
+            </div>
+            <div>
+                {{form_label(form.Classe)}}
+            </div>
+            <div id="selectClasse">
+                {{form_widget(form.Classe)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.Classe)}}
+            </div>
+            <div>
+                {{form_label(form.Categorie)}}
+            </div>
+            <div id="selectCategorie">
+                {{form_widget(form.Categorie)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.Categorie)}}
+            </div>
+            <div>
+                {{form_label(form.archiveEleve)}}
+            </div>
+            <div id="selectArchive">
+                {{form_widget(form.archiveEleve)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.archiveEleve)}}
+            </div>
+            <div>
+                <div id="divAjout" class="form-actions">
+                    <button type="submit" class="btn btn-success">
+                        Enregistrer l'élève
+                    </button>
+                </div>
+            </div>
+        </div>
+    {{form_end(form)}}
+
+

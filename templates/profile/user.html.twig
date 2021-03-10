@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre Profile{% endblock %}
+
+{% block body %}
+	<div id="profilHeader">
+	<h1>Bienvenue {{app.user.nomUser}} {{app.user.prenom}}</h1> 
+
+	<p>Vous êtes enregistrer en tant <span id="typeUser">qu'utilisateur sur cette plateforme</span></p>
+
+	<div>
+		<a href="{{path('evenement_index')}}">
+			<button class="btn btn-info" id="btnProfil">Accèder à la liste des événements</button>
+		</a>
+	</div>
+
+	<div>
+		<a href="{{path('document_index')}}">
+			<button class="btn btn-info" id="btnProfil">Accèder à l'espace administration</button>
+		</a>
+	</div>
+	
+{% endblock %}

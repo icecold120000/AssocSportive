@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un nouveau utilisateur{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un nouveau utilisateur</h1>
+
+    {% for message in app.flashes('SuccessUser') %}
+        <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div>
+        <div class="container-fluid formEntité2" id="formUser">
+            {{ include('user/_form.html.twig') }}
+        </div>
+    </div>
+    <div>
+        <a href="{{ path('user_index') }}">
+            <button class="btn btn-secondary" id="btnRetour">
+                Revenir dans la liste
+            </button>
+        </a>
+    </div>
+
+{% endblock %}

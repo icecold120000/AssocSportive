@@ -60,12 +60,15 @@
         </table>
     </div>
     <div>
+<<<<<<< HEAD
+=======
         <p>
             {% for inscription in app.user.getEleve.inscriptions %}
                 {{inscription.Evenement.id}}
             {% endfor %}
         </p>
 
+>>>>>>> f9b85e7e6b9ffdd3a97db09b949c8190b04b60fe
         <a href="{{ path('evenement_index') }}">
             <button class="btn btn-secondary" id="btnRetour">
                 Revenir dans la liste
@@ -73,12 +76,29 @@
         </a>
         {% if is_granted('ROLE_ELEVE') and app.user.getEleve.
         getCategorie.getLibelleCategorie == evenement.categorieEleve.getLibelleCategorie or
+<<<<<<< HEAD
+         evenement.categorieEleve.getLibelleCategorie == 'Toutes' and evenement.inscriptions|length < evenement.nbPlace and evenement.dateDebut|date('d/m/Y') < "now"|date("d/m/Y") < evenement.dateFin|date('d/m/Y') %}
+            {% for inscription in evenement.inscriptions|filter(inscription => inscription.Eleve.id == app.user.getEleve.id ) %}
+                <a href="{{ path('evenement_inscrire', {'id': evenement.id,'eleveId': app.user.getEleve.id}) }}">
+                    <button class="btn btn-success" id="btnAjout">
+                        Aller dans la page de confirmation d'inscription
+                    </button>
+                </a>
+            {% else%}
+                <a href="{{ path('evenement_inscrire', {'id': evenement.id,'eleveId': app.user.getEleve.id}) }}">
+                    <button class="btn btn-success" id="btnAjout">
+                        S'inscrire
+                    </button>
+                </a>
+            {% endfor %}
+=======
          evenement.categorieEleve.getLibelleCategorie == 'Toutes' and evenement.inscriptions|length < evenement.nbPlace and evenement.dateDebut|date('d/m/Y') < "now"|date("d/m/Y") < evenement.dateFin|date('d/m/Y') or app.user.getEleve.inscription.Evenement.id == evenement.id %}
             <a href="{{ path('evenement_inscrire', {'id': evenement.id,'eleveId': app.user.getEleve.id}) }}">
                 <button class="btn btn-success" id="btnAjout">
                     S'inscrire
                 </button>
             </a>
+>>>>>>> f9b85e7e6b9ffdd3a97db09b949c8190b04b60fe
         {% else %}
             <a href="{{ path('evenement_inscrire') }}">
                 <button class="btn btn-success" disabled id="btnAjout">

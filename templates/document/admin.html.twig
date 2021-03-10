@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste de documents téléchargeables{% endblock %}
+
+{% block body %}
+    <h1>Liste de documents téléchargeables</h1>
+
+    <div id="search">
+        {{form_start(form)}}
+            <div class="form-row align-items-end">
+                <div class="erreur">
+                    {{form_errors(form.mots)}}
+                </div>
+                <div class="col">
+                    {{form_label(form.mots)}}
+                    {{form_widget(form.mots)}}
+                    <button class="btn btn-light" type="submit">Rechercher</button>
+                </div>
+            </div>
+        {{form_end(form)}}
+    </div>
+    <div>
+        <a href="{{ path('document_new') }}">
+            <button class="btn btn-primary" id="btnAjout">
+                Ajouter un nouveau document
+            </button>
+        </a>
+        <a href="{{ path('admin_index') }}">
+            <button class="btn btn-secondary" id="btnRetour">
+                Retourner dans la liste de fonctionnalité
+            </button>
+        </a>
+    </div>
+    <div>
+        {{ knp_pagination_render(documents) }}
+    </div>
+    <table class="table tableAdmin">
+        <thead>
+            <tr>
+                <th scope="col">Nom du document</th>
+                <th scope="col">Description du document</th>
+                <th scope="col">Lien de téléchargement</th>
+                <th scope="col">Editer</th>
+                <th scope="col">Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for document in documents %}
+            <tr>
+                <td scope="row">{{ document.nomDocument }}</td>
+                <td scope="row">{{ document.descriptionDocument }}</td>
+                <td> <a href="{{ asset('uploads/docs/' ~ document.lienDocument) }}" 
+                        download="{{ asset('uploads/docs/' ~ document.lienDocument) }}">
+                    <button class="btn btn-primary">{{ document.lienDocument }}</button></a>
+                </td>
+                <td>
+                    <a href="{{ path('document_edit',
+                    {'id': document.id}) }}">
+                        <button class="btn btn-primary">
+                            <i class="far fa-edit"></i>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('document_delete_view',
+                     {'id': document.id}) }}">
+                        <button class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6" class="erreur">Aucune donnée n'a été trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        {{ knp_pagination_render(documents) }}
+    </div>
+{% endblock %}

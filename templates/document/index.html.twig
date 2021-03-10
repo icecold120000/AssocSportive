@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des documents téléchargeables{% endblock %}
+
+{% block body %}
+    <h1>Liste des documents téléchargeables</h1>
+    <div id="search">
+        {{form_start(form)}}
+            <div class="form-row align-items-end">
+                <div class="erreur">
+                    {{form_errors(form.mots)}}
+                </div>
+                <div class="col">
+                    {{form_label(form.mots)}}
+                    {{form_widget(form.mots)}}
+                    <button class="btn btn-light" type="submit">Rechercher</button>
+                </div>
+            </div>
+        {{form_end(form)}}
+    </div>
+    <div>
+        {{ knp_pagination_render(documents) }}
+    </div>
+    {% if documents %}
+        <table class="tableAdmin table">
+            <thead>
+                <tr>
+                    <th scope="col">Nom du Document</th>
+                    <th scope="col">Description du Document</th>
+                    <th scope="col">Lien de téléchargement</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for document in documents %}
+                    <tr>
+                        <td scope="row">{{ document.nomDocument }}</td>
+                        <td scope="row">{{ document.descriptionDocument }}</td>
+                        <td> <a href="{{ asset('uploads/docs/' ~ document.lienDocument) }}" 
+                                download="{{ asset('uploads/docs/' ~ document.lienDocument) }}">
+                            <button class="btn btn-primary">{{ document.lienDocument }}</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+         <p class="erreur">Aucune donnée n'a été trouvée</p>
+    {% endif %}   
+    <div>
+        {{ knp_pagination_render(documents) }}
+    </div>
+{% endblock %}

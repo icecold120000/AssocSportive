@@ -1,0 +1,58 @@
+    {{form_start(form)}}
+        <div id="part1">
+            <div>
+                {{form_label(form.nomDocument)}}
+            </div>
+            <div>
+                {{form_widget(form.nomDocument)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.nomDocument)}}
+            </div>
+            <div>
+                {{form_label(form.file)}}
+            </div>
+            <div>
+                {{form_widget(form.file)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.file)}}
+            </div>
+            <div>
+                {{form_label(form.descriptionDocument)}}
+            </div>
+            <div>
+                {{form_widget(form.descriptionDocument)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.descriptionDocument)}}
+            </div>
+        </div>
+        <div id="part2">
+            <div>
+                {{form_label(form.Evenement)}}
+            </div>
+            <div id="eventDoc">
+                {{form_widget(form.Evenement)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.Evenement)}}
+            </div>
+            <div>
+                {{form_label(form.categorieDocument)}}
+            </div>
+            <div id="categDoc">
+                {{form_widget(form.categorieDocument)}}
+            </div>
+            <div class="erreur">
+                {{form_errors(form.categorieDocument)}}
+            </div>
+            <div>
+                <div id="divAjout" class="form-actions">
+                    <button type="submit" class="btn btn-success">
+                        Enregistrer le document
+                    </button>
+                </div>
+            </div>
+        </div>
+    {{form_end(form)}}

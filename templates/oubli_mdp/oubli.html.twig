@@ -1,3 +1,31 @@
+<<<<<<< HEAD
+{% extends 'base.html.twig' %}
+
+{% block title %}Oublie de mot de passe{% endblock %}
+
+
+{% block body %}
+
+
+    <h1>Oubli de mot de passe</h1>
+
+    <h2>Veuillez saisir votre email pour envoyer une demande pour réinitialiser votre mot de passe</h2>
+
+    <div class="container">
+        <form id="form" method="POST">
+            <label class="labels" >Email</label>
+            <div>
+                <input type="email" name="email" id="inputEmail" class="form-control">
+            </div>
+            <div class="buttonreinitialisation">
+                <button type="submit" class="btn btn-success">Envoyer votre demande</button>
+            </div>
+        </form>
+    </div>
+
+
+{% endblock %}
+=======
 {% extends 'base.html.twig' %}
 
 
@@ -23,3 +51,4 @@
 
 
 {% endblock %}
+>>>>>>> f9b85e7e6b9ffdd3a97db09b949c8190b04b60fe

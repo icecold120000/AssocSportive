@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des élèves{% endblock %}
+
+{% block body %}
+    <h1>Liste des élèves</h1>
+    <div id="filtreEleve" class="filtre form-row align-items-end">
+        {{form_start(form)}}
+        <div id="left">
+            <span>{{ form_label(form.Classe)}}</span>
+            {{form_widget(form.Classe)}}
+        </div>
+        <div>
+            <span>{{ form_label(form.genreEleve)}}</span>
+            {{form_widget(form.genreEleve)}}
+        </div>
+        <div>
+            <span>{{ form_label(form.archiveEleve)}}</span>
+            {{form_widget(form.archiveEleve)}}
+        </div>
+        <div id="submitFiltre">
+            <button type="submit" class="btn btn-info">
+                Afficher
+            </button>
+        </div>
+        {{form_end(form)}}
+    </div>
+    <div>
+        <div>
+            <a href="{{ path('eleve_new') }}">
+                <button class="btn btn-primary" id="btnAjout">
+                    Ajouter un nouveau élève
+                </button>
+            </a>
+            <a href="{{ path('eleve_file') }}">
+                <button class="btn btn-info" id="btnAjout">
+                    Ajouter une liste d'élève
+                </button>
+            </a>
+        </div>
+        <div id="divRetour">
+            <a href="{{ path('admin_index') }}">
+                <button class="btn btn-secondary" id="btnRetour">
+                    Retourner dans la liste de fonctionnalité
+                </button>
+            </a>
+        <div>
+    </div>
+    <div>
+        {{ knp_pagination_render(eleves) }}
+    </div>
+    <table class="table tableAdmin">
+        <thead>
+            <tr>
+                <th>Photo de l'élève</th>
+                <th>Prénom de l'élève</th>
+                <th>Nom de l'élève</th>
+                <th>Date de naissance</th>
+                <th>Genre de l'élève</th>
+                <th>N° de téléphone</th>
+                <th>N° de téléphone d'un parent</th>
+                <th>Editer</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for eleve in eleves %}
+            <tr>
+                <td><img src="{{ asset('uploads/imgProfil/' ~ eleve.photoEleve) }}"></td>
+                <td>{{ eleve.prenomEleve }}</td>
+                <td>{{ eleve.nomEleve }}</td>
+                <td>{{ eleve.dateNaissance ? eleve.dateNaissance|date('d/m/Y') : '' }}</td>
+                <td>
+                    {% if eleve.genreEleve == 'M' %}
+                        <p>Homme</p>
+                    {% else %}
+                        <p>Femme</p>
+                    {% endif %}
+                </td>
+                <td>+33 (0){{ eleve.numTelEleve }}</td>
+                <td>+33 (0){{ eleve.numTelParent }}</td>
+                <td>
+                    <a href="{{ path('eleve_edit',
+                    {'id': eleve.id}) }}">
+                        <button class="btn btn-primary">
+                            <i class="far fa-edit"></i>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('eleve_delete',
+                     {'id': eleve.id}) }}">
+                        <button class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11" class="erreur">Aucune donnée n'a été trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        {{ knp_pagination_render(eleves) }}
+    </div>
+{% endblock %}

@@ -43,14 +43,6 @@
 					      		<a href="{{ path('profile_eleve') }}">
 					      			<i class="fas fa-user-circle"></i>
 					      		</a>
-					      	{% elseif is_granted('ROLE_ENSEIGNANT')%}
-					      		<a href="{{ path('profile_enseignant') }}">
-					      			<i class="fas fa-user-circle"></i>
-					      		</a>
-							{% elseif is_granted('ROLE_COMPTABLE')%}
-					      		<a href="{{ path('profile_tiers') }}">
-					      			<i class="fas fa-user-circle"></i>
-					      		</a>
 					      	{% endif %}
 			      		{% else %}
 			      			<a href="{{ path('app_login') }}">

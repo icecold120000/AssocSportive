@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des catégories de document{% endblock %}
+
+{% block body %}
+    <h1>Liste des catégories de document</h1>
+    <div>
+        <a href="{{ path('categorie_document_new') }}">
+            <button class="btn btn-primary" id="btnAjout">
+                Ajouter une nouvelle catégorie de document
+            </button>
+        </a>
+        <a href="{{ path('admin_index') }}">
+            <button class="btn btn-secondary" id="btnRetour">
+                Retourner dans la liste de fonctionnalité
+            </button>
+        </a>
+    </div>
+    <div>
+        {{ knp_pagination_render(categorie_documents) }}
+    </div>
+    <table class="table tableAdmin">
+        <thead>
+            <tr>
+                <th scope="col">Libellé de la catégorie de document</th>
+                <th scope="col">Editer</th>
+                <th scope="col">Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie in categorie_documents %}
+            <tr>
+                <td scope="row">{{ categorie.libelleCategorieDoc }}</td>
+                <td>
+                    <a href="{{ path('categorie_document_edit',
+                    {'id': categorie.id}) }}">
+                        <button class="btn btn-primary">
+                            <i class="far fa-edit"></i>
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('categorie_document_delete',
+                     {'id': categorie.id}) }}">
+                        <button class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6" class="erreur">Aucune donnée n'a été trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        {{ knp_pagination_render(categorie_documents) }}
+    </div>    
+{% endblock %}
+

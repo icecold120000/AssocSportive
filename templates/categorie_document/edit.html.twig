@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une catégorie de document{% endblock %}
+
+{% block body %}
+    <h1>Modifier une catégorie de document</h1>
+
+    {% for message in app.flashes('SuccessCategDoc') %}
+        <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div>
+        <div class="container-fluid formEntité">
+            {{ include('categorie_document/_form.html.twig') }}
+        </div>
+    </div>
+
+    <div>
+        <a href="{{ path('categorie_document_index') }}">
+            <button class="btn btn-secondary" id="btnRetour">
+                Revenir dans la liste
+            </button> 
+        </a>
+    </div>
+    
+{% endblock %}

@@ -1,20 +1,218 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello StatistiqueController!{% endblock %}
+{% block title %}Bienvenue dans l'espace de statistique{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<body id="stat">
+	<h1>Bienvenue dans l'espace de statistique</h1>
+	{{form_start(form)}}
+		<div id="filtre">
+			<div id="left">
+				<span>{{form_label(form.Annee_scolaire)}}</span>
+				{{form_widget(form.Annee_scolaire)}}
+			</div>
+			<div>
+	            <button type="submit" class="btn btn-info" action="#">
+	                Afficher
+	            </button>
+	        </div>
+		</div>
+		<div>
+			<table class="table tableAdmin" id="tableStat">
+				<thead>
+					<tr>
+						<th scope="col">La statistique demandé</th>
+						<th scope="col">Les données</th>
+					</tr>
+				</thead>
+			    <tbody>
+				    <tr>
+					    <td>Nombre d'élèves licenciés total</td>
+					    <td>
+					    	0
+					    </td>
+				    </tr>
+				    <tr>
+					    <td>Nombre d'événements total</td>
+					    <td>
+					    	{{events|length}}
+					    </td>
+				    </tr>
+				</tbody>
+			</table>
+		</div>
+		<div id="canvas5">
+			<p>Répartiton des élèves par date de naissance</p>
+				<div class="selectStat">
+					<span>{{form_label(form.Annee_de_Naissance)}}</span>
+					{{form_widget(form.Annee_de_Naissance)}}
+		            <button type="submit" class="btn btn-info" action="#canvas5">
+		                Afficher
+		            </button>
+				</div>
+		    <div>
+		        {{ knp_pagination_render(eleves) }}
+		    </div>
+			<table class="table tableAdmin">
+				<thead>
+					<tr>
+						<th>Nom de l'élève</th>
+						<th>Prénom de l'élève</th>
+						<th>Classe de l'élève</th>
+					</tr>
+				</thead>
+			    <tbody>
+			    	{% for eleve in eleves %}
+				    	<tr>
+						    <td class="cols-lg-6">{{eleve.nomEleve}}</td>
+						    <td class="cols-lg-6">{{eleve.prenomEleve}}</td>
+						    <td class="cols-lg-6">{{eleve.Classe.libelle}}</td>
+				    	</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		    <div>
+		        {{ knp_pagination_render(eleves) }}
+		    </div>
+		</div>
+		<div id="canvas1">
+			<p>Répartition des élèves licencés par sexe</p>
+			<div id="canvas-holder">
+				<canvas id="sexeLicence"></canvas> 
+			</div>
+			<script>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+				var sexeData = {
+					labels: ['10€','25€'],
+					datasets: [{
+						backgroundColor: ['Red','Yellow'],
+						borderColor: 'White',
+						borderWidth: 1,
+						data: [
+							0,
+							0
+						]
+					}],
+				};
+				var ctx1 = document.getElementById('sexeLicence').getContext('2d');
+				var chart1 = new Chart(ctx1, {
+				    // The type of chart we want to create
+				    type: 'doughnut',
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/pham_/BTSannee2/ProjetSymfony/AssocSportive/src/Controller/StatistiqueController.php'|file_link(0) }}">src/Controller/StatistiqueController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/pham_/BTSannee2/ProjetSymfony/AssocSportive/templates/statistique/index.html.twig'|file_link(0) }}">templates/statistique/index.html.twig</a></code></li>
-    </ul>
-</div>
+				    // The data for our dataset
+				    data: sexeData,
+				    // Configuration options go here
+				    options: {}
+				});
+			</script>
+		</div>
+		<div id="canvas2">
+			<p>Répartition des élèves licenciés par le montant</p>
+			<div id="canvas-holder">
+				<canvas id="montantLicence"></canvas> 
+			</div>
+			<script>
+				var licenceData ={
+					labels: ['10€','25€'],
+					datasets: [{
+						backgroundColor: ['Red','Yellow'],
+						borderColor: 'White',
+						borderWidth: 1,
+						data: [
+							0,
+							0
+						]
+					}],
+				};
+				var ctx2 = document.getElementById('montantLicence').getContext('2d');
+				var chartH = new Chart(ctx2, {
+				    // The type of chart we want to create
+				    type: 'doughnut',
+
+				    // The data for our dataset
+				    data: licenceData,
+				    // Configuration options go here
+				    options: {}
+				});
+			</script>
+		</div>
+		<div id="canvas4">
+			<p>Répartiton des événements par sexe</p>
+				<div class="selectStat">
+					<span>{{form_label(form.EvenementFilter)}} </span>
+					{{form_widget(form.EvenementFilter)}}
+		            <button type="submit" class="btn btn-info" action="#canvas4">
+		                Afficher
+		            </button>
+				</div>
+			<div id="canvas-holder">
+				<canvas id="nbGenre"></canvas>
+			</div>
+			<script>
+				var ctx = document.getElementById('nbGenre').getContext('2d');
+				var chart3 = new Chart(ctx, {
+				    // The type of chart we want to create
+				    type: 'doughnut',
+
+				    // The data for our dataset
+				    data: {
+				        labels: [
+				        	'Homme',
+				        	'Femme',
+				        ],
+				        datasets: [{
+				            backgroundColor: ['Blue','Pink'],
+				            borderColor: 'White',
+				            data: [40,60]
+				        }]
+				    },
+				    // Configuration options go here
+				    options: {}
+				});
+			</script>
+		</div>
+		<div id="canvas6">
+			<p>Nombre d'événements par élèves</p>
+				<div class="selectStat">
+					<span>{{form_label(form.EleveFiltre)}}</span>
+					{{form_widget(form.EleveFiltre)}}
+		            <button type="submit" class="btn btn-info" action="#canvas6">
+		                Afficher
+		            </button>
+				</div>
+			<div id="canvas-holder">
+				<canvas id="nbEvent"></canvas>
+			</div>
+			<script>
+				var ctx = document.getElementById('nbEvent').getContext('2d');
+				var chart5 = new Chart(ctx, {
+				    // The type of chart we want to create
+				    type: 'line',
+
+				    // The data for our dataset
+				    data: {
+				        labels: ['Septembre', 'Octobre', 'Novembre', 'Decembre',
+				          'Janvier', 'Fevrier', 'Mars', 'Avril',
+				         'Mai', 'Juin', 'Juillet', 'Août'
+				          ],
+				        datasets: [{
+				        	label: 'nombre d\'événement',
+				            backgroundColor: ['Green','Red','Cyan',
+				            'Green','Pink','Brown','Lime','Purple','Grey','Magenta'],
+				            borderColor: 'Black',
+				            fill: false,
+				            data: [5,12,8,10,30,12,7,8,3,5]
+				        }]
+				    },
+
+				    // Configuration options go here
+				    options: {}
+				});
+			</script>
+		</div>
+	</div>
+	{{form_end(form)}}
 {% endblock %}
+
+
+
