@@ -29,9 +29,12 @@ class UserController extends AbstractController
 {
     private $encoder;
 
+    private string $userFileDirectory;
+
     public function __construct(EntityManagerInterface $entityManager,
      UserRepository $userRepository,
-     UserPasswordEncoderInterface $encoder)
+     UserPasswordEncoderInterface $encoder,
+     string $userFileDirectory)
     {
         $this->entityManager = $entityManager;
         $this->userFileDirectory = $userFileDirectory;
@@ -198,7 +201,6 @@ class UserController extends AbstractController
                         {
                             $user = new User();
 
-                            $idUser = $rowData['identifiant de l\'utilisateur'];
                             $password = $rowData['mot de passe de l\'utilisateur'];
                             $roleUser = $rowData['rôle de l\'utilisateur'];
 
@@ -207,7 +209,6 @@ class UserController extends AbstractController
                                 ,$rowData['prénom de l\'utilisateur']);
 
                             $user
-                                ->setId($idUser)
                                 ->setEmail($rowData['email de l\'utilisateur'])
                                 ->setNomUser($rowData['nom de l\'utilisateur'])
                                 ->setPrenomUser($rowData['prénom de l\'utilisateur'])
@@ -238,9 +239,6 @@ class UserController extends AbstractController
                                 
                             $this->entityManager->persist($user);
 
-                            $metadata = $this->entityManager->getClassMetaData(get_class($user));
-                            $metadata->setIdGeneratorType(\Doctrine\ORM
-                                \Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
                             $userCreated++;
                         }
                     }
