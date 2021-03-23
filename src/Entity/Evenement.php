@@ -254,7 +254,7 @@ class Evenement
 
     public function getSport(): ?Sport
     {
-        return $this->Sport;
+        return $this->sport;
     }
 
     public function setSport(?Sport $Sport): self
@@ -302,7 +302,7 @@ class Evenement
     public function addDocument(Document $document): self
     {
         if (!$this->document->contains($document)) {
-            $this->Documents[] = $document;
+            $this->documents[] = $document;
             $document->setEvenement($this);
         }
         return $this;
@@ -312,8 +312,8 @@ class Evenement
     {
         if ($this->document->removeElement($document)) {
             // set the owning side to null (unless already changed)
-            if ($Documents->getEvenement() === $this) {
-                $Documents->setEvenement(null);
+            if ($documents->getEvenement() === $this) {
+                $documents->setEvenement(null);
             }
         }
         return $this;
