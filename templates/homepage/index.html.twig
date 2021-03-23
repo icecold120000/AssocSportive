@@ -22,13 +22,13 @@
                                 <span>
                                     début d'inscription
                                     {{ evenement.dateDebut ? evenement.
-                                    dateDebut|date('Y-m-d H:i:s') : '' }}
+                                    dateDebut|date('d/m/Y') : '' }}
                                 </span>
                                 <span> / </span>
                                 <span>
                                     fin d'inscription
                                     {{ evenement.dateFin ? evenement.
-                                    dateFin|date('Y-m-d H:i:s') : '' }}
+                                    dateFin|date('d/m/Y ') : '' }}
                                 </span>
                             </div>
                             <div id="place">
@@ -42,7 +42,9 @@
                             <p>{{ evenement.descripEvenement }}</p>
                         </div>
                         <div>
-                            <a href="{{ path('evenement_show', {'id': evenement.id}) }}">>Voir évenement</a>
+                            <a href="{{ path('evenement_show', {'id': evenement.id}) }}">
+                                <button class="btn btn-primary">Voir évenement</button>
+                            </a>
                         </div>
                     </div>
                 </div>
