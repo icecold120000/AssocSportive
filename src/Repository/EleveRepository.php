@@ -25,7 +25,7 @@ class EleveRepository extends ServiceEntityRepository
     public function search($classe = null, $genre = null, $archive = null){
         $query = $this->createQueryBuilder('el');
         if($classe != null){
-            $query->leftJoin('el.Classe', 'cl');
+            $query->leftJoin('el.classe', 'cl');
             $query->andWhere('cl.id = :id')
                 ->setParameter('id', $classe);
         }
@@ -51,7 +51,7 @@ class EleveRepository extends ServiceEntityRepository
                 ->setParameter('nom', $nom);
         }
         if($classe != null){
-            $query->leftJoin('el.Classe', 'cl');
+            $query->leftJoin('el.classe', 'cl');
             $query->andWhere('cl.id = :id')
                 ->setParameter('id', $classe);
         }

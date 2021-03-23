@@ -19,6 +19,16 @@ class CategorieEleveRepository extends ServiceEntityRepository
         parent::__construct($registry, CategorieEleve::class);
     }
 
+    public function findOneByLibelleCat($value): ?CategorieEleve
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.libelleCategorie = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
     // /**
     //  * @return CategorieEleve[] Returns an array of CategorieEleve objects
     //  */

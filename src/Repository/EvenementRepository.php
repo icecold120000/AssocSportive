@@ -30,7 +30,7 @@ class EvenementRepository extends ServiceEntityRepository
     public function search($typeEvent = null, $categorie = null, $sport = null, $actif = null){
         $query = $this->createQueryBuilder('ev');
         if($typeEvent != null){
-            $query->leftJoin('ev.Type', 'te');
+            $query->leftJoin('ev.type', 'te');
             $query->andWhere('te.id = :id')
                 ->setParameter('id', $typeEvent);
         }
@@ -40,7 +40,7 @@ class EvenementRepository extends ServiceEntityRepository
                 ->setParameter('id', $categorie);
         }
         if($sport != null){
-            $query->leftJoin('ev.Sport', 'sp');
+            $query->leftJoin('ev.sport', 'sp');
             $query->andWhere('sp.id = :id')
                 ->setParameter('id', $sport);
         }
