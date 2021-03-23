@@ -16,7 +16,7 @@ class FilterEleveType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Classe', EntityType::class,[
+            ->add('classe', EntityType::class,[
                 'label' => 'Classe',
                 'class' => Classe::class,
                 'query_builder' => function (ClasseRepository $er) {

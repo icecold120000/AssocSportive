@@ -78,7 +78,7 @@ class EleveType extends AbstractType
                 'label' => 'Le numéro de téléphone d\'un parent de l\'élève',
                 'required' => false,
             ])
-            ->add('Classe', EntityType::class,[
+            ->add('classe', EntityType::class,[
                 'label' => 'La classe de l\'élève',
                 'class' => Classe::class,
                 'query_builder' => function (ClasseRepository $er) {
@@ -88,7 +88,7 @@ class EleveType extends AbstractType
                 'choice_label' => 'libelle',
                 'required' => false,
             ])
-            ->add('Categorie', EntityType::class,[
+            ->add('categorie', EntityType::class,[
                 'label' => 'La catégorie de l\'élève',
                 'class' => CategorieEleve::class,
                 'query_builder' => function (CategorieEleveRepository $er) {

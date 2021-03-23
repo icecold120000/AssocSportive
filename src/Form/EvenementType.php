@@ -90,7 +90,7 @@ class EvenementType extends AbstractType
                     ])
                 ]
             ])
-            ->add('Type', EntityType::class,[
+            ->add('type', EntityType::class,[
                 'label' => 'Le type d\'événement auquel il est attaché',
                 'class' => TypeEvenement::class,
                 'query_builder' => function (TypeEvenementRepository $er) {
@@ -100,7 +100,7 @@ class EvenementType extends AbstractType
                 'choice_label' => 'nom',
                 'required' => false,
             ])
-            ->add('Sport', EntityType::class,[
+            ->add('sport', EntityType::class,[
                 'label' => 'Le sport pratiqué durant l\'événement',
                 'class' => Sport::class,
                 'query_builder' => function (SportRepository $er) {
@@ -110,7 +110,7 @@ class EvenementType extends AbstractType
                 'choice_label' => 'nomSport',
                 'required' => false,
             ])
-            ->add('CategorieEleve', EntityType::class,[
+            ->add('categorieEleve', EntityType::class,[
                 'label' => 'La catégorie d\'élève qui peut participer',
                 'class' => CategorieEleve::class,
                 'query_builder' => function (CategorieEleveRepository $er) {

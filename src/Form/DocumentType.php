@@ -8,7 +8,6 @@ use App\Entity\CategorieDocument;
 use App\Repository\EvenementRepository;
 use App\Repository\CategorieDocumentRepository;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -46,7 +45,7 @@ class DocumentType extends AbstractType
                 'label' => 'La description du document',
                 'required' => false,
             ])
-            ->add('Evenement', EntityType::class,[
+            ->add('evenement', EntityType::class,[
                 'label' => 'L\'événement auquel il est attaché',
                 'class' => Evenement::class,
                 'placeholder' => 'Choisir un événement',

@@ -21,7 +21,7 @@ class FilterEventType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Type', EntityType::class,[
+            ->add('type', EntityType::class,[
                 'label' => 'Type',
                 'class' => TypeEvenement::class,
                 'query_builder' => function (TypeEvenementRepository $er) {
@@ -34,7 +34,7 @@ class FilterEventType extends AbstractType
                 },
                 'required' => false,
             ])
-            ->add('CategorieEleve', EntityType::class,[
+            ->add('categorieEleve', EntityType::class,[
                 'label' => 'Catégorie',
                 'class' => CategorieEleve::class,
                 'query_builder' => function (CategorieEleveRepository $er) {
@@ -47,7 +47,7 @@ class FilterEventType extends AbstractType
                 },
                 'required' => false,
             ])
-            ->add('Sport', EntityType::class,[
+            ->add('sport', EntityType::class,[
                 'label' => 'Sport',
                 'class' => Sport::class,
                 'query_builder' => function (SportRepository $er) {
