@@ -28,7 +28,7 @@ class Classe
     private $libelle;
 
     /**
-     * @ORM\OneToMany(targetEntity=Eleve::class, mappedBy="Classe")
+     * @ORM\OneToMany(targetEntity=Eleve::class, mappedBy="classe")
      */
     private $eleves;
 

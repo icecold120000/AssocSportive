@@ -25,12 +25,12 @@ class Inscription
     /**
      * @ORM\ManyToOne(targetEntity=Eleve::class, inversedBy="inscriptions")
      */
-    private $Eleve;
+    private $eleve;
 
     /**
      * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="inscriptions")
      */
-    private $Evenement;
+    private $evenement;
 
     public function getId(): ?int
     {

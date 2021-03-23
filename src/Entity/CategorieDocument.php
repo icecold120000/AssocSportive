@@ -30,11 +30,11 @@ class CategorieDocument
     /**
      * @ORM\OneToMany(targetEntity=Document::class, mappedBy="categorieDocument")
      */
-    private $Document;
+    private $document;
 
     public function __construct()
     {
-        $this->Document = new ArrayCollection();
+        $this->document = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -64,13 +64,13 @@ class CategorieDocument
      */
     public function getDocument(): Collection
     {
-        return $this->Document;
+        return $this->document;
     }
 
     public function addDocument(Document $document): self
     {
-        if (!$this->Document->contains($document)) {
-            $this->Document[] = $document;
+        if (!$this->document->contains($document)) {
+            $this->document[] = $document;
             $document->setCategorieDocument($this);
         }
         return $this;
@@ -78,7 +78,7 @@ class CategorieDocument
 
     public function removeDocument(Document $document): self
     {
-        if ($this->Document->removeElement($document)) {
+        if ($this->document->removeElement($document)) {
             // set the owning side to null (unless already changed)
             if ($document->getCategorieDocument() === $this) {
                 $document->setCategorieDocument(null);

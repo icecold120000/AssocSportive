@@ -28,7 +28,7 @@ class TypeEvenement
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity=Evenement::class, mappedBy="Type")
+     * @ORM\OneToMany(targetEntity=Evenement::class, mappedBy="type")
      */
     private $evenements;
 

@@ -62,10 +62,10 @@ class Eleve
      * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="eleves")
      * @Assert\NotBlank(message="Veuillez selectionner la classe de l'élève.")
      */
-    private $Classe;
+    private $classe;
 
     /**
-     * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="Eleve")
+     * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="eleve")
      */
     private $inscriptions;
 
@@ -73,7 +73,7 @@ class Eleve
      * @ORM\ManyToOne(targetEntity=CategorieEleve::class, inversedBy="eleves")
      * @Assert\NotBlank(message="Veuillez selectionner la catégorie de l'élève.")
      */
-    private $Categorie;
+    private $categorie;
 
     /**
      * @ORM\Column(type="integer")
@@ -219,12 +219,12 @@ class Eleve
 
     public function getClasse(): ?Classe
     {
-        return $this->Classe;
+        return $this->classe;
     }
 
     public function setClasse(?Classe $Classe): self
     {
-        $this->Classe = $Classe;
+        $this->Classe = $classe;
         return $this;
     }
 
@@ -266,12 +266,12 @@ class Eleve
 
     public function getCategorie(): ?CategorieEleve
     {
-        return $this->Categorie;
+        return $this->categorie;
     }
 
     public function setCategorie(?CategorieEleve $Categorie): self
     {
-        $this->Categorie = $Categorie;
+        $this->Categorie = $categorie;
         return $this;
     }
 

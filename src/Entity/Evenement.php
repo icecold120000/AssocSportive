@@ -30,14 +30,14 @@ class Evenement
     /**
      * @var \DateTime $dateDebut
      * @ORM\Column(type="datetime")
-     * @Assert\NotNull(message="Veuillez selectionner une date de début pour l'événement.")
+     * @Assert\NotNull(message="Veuillez saisir une date de début pour l'événement.")
      */
     private $dateDebut;
 
     /**
      * @var \DateTime $dateFin
      * @ORM\Column(type="datetime")
-     * @Assert\NotNull(message="Veuillez selectionner une date de fin pour l'événement.")
+     * @Assert\NotNull(message="Veuillez saisir une date de fin pour l'événement.")
      */
     private $dateFin;
 
@@ -84,20 +84,20 @@ class Evenement
     /**
      * @ORM\ManyToOne(targetEntity=TypeEvenement::class, inversedBy="evenements")
      */
-    private $Type;
+    private $type;
 
     /**
      * @ORM\ManyToOne(targetEntity=Sport::class, inversedBy="evenements")
      */
-    private $Sport;
+    private $sport;
 
     /**
-     * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="Evenement")
+     * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="evenement")
      */
     private $inscriptions;
 
     /**
-     * @ORM\OneToMany(targetEntity=Document::class, mappedBy="Evenement")
+     * @ORM\OneToMany(targetEntity=Document::class, mappedBy="evenement")
      */
     private $documents;
 
@@ -234,12 +234,12 @@ class Evenement
 
     public function getType(): ?TypeEvenement
     {
-        return $this->Type;
+        return $this->type;
     }
 
     public function setType(?TypeEvenement $Type): self
     {
-        $this->Type = $Type;
+        $this->type = $type;
 
         return $this;
     }

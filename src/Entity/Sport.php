@@ -28,7 +28,7 @@ class Sport
     private $nomSport;
 
     /**
-     * @ORM\OneToMany(targetEntity=Evenement::class, mappedBy="Sport")
+     * @ORM\OneToMany(targetEntity=Evenement::class, mappedBy="sport")
      */
     private $evenements;
 

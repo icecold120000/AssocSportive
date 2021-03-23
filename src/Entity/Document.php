@@ -50,10 +50,10 @@ class Document
      * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="documents")
      * @Assert\NotBlank(message="Veuillez choisir l'événement auquel il est attaché")
      */
-    private $Evenement;
+    private $evenement;
 
     /**
-     * @ORM\ManyToOne(targetEntity=CategorieDocument::class, inversedBy="Document")
+     * @ORM\ManyToOne(targetEntity=CategorieDocument::class, inversedBy="document")
      * @Assert\NotBlank(message="Veuillez choisir la catégorie à laquelle il appartient")
      */
     private $categorieDocument;
@@ -61,7 +61,7 @@ class Document
     public function __construct()
     {
         $this->evenement = new ArrayCollection();
-        $this->CategorieDocument = new ArrayCollection();
+        $this->categorieDocument = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -122,7 +122,7 @@ class Document
 
     public function getEvenement(): ?Evenement
     {
-        return $this->Evenement;
+        return $this->evenement;
     }
 
     /**
@@ -136,7 +136,7 @@ class Document
 
     public function setEvenement(?Evenement $Evenement): self
     {
-        $this->Evenement = $Evenement;
+        $this->evenement = $evenement;
         return $this;
     }
 
@@ -151,7 +151,7 @@ class Document
      */
     public function getCategorieDocuments(): Collection
     {
-        return $this->CategorieDocument;
+        return $this->categorieDocument;
     }
 
     public function setCategorieDocument(?CategorieDocument $categorieDocument): self
