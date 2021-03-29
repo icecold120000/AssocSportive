@@ -169,7 +169,7 @@ class EvenementController extends AbstractController
 
         $inscription = new Inscription();
 
-        $foundEleve = $this->getDoctrine()->getRepository(Inscription::class)->find($eleve->getId());
+        $foundEleve = $this->getDoctrine()->getRepository(Inscription::class)->findOneByEleve($eleve->getId());
 
         if($foundEleve === null)
         {
@@ -186,6 +186,23 @@ class EvenementController extends AbstractController
             'evenement' => $evenement,
         ]);
     }
+
+    /**
+     * @Route("/{id}/desinscription/{eleveId}", name="evenement_desinscription", methods={"DELETE"})
+     * @Entity("eleve", expr="repository.find(eleveId)")
+     */
+    public function desinscription(Request $request, Evenement $evenement, Eleve $eleve): Response
+    {
+        $inscription = $this->getDoctrine()->getRepository(Inscription::class)->findOneInscritption($eleve->getId(),$evenement->getId());
+
+        if ($this->isCsrfTokenValid('delete'.$inscription->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($inscription);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('evenement_show', array('id' => $evenement->getId()) );
+    }
+
     /**
      * @Route("/{id}/edit", name="evenement_edit", methods={"GET","POST"})
      */
@@ -213,9 +230,11 @@ class EvenementController extends AbstractController
                 } catch (FileException $e) {
                     throw new FileException("Fichier corrompu. Veuillez retransferer votre image");
                 }
+                $evenement->setImageEvenement($newFilename);
             }
 
-            $vigEventFile = $form->get('vigEvent')->getData();
+            $vigEventFile = $form->get('vi
+            gEvent')->getData();
 
             if ($vigEventFile) {
                 $originalFilename = pathinfo($vigEventFile->getClientOriginalName(), PATHINFO_FILENAME);
@@ -232,11 +251,12 @@ class EvenementController extends AbstractController
                 } catch (FileException $e) {
                     throw new FileException("Fichier corrompu. Veuillez retransferer votre vignette");
                 }
+                $evenement->setVignetteEvenement($newFilename);
             }
             // updates the 'brochureFilename' property to store the PNG/JPEG/JPG file name
             // instead of its contents
-            $evenement->setImageEvenement($newFilename);
-            $evenement->setVignetteEvenement($newFilename);
+            
+            
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
