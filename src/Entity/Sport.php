@@ -28,7 +28,7 @@ class Sport
     private $nomSport;
 
     /**
-     * @ORM\OneToMany(targetEntity=Evenement::class, mappedBy="sport")
+     * @ORM\OneToMany(targetEntity=Evenement::class, mappedBy="sport", cascade={"persist"})
      */
     private $evenements;
 

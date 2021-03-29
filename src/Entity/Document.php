@@ -47,13 +47,13 @@ class Document
     private $dateAjout;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="documents")
+     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="documents", cascade={"persist"})
      * @Assert\NotBlank(message="Veuillez choisir l'événement auquel il est attaché")
      */
     private $evenement;
 
     /**
-     * @ORM\ManyToOne(targetEntity=CategorieDocument::class, inversedBy="document")
+     * @ORM\ManyToOne(targetEntity=CategorieDocument::class, inversedBy="document", cascade={"persist"})
      * @Assert\NotBlank(message="Veuillez choisir la catégorie à laquelle il appartient")
      */
     private $categorieDocument;
@@ -134,7 +134,7 @@ class Document
     }
 
 
-    public function setEvenement(?Evenement $Evenement): self
+    public function setEvenement(?Evenement $evenement): self
     {
         $this->evenement = $evenement;
         return $this;

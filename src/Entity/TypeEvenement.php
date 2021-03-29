@@ -28,7 +28,7 @@ class TypeEvenement
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity=Evenement::class, mappedBy="type")
+     * @ORM\OneToMany(targetEntity=Evenement::class, mappedBy="type", cascade={"persist"})
      */
     private $evenements;
 

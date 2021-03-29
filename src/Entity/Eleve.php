@@ -59,18 +59,18 @@ class Eleve
     private $dateMaj;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="eleves")
+     * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="eleves", cascade={"persist"})
      * @Assert\NotBlank(message="Veuillez selectionner la classe de l'élève.")
      */
     private $classe;
 
     /**
-     * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="eleve")
+     * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="eleve", cascade={"remove"})
      */
     private $inscriptions;
 
     /**
-     * @ORM\ManyToOne(targetEntity=CategorieEleve::class, inversedBy="eleves")
+     * @ORM\ManyToOne(targetEntity=CategorieEleve::class, inversedBy="eleves", cascade={"persist"})
      * @Assert\NotBlank(message="Veuillez selectionner la catégorie de l'élève.")
      */
     private $categorie;
@@ -222,9 +222,9 @@ class Eleve
         return $this->classe;
     }
 
-    public function setClasse(?Classe $Classe): self
+    public function setClasse(?Classe $classe): self
     {
-        $this->Classe = $classe;
+        $this->classe = $classe;
         return $this;
     }
 
@@ -269,9 +269,9 @@ class Eleve
         return $this->categorie;
     }
 
-    public function setCategorie(?CategorieEleve $Categorie): self
+    public function setCategorie(?CategorieEleve $categorie): self
     {
-        $this->Categorie = $categorie;
+        $this->categorie = $categorie;
         return $this;
     }
 

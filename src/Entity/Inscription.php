@@ -23,12 +23,12 @@ class Inscription
     private $dateInscription;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Eleve::class, inversedBy="inscriptions")
+     * @ORM\ManyToOne(targetEntity=Eleve::class, inversedBy="inscriptions", cascade={"remove"})
      */
     private $eleve;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="inscriptions")
+     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="inscriptions", cascade={"remove"})
      */
     private $evenement;
 
@@ -50,12 +50,12 @@ class Inscription
 
     public function getEleve(): ?Eleve
     {
-        return $this->Eleve;
+        return $this->eleve;
     }
 
-    public function setEleve(?Eleve $Eleve): self
+    public function setEleve(?Eleve $eleve): self
     {
-        $this->Eleve = $Eleve;
+        $this->eleve = $eleve;
         return $this;
     }
 

@@ -82,34 +82,34 @@ class Evenement
     private $vigEvent;
 
     /**
-     * @ORM\ManyToOne(targetEntity=TypeEvenement::class, inversedBy="evenements")
+     * @ORM\ManyToOne(targetEntity=TypeEvenement::class, inversedBy="evenements", cascade={"persist"})
      */
     private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Sport::class, inversedBy="evenements")
+     * @ORM\ManyToOne(targetEntity=Sport::class, inversedBy="evenements", cascade={"persist"})
      */
     private $sport;
 
     /**
-     * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="evenement")
+     * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="evenement", cascade={"persist"})
      */
     private $inscriptions;
 
     /**
-     * @ORM\OneToMany(targetEntity=Document::class, mappedBy="evenement")
+     * @ORM\OneToMany(targetEntity=Document::class, mappedBy="evenement", cascade={"persist"})
      */
     private $documents;
 
     /**
-     * @ORM\ManyToOne(targetEntity=CategorieEleve::class, inversedBy="evenements")
+     * @ORM\ManyToOne(targetEntity=CategorieEleve::class, inversedBy="evenements", cascade={"persist"})
      */
     private $categorieEleve;
 
     public function __construct()
     {
         $this->inscriptions = new ArrayCollection();
-        $this->Documents = new ArrayCollection();
+        $this->documents = new ArrayCollection();
         $this->sports = new ArrayCollection();
         $this->types = new ArrayCollection();
     }
@@ -237,7 +237,7 @@ class Evenement
         return $this->type;
     }
 
-    public function setType(?TypeEvenement $Type): self
+    public function setType(?TypeEvenement $type): self
     {
         $this->type = $type;
 
@@ -257,9 +257,9 @@ class Evenement
         return $this->sport;
     }
 
-    public function setSport(?Sport $Sport): self
+    public function setSport(?Sport $sport): self
     {
-        $this->Sport = $Sport;
+        $this->sport = $sport;
         return $this;
     }
 
