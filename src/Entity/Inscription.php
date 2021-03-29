@@ -61,12 +61,12 @@ class Inscription
 
     public function getEvenement(): ?Evenement
     {
-        return $this->Evenement;
+        return $this->evenement;
     }
 
-    public function setEvenement(?Evenement $Evenement): self
+    public function setEvenement(?Evenement $evenement): self
     {
-        $this->Evenement = $Evenement;
+        $this->evenement = $evenement;
         return $this;
     }
 }
