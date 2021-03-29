@@ -45,8 +45,20 @@
                     <td>{{ evenement.coutEvenement }} €</td>
                     <td>{{ evenement.descripEvenement|u.truncate(100,'...',true)  }}</td>
                     <td>{{ evenement.nbPlace }}</td>
-                    <td><img src="{{ asset('uploads/eventImg/' ~ evenement.imageEvenement) }}"></td>
-                    <td><img src="{{ asset('uploads/eventVig/' ~ evenement.vignetteEvenement) }}"></td>
+                    <td>
+                        {% if evenement.imageEvenement %}
+                            <img src="{{ asset('uploads/eventImg/' ~ evenement.imageEvenement) }}" id="imgEvent" placeholder="image de l'événement">
+                        {% else %}
+                            <img src="{{ asset('static/images/placeholder.png') }}" id="imgEvent" placeholder="image de l'événement">
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if evenement.imageEvenement %}
+                            <img src="{{ asset('uploads/eventVig/' ~ evenement.vignetteEvenement) }}" id="vignette" placeholder="vignette de l'événement">
+                        {% else %}
+                            <img src="{{ asset('static/images/placeholder.png') }}" id="vignette" placeholder="vignette de l'événement">
+                        {% endif %}
+                    </td>
                     <td>
                         <a href="{{ path('evenement_edit',
                         {'id': evenement.id}) }}">

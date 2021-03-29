@@ -1,3 +1,4 @@
+  
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ evenement.nomEvenement }}{% endblock %}
@@ -10,7 +11,7 @@
 
         <p><i class="fas fa-exclamation-circle"></i> {{evenement.inscriptions|length}} inscriptions sur {{ evenement.nbPlace }}</p>
 
-        <p>Type d'événement : {{evenement.Type.getNom}}</p>
+        <p>Type d'événement : {{evenement.type.getNom}}</p>
 
         <p>Sport : {{evenement.Sport.getNomSport}}</p>
 
@@ -18,7 +19,11 @@
 
         <p>Lieu : {{ evenement.lieuEvenement}}</p>
 
-        <img src="{{ asset('uploads/eventImg/' ~ evenement.imageEvenement) }}" id="imgEvent" placeholder="image de l'événement">
+        {% if evenement.imageEvenement %}
+            <img src="{{ asset('uploads/eventImg/' ~ evenement.imageEvenement) }}" id="imgEvent" placeholder="image de l'événement">
+        {% else %}
+            <img src="{{ asset('static/images/placeholder.png') }}" id="imgEvent" placeholder="image de l'événement">
+        {% endif %}
         
         <h2>Description de l'événement</h2>
 
@@ -28,7 +33,7 @@
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.<p>
 
-        <h2> {{evenement.Documents|length}} documents à télécharger</h2>
+        <h2> {{evenement.documents|length}} documents à télécharger</h2>
 
         <table class="table table-striped tableAdmin">
             <thead>
@@ -40,7 +45,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for docs in evenement.Documents %}
+                {% for docs in evenement.documents %}
                     <tr>
                         <td scope="row">{{docs.nomDocument}}</td>
                         <td scope="row">{{docs.dateAjout ? docs.
@@ -75,16 +80,24 @@
                     </button>
                 </a>
             {% else%}
+                {% if app.user.getEleve and is_granted('ROLE_ELEVE') and app.user.getEleve. getCategorie.getLibelleCategorie == evenement.categorieEleve.getLibelleCategorie or  evenement.categorieEleve.getLibelleCategorie == 'Toutes' and evenement.inscriptions|length < evenement.nbPlace and evenement.dateDebut|date('d/m/Y') < "now"|date("d/m/Y") < evenement.dateFin|date('d/m/Y')  %}
                 <a href="{{ path('evenement_inscrire', {'id': evenement.id,'eleveId': app.user.getEleve.id}) }}">
-                    <button class="btn btn-success" id="btnAjout" >
+                    <button class="btn btn-success" id="btnAjout" onsubmit="return confirm('Voulez-vous vraiment vous désinscrire de cette événement ?');">
                         S'inscrire
                     </button>
                 </a>
+                {% else %}
+                    <button class="btn btn-success" disabled id="btnAjout">
+                        S'inscrire
+                    </button>            
+                {% endif %}
             {% endfor %}
         {% else %}
-            {% if app.user.getEleve %}
+            {% if app.user.getEleve and is_granted('ROLE_ELEVE') and app.user.getEleve.
+            getCategorie.getLibelleCategorie == evenement.categorieEleve.getLibelleCategorie or
+            evenement.categorieEleve.getLibelleCategorie == 'Toutes' and evenement.inscriptions|length < evenement.nbPlace and evenement.dateDebut|date('d/m/Y') < "now"|date("d/m/Y") < evenement.dateFin|date('d/m/Y')  %}
                 <a href="{{ path('evenement_inscrire', {'id': evenement.id,'eleveId': app.user.getEleve.id}) }}">
-                    <button class="btn btn-success" disabled id="btnAjout" onsubmit="return confirm('Voulez-vous vraiment vous inscrire à cet événement ?');">
+                    <button class="btn btn-success" id="btnAjout" onsubmit="return confirm('Voulez-vous vraiment vous inscrire à cet événement ?');">
                         S'inscrire
                     </button>
                 </a>
@@ -95,6 +108,5 @@
             {% endif %}
         {% endif %} 
     </div>
-
     
 {% endblock %}

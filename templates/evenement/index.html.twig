@@ -11,16 +11,16 @@
             </div>
             {{form_start(form)}}
                 <div class="selectFiltre">
-                    <span>{{form_label(form.CategorieEleve)}} </span>
-                    {{form_widget(form.CategorieEleve)}}
+                    <span>{{form_label(form.categorieEleve)}} </span>
+                    {{form_widget(form.categorieEleve)}}
                 </div>
                 <div class="selectFiltre">
-                    <span>{{form_label(form.Type)}}</span>
-                    {{form_widget(form.Type)}}
+                    <span>{{form_label(form.type)}}</span>
+                    {{form_widget(form.type)}}
                 </div>
                 <div class="selectFiltre">
-                    <span>{{form_label(form.Sport)}}</span>
-                    {{form_widget(form.Sport)}}
+                    <span>{{form_label(form.sport)}}</span>
+                    {{form_widget(form.sport)}}
                 </div>
                 <div id="switch">
                     <label class="switch">
@@ -43,7 +43,11 @@
     {% for evenement in evenements %}
         <section id="evenement">
             <div class="container-fluid">
-                <img src="{{ asset('uploads/eventVig/' ~ evenement.vignetteEvenement) }}" id="vignette">
+                {% if evenement.imageEvenement %}
+                    <img src="{{ asset('uploads/eventVig/' ~ evenement.vignetteEvenement) }}" id="vignette" placeholder="vignette de l'événement">
+                {% else %}
+                    <img src="{{ asset('static/images/placeholder.png') }}" id="vignette" placeholder="vignette de l'événement">
+                {% endif %}
                 <div id="event">
                     <div>
                         <h3>{{ evenement.nomEvenement }}</h3>

@@ -5,6 +5,8 @@
 {% block body %}
     <h1>Ajouter un nouveau événement</h1>
 
+    <p>Les champs avec '*' sont obligatoires </p>
+
     {% for message in app.flashes('SuccessEvent') %}
         <div class="flash-success">
             {{ message }}
