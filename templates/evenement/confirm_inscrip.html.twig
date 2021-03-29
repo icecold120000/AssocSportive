@@ -21,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for docs in evenement.Documents %}
+                {% for docs in evenement.documents %}
                     <tr>
                         <td scope="row">{{docs.nomDocument}}</td>
                         <td scope="row">{{docs.dateAjout ? docs.
@@ -40,11 +40,30 @@
             </tbody>
         </table>
     </div>
+    
+    {% set inscriptionId = 0 %}
+    {% for inscription in evenement.inscriptions %}
+
+        {% if inscription.eleve.id == app.user.getEleve.id and inscription.evenement.id == evenement.id %} 
+
+            {% set inscriptionId = inscription.id%}
+
+        {% endif %}
+    {% endfor %}
+
     <div>
         <a href="{{ path('evenement_index') }}">
         	<button class="btn btn-secondary" id="btnRetour">
                 Revenir dans la liste des événements
             </button>
         </a>
+        <form method="post" action="{{ path('evenement_desinscription', {'id': evenement.id,'eleveId' : app.user.getEleve.id}) }}" onsubmit="return confirm('Voulez-vous vraiment vous désinscrire de cette événement ?');">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ inscriptionId) }}">
+            <button class="btn btn-danger" id="btnSuppr">Se désinscrire</button>
+        </form>
     </div>
+
+
+
 {% endblock %}
