@@ -9,7 +9,8 @@ Composer Version : 2.0.4
 Utilisateur test : 
 
 utilisateur admin :
-	email : fammar@nodevo.fr
+	
+	email : jeff.martins@gmail.com
 	mot de passe : admin
 
 utilisateur eleve :
