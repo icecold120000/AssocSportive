@@ -23,15 +23,15 @@ class DocumentType extends AbstractType
         $builder
             ->add('nomDocument', TextType::class,[
                 'label' => 'Le nom du document',
-                'required' => false,
+                'required' => true,
             ])
             ->add('file', FileType::class, [
-                'label' => 'Le fichier du document (PDF)',
+                'label' => 'Le fichier du document (* PDF)',
                 'mapped' => false,
-                'required' => false,
+                'required' => true,
                 'constraints' => [
                     new File([
-                        'maxSize' => '2048k',
+                        'maxSize' => '4096k',
                         'mimeTypes' => [
                             'application/pdf',
                             'application/x-pdf',
@@ -43,7 +43,7 @@ class DocumentType extends AbstractType
             ])
             ->add('descriptionDocument', TextType::class,[
                 'label' => 'La description du document',
-                'required' => false,
+                'required' => true,
             ])
             ->add('evenement', EntityType::class,[
                 'label' => 'L\'événement auquel il est attaché',
@@ -54,7 +54,7 @@ class DocumentType extends AbstractType
                         ->orderBy('e.nomEvenement', 'ASC');
                 },
                 'choice_label' => 'nomEvenement',
-                'required' => false,
+                'required' => true,
             ])
             ->add('categorieDocument', EntityType::class,[
                 'label' => 'La catégorie à laquelle il appartient',
@@ -65,7 +65,7 @@ class DocumentType extends AbstractType
                         ->orderBy('c.libelleCategorieDoc', 'ASC');
                 },
                 'choice_label' => 'libelleCategorieDoc',
-                'required' => false,
+                'required' => true,
             ])
         ;
     }

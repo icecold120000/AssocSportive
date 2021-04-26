@@ -15,7 +15,7 @@ class TypeEvenementType extends AbstractType
         $builder
             ->add('nom', TextType::class,[
                 'label' => 'Nom du type d\'événement',
-                'required' => false,
+                'required' => true,
             ])
         ;
     }

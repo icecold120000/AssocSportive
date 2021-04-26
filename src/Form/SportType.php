@@ -15,7 +15,7 @@ class SportType extends AbstractType
         $builder
             ->add('nomSport', TextType::class,[
                 'label' => 'Nom du sport',
-                'required' => false,
+                'required' => true,
             ])
         ;
     }

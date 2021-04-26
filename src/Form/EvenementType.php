@@ -26,67 +26,69 @@ class EvenementType extends AbstractType
         $builder
             ->add('nomEvenement', TextType::class,[
                 'label' => 'Le nom de l\'événement',
-                'required' => false,
+                'required' => true,
             ])
             ->add('dateDebut', DateTimeType::class, [
                 'label' => 'La date de début de l\'événement',
                 'html5' => false,
                 'widget' => 'single_text',
                 'format' => 'dd/MM/yyyy kk:mm:ss',
-                'required' => false,
+                'required' => true,
             ])
             ->add('dateFin', DateTimeType::class, [
                 'label' => 'La date de fin de l\'événement',
                 'html5' => false,
                 'widget' => 'single_text',
                 'format' => 'dd/MM/yyyy kk:mm:ss',
-                'required' => false,
+                'required' => true,
             ])
             ->add('lieuEvenement', TextType::class,[
                 'label' => 'Le lieu de l\'événement',
-                'required' => false,
+                'required' => true,
             ])
             ->add('coutEvenement', TextType::class,[
                 'label' => 'Le coût de l\'événement',
-                'required' => false,
+                'required' => true,
             ])
             ->add('descripEvenement', TextType::class,[
                 'label' => 'La description de l\'événement',
-                'required' => false,
+                'required' => true,
             ])
             ->add('nbPlace', TextType::class, [
                 'label' => 'Le nombre de places maximum de l\'événement',
-                'required' => false,
+                'required' => true,
             ])
             ->add('imgEvent', FileType::class, [
                 'label' => 'L\'image de l\'événement',
                 'mapped' => false,
-                'required' => false,
+                'required' => true,
                 'constraints' => [
                     new File([
-                        'maxSize' => '1024k',
+                        'maxSize' => '2048k',
                         'mimeTypes' => [
                             'image/png',
                             'image/jpeg',
                         ],
                         'mimeTypesMessage' => 'Veuillez selectionner un fichier png/jpeg/jpg',
                         'maxSizeMessage' => 'Veuillez transferer un fichier ayant pour taille maximum de {{limit}}',
+                        'uploadNoFileErrorMessage' => 'Veuillez selectionner un fichier',
                     ])
                 ]
             ])
             ->add('vigEvent', FileType::class, [
                 'label' => 'La vignette de l\'événement',
                 'mapped' => false,
-                'required' => false,
+                'required' => true,
                 'constraints' => [
                     new File([
-                        'maxSize' => '1024k',
+                        'maxSize' => '2048k',
                         'mimeTypes' => [
                             'image/png',
                             'image/jpeg',
                         ],
                         'mimeTypesMessage' => 'Veuillez selectionner un fichier png/jpeg/jpg',
                         'maxSizeMessage' => 'Veuillez transferer un fichier ayant pour taille maximum de {{limit}}',
+                        'uploadNoFileErrorMessage' => 'Veuillez selectionner un fichier',
                     ])
                 ]
             ])
@@ -98,7 +100,7 @@ class EvenementType extends AbstractType
                         ->orderBy('te.id', 'ASC');
                 },
                 'choice_label' => 'nom',
-                'required' => false,
+                'required' => true,
             ])
             ->add('sport', EntityType::class,[
                 'label' => 'Le sport pratiqué durant l\'événement',
@@ -108,7 +110,7 @@ class EvenementType extends AbstractType
                         ->orderBy('sp.id', 'ASC');
                 },
                 'choice_label' => 'nomSport',
-                'required' => false,
+                'required' => true,
             ])
             ->add('categorieEleve', EntityType::class,[
                 'label' => 'La catégorie d\'élève qui peut participer',
@@ -118,7 +120,7 @@ class EvenementType extends AbstractType
                         ->orderBy('ce.id');
                 },
                 'choice_label' => 'libelleCategorie',
-                'required' => false,
+                'required' => true,
             ])
         ;
     }

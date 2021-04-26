@@ -21,7 +21,7 @@ class UserType extends AbstractType
         $builder
             ->add('email', TextType::class,[
                 'label' => 'L\'email de l\'utilisateur',
-                'required' => false,
+                'required' => true,
             ])
             ->add('roles', CollectionType::class, [
                 'label' => 'Le rôle de l\'utilisateur',
@@ -34,20 +34,20 @@ class UserType extends AbstractType
                         'Enseignant' => User::ROLE_ENSEIGNANT,
                         'Comptable' => User::ROLE_COMPTABLE,
                     ],
-                    'required' => false,
+                    'required' => true,
                 ],
             ])
             ->add('password', PasswordType::class,[
                 'label' => 'Le mot de passe de l\'utilisateur',
-                'required' => false,
+                'required' => true,
             ])
             ->add('nomUser', TextType::class,[
                 'label' => 'Le nom de l\'utilisateur',
-                'required' => false,
+                'required' => true,
             ])
             ->add('prenomUser', TextType::class,[
                 'label' => 'Le prénom de l\'utilisateur',
-                'required' => false,
+                'required' => true,
             ])
             ->add('eleve', EntityType::class,[
                 'label' => 'L\'élève auquel l\'utilisateur appartient',

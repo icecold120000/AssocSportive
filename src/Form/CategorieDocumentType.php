@@ -15,7 +15,7 @@ class CategorieDocumentType extends AbstractType
         $builder
             ->add('libelleCategorieDoc', TextType::class,[
                 'label' => 'Le libellé de la catégorie d\'élève',
-                'required' => false,
+                'required' => true,
             ])
         ;
     }

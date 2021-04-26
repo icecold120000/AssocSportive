@@ -25,11 +25,11 @@ class EleveType extends AbstractType
         $builder
             ->add('nomEleve', TextType::class,[
                 'label' => 'Le nom de l\'élève',
-                'required' => false,
+                'required' => true,
             ])
             ->add('prenomEleve', TextType::class,[
                 'label' => 'Le prénom de l\'élève',
-                'required' => false,
+                'required' => true,
             ])
             ->add('imgFile', FileType::class, [
                 'label' => 'La photo de l\'élève(png/jpeg/jpg)',
@@ -37,7 +37,7 @@ class EleveType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '1024k',
+                        'maxSize' => '2048k',
                         'mimeTypes' => [
                             'image/png',
                             'image/jpeg',
@@ -48,11 +48,11 @@ class EleveType extends AbstractType
                 ],
             ])
             ->add('dateNaissance', DateType::class, [
-                'label' => 'La date naissance de l\'élève ',
+                'label' => 'La date naissance de l\'élève',
                 'html5' => false,
                 'widget' => 'single_text',
                 'format' => 'dd/MM/yyyy',
-                'required' => false,
+                'required' => true,
             ])
             ->add('genreEleve', ChoiceType::class, [
                 'label' => 'Le genre de l\'élève',
@@ -60,23 +60,15 @@ class EleveType extends AbstractType
                     'Homme' => 'H',
                     'Femme' => 'F',
                 ],
-                'required' => false,
-            ])
-            ->add('archiveEleve', ChoiceType::class, [
-                'label' => 'L\'Archivage de l\'élève',
-                'choices' => [
-                    'Non Archivé' => 0,
-                    'Archivé' => 1,
-                ],
-                'required' => false,
+                'required' => true,
             ])
             ->add('numTelEleve', TextType::class, [
                 'label' => 'Le numéro de téléphone de l\'élève',
-                'required' => false,
+                'required' => true,
             ])
             ->add('numTelParent', TextType::class, [
                 'label' => 'Le numéro de téléphone d\'un parent de l\'élève',
-                'required' => false,
+                'required' => true,
             ])
             ->add('classe', EntityType::class,[
                 'label' => 'La classe de l\'élève',
@@ -86,7 +78,7 @@ class EleveType extends AbstractType
                         ->orderBy('cl.libelle', 'ASC');
                 },
                 'choice_label' => 'libelle',
-                'required' => false,
+                'required' => true,
             ])
             ->add('categorie', EntityType::class,[
                 'label' => 'La catégorie de l\'élève',
@@ -96,15 +88,7 @@ class EleveType extends AbstractType
                         ->orderBy('ca.libelleCategorie', 'ASC');
                 },
                 'choice_label' => 'libelleCategorie',
-                'required' => false,
-            ])
-            ->add('autoPrelev', ChoiceType::class, [
-                'label' => 'Autorisation de prélèvement',
-                'choices' => [
-                    'Non' => '0',
-                    'Oui' => '1',
-                ],
-                'required' => false,
+                'required' => true,
             ])
         ;
     }
