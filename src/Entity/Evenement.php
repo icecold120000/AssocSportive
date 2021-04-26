@@ -30,6 +30,7 @@ class Evenement
     /**
      * @var \DateTime $dateDebut
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank(message="Veuillez saisir une date de début pour l'événement.")
      * @Assert\NotNull(message="Veuillez saisir une date de début pour l'événement.")
      */
     private $dateDebut;
@@ -37,6 +38,7 @@ class Evenement
     /**
      * @var \DateTime $dateFin
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank(message="Veuillez saisir une date de début pour l'événement.")
      * @Assert\NotNull(message="Veuillez saisir une date de fin pour l'événement.")
      */
     private $dateFin;
@@ -83,16 +85,18 @@ class Evenement
 
     /**
      * @ORM\ManyToOne(targetEntity=TypeEvenement::class, inversedBy="evenements", cascade={"persist"})
+     * @Assert\NotBlank(message="Veuillez selectionner un type d'événement.")
      */
     private $type;
 
     /**
      * @ORM\ManyToOne(targetEntity=Sport::class, inversedBy="evenements", cascade={"persist"})
+     * @Assert\NotBlank(message="Veuillez selectionner le sport pratiqué de l'événement.")
      */
     private $sport;
 
     /**
-     * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="evenement", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Inscription::class, mappedBy="evenement", cascade={"remove"})
      */
     private $inscriptions;
 
@@ -103,6 +107,7 @@ class Evenement
 
     /**
      * @ORM\ManyToOne(targetEntity=CategorieEleve::class, inversedBy="evenements", cascade={"persist"})
+     * @Assert\NotBlank(message="Veuillez selectionner la catégorie d'élève qui peut participer à l'événement.")
      */
     private $categorieEleve;
 

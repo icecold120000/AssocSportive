@@ -23,12 +23,12 @@ class Inscription
     private $dateInscription;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Eleve::class, inversedBy="inscriptions", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity=Eleve::class, inversedBy="inscriptions", cascade={"persist"})
      */
     private $eleve;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="inscriptions", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="inscriptions", cascade={"persist"})
      */
     private $evenement;
 
