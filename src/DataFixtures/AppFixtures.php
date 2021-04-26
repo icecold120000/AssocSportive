@@ -38,7 +38,7 @@ class AppFixtures extends Fixture
         $password = 'admin';
         
         $user->setRoles([$roles[1]]);
-        $user->setEmail('jeff.martins@gmail.com');
+        $user->setEmail('jeff.martins1@gmail.com');
         $user->setPassword($this->encoder->encodePassword($user, $password));
         $user->setNomUser("Jeff");
         $user->setPrenomUser("Martins");
@@ -51,10 +51,10 @@ class AppFixtures extends Fixture
             $password2 = 'eleve';
             
             $user2->setRoles([$roles[2]]);
-            $user2->setEmail('hugo.monteiro'.$i.'@gmail.com');
+            $user2->setEmail('Luigi.gonzales'.$i.'@gmail.com');
             $user2->setPassword($this->encoder->encodePassword($user2, $password2));
-            $user2->setNomUser("Hugo");
-            $user2->setPrenomUser("Monteiro");
+            $user2->setNomUser("Luigi");
+            $user2->setPrenomUser("Gonzales");
             $manager->persist($user2);
             $this->addReference('user_'. $i, $user2);
             $manager->flush();
