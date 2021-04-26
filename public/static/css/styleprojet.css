@@ -129,6 +129,8 @@ footer
     background-color: #0F1B2C;
     color: white;
     list-style: none;
+    width: 100%;
+    display: inline-block;
 }
 
 footer i
@@ -692,11 +694,10 @@ input:checked + .slider:before
 #event #place
 {
 	position: relative;
-	right: 22%;
 	padding-top: 4px;
 }
 
-#event #descripEvent
+#event #descrip
 {
 	width: 75%;
 	display: inline-block;
