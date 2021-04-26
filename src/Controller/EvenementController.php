@@ -40,9 +40,9 @@ class EvenementController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
                 $evenements = $eventRepo->search(
-                $search->get('Type')->getData(),
-                $search->get('CategorieEleve')->getData(),
-                $search->get('Sport')->getData(),
+                $search->get('type')->getData(),
+                $search->get('categorieEleve')->getData(),
+                $search->get('sport')->getData(),
                 $search->get('actif')->getData()
             );
         }
@@ -89,23 +89,32 @@ class EvenementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             /** @var UploadedFile $imgEventFile */
+            // prend la valeur de l'image soumis dans le formulaire
             $imgEventFile = $form->get('imgEvent')->getData();
 
+            // vérifie si la valeur sous dans la formulaire n'est pas nul
             if ($imgEventFile) {
-                $originalFilename = pathinfo($imgEventFile->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'.'.$imgEventFile->guessExtension();
 
-                // Move the file to the directory where brochures are stored
+                // sauvegarde le nom du fichier
+                $originalFilename = pathinfo($imgEventFile->getClientOriginalName(), PATHINFO_FILENAME);
+
+                // permet avec sans risque d'inclure le nom du fichier en une partie de l'url 
+                $safeFilename = $slugger->slug($originalFilename);
+
+                // permet de recuperer le nom du fichier et son extension et de créer l'url du fichier 
+                $newFilenameImg = $safeFilename.'.'.$imgEventFile->guessExtension();
+
+                // permet de deplacer le fichier dans le dossier où il sera stockée
                 try {
                     $imgEventFile->move(
                         $this->getParameter('eventImg_directory'),
-                        $newFilename
+                        $newFilenameImg
                     );
                 } catch (FileException $e) {
                     throw new FileException("Fichier corrompu. Veuillez retransferer votre image");
                 }
+                // permet de stocker l'url du fichier dans la base de données
+                $evenement->setImageEvenement($newFilenameImg);
             }
 
             $vigEventFile = $form->get('vigEvent')->getData();
@@ -114,22 +123,19 @@ class EvenementController extends AbstractController
                 $originalFilename = pathinfo($vigEventFile->getClientOriginalName(), PATHINFO_FILENAME);
                 // this is needed to safely include the file name as part of the URL
                 $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'.'.$vigEventFile->guessExtension();
+                $newFilenameVig = $safeFilename.'.'.$vigEventFile->guessExtension();
 
                 // Move the file to the directory where brochures are stored
                 try {
                     $vigEventFile->move(
                         $this->getParameter('eventVig_directory'),
-                        $newFilename
+                        $newFilenameVig
                     );
                 } catch (FileException $e) {
                     throw new FileException("Fichier corrompu. Veuillez retransferer votre vignette");
                 }
-            }
-            // updates the 'brochureFilename' property to store the PNG/JPEG/JPG file name
-            // instead of its contents
-            $evenement->setImageEvenement($newFilename);
-            $evenement->setVignetteEvenement($newFilename);
+                $evenement->setVignetteEvenement($newFilenameVig);
+            }            
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($evenement);
@@ -167,21 +173,30 @@ class EvenementController extends AbstractController
     public function inscrire(Evenement $evenement, Eleve $eleve): Response
     {
 
+        //Créer un nouvelle instance d'une inscription
         $inscription = new Inscription();
 
-        $foundEleve = $this->getDoctrine()->getRepository(Inscription::class)->findOneByEleve($eleve->getId());
+        // Rechercher dans la base de donnée s'il existe une inscription avec le même l'élève dans le même événement 
+        $foundEleve = $this->getDoctrine()->getRepository(Inscription::class)
+        ->findOneInscritption($eleve->getId(),$evenement->getId());
 
+        // s'il n'existe aucune inscription de cet élève dans cet événement
         if($foundEleve === null)
         {
+            // objet prend les instances de l'élève et de l'événement 
             $inscription
                         ->setEvenement($evenement)
                         ->setEleve($eleve)
                         ->setDateInscription(new \DateTime('now', new \DateTimeZone('Europe/Paris')));
             $entityManager = $this->getDoctrine()->getManager();
+
+            // sauvegarde l'instance de l'inscription
             $entityManager->persist($inscription);
+            // le créer dans la base de données
             $entityManager->flush();
         }
 
+        // accéder à la page de confirmation d'inscription
         return $this->render('evenement/confirm_inscrip.html.twig', [
             'evenement' => $evenement,
         ]);
@@ -200,6 +215,7 @@ class EvenementController extends AbstractController
             $entityManager->remove($inscription);
             $entityManager->flush();
         }
+
         return $this->redirectToRoute('evenement_show', array('id' => $evenement->getId()) );
     }
 
@@ -211,6 +227,7 @@ class EvenementController extends AbstractController
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
 
             /** @var UploadedFile $imgEventFile */
             $imgEventFile = $form->get('imgEvent')->getData();
@@ -230,11 +247,11 @@ class EvenementController extends AbstractController
                 } catch (FileException $e) {
                     throw new FileException("Fichier corrompu. Veuillez retransferer votre image");
                 }
+
                 $evenement->setImageEvenement($newFilename);
             }
 
-            $vigEventFile = $form->get('vi
-            gEvent')->getData();
+            $vigEventFile = $form->get('vigEvent')->getData();
 
             if ($vigEventFile) {
                 $originalFilename = pathinfo($vigEventFile->getClientOriginalName(), PATHINFO_FILENAME);
@@ -251,11 +268,11 @@ class EvenementController extends AbstractController
                 } catch (FileException $e) {
                     throw new FileException("Fichier corrompu. Veuillez retransferer votre vignette");
                 }
+
                 $evenement->setVignetteEvenement($newFilename);
             }
             // updates the 'brochureFilename' property to store the PNG/JPEG/JPG file name
             // instead of its contents
-            
             
 
             $entityManager = $this->getDoctrine()->getManager();

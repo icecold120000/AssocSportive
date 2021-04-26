@@ -110,11 +110,8 @@ class DocumentController extends AbstractController
                 } catch (FileException $e) {
                     throw new FileException("Fichier corrompu. Veuillez retransferer votre fichier");
                 }
-            }
-            // updates the 'LienDocument' property to store the PDF file name
-            // instead of its contents
-            $document->setLienDocument($newFilename);
-            
+                $document->setLienDocument($newFilename);
+            }            
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($document);
@@ -174,10 +171,11 @@ class DocumentController extends AbstractController
                 } catch (FileException $e) {
                     throw new FileException("Fichier corrompu. Veuillez retransferer votre fichier");
                 }
+                $document->setLienDocument($newFilename);
             }
             // updates the 'LienDocument' property to store the PDF file name
             // instead of its contents
-            $document->setLienDocument($newFilename);
+            
             
             $em = $this->getDoctrine()->getManager();
             $em->flush();

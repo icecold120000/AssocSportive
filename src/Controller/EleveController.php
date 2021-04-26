@@ -43,7 +43,7 @@ class EleveController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
                 $eleves = $eleveRepo->search(
-                $search->get('Classe')->getData(),
+                $search->get('classe')->getData(),
                 $search->get('genreEleve')->getData(),
                 $search->get('archiveEleve')->getData()
             );
@@ -61,13 +61,14 @@ class EleveController extends AbstractController
         ]);
     }
 
+    private string $eleveFileDirectory;
 
-
-    public function __construct(EntityManagerInterface $entityManager, EleveRepository $eleveRepository)
+    public function __construct(EntityManagerInterface $entityManager, EleveRepository $eleveRepository,
+     string $eleveFileDirectory)
     {
         $this->entityManager = $entityManager;
-
         $this->eleveRepository = $eleveRepository;
+        $this->eleveFileDirectory = $eleveFileDirectory;
     }
 
     /**
@@ -171,89 +172,8 @@ class EleveController extends AbstractController
                             new \DateTime($rowData['Date de naissance']
                         ));
 
-                        if($eleve === true)
+                        if($eleve === null)
                         {
-                            $today = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
-
-                            $birthday = new \DateTime($rowData['Date de naissance']);
-
-                            $sexe = $rowData['Sexe'];
-
-                            $interval = $today->diff($birthday);
-                            
-                            $total = $interval->format('%y%');
-                            if(23 >= $total && 18 <= $total)
-                            {
-                                switch ($sexe) {
-                                    case 'M':
-                                        $categorie = $this->getDoctrine()->getRepository
-                                        (CategorieEleve::class)->findOneByLibelleCat
-                                        ("Junior Garçon");
-                                        break;
-                                    
-                                    case 'F':
-                                        $categorie = $this->getDoctrine()->getRepository
-                                        (CategorieEleve::class)->findOneByLibelleCat
-                                        ("Junior Fille");
-                                        break;
-                                }
-                            }
-                            elseif(18 > $total && 14 <= $total)
-                            {
-                                switch ($sexe) {
-                                    case 'M':
-                                        $categorie = $this->getDoctrine()->getRepository
-                                        (CategorieEleve::class)->findOneByLibelleCat
-                                        ("Cadet");
-                                        break;               
-                                    case 'F':
-                                        $categorie = $this->getDoctrine()->getRepository
-                                        (CategorieEleve::class)->findOneByLibelleCat
-                                        ("Cadette");
-                                        break;
-                                }
-                            }
-                            else{
-                                $categorie = null;
-                            }
-
-                            $eleve->setDateMaj($today);
-
-                            $classe = $this->getDoctrine()->getRepository
-                            (Classe::class)->findOneByLibelle($rowData['Libellé classe']);
-
-                            $eleve
-                                ->setNomEleve($rowData['Nom'])
-                                ->setArchiveEleve(false)
-                                ->setClasse($classe)
-                                ->setCategorie($categorie)
-                                ->setNumTelEleve($rowData['Numéro de Téléphone'])
-                                ->setNumTelParent($rowData['Numéro de Téléphone d\'un Parent']);
-
-                            if($rowData['Auto prélévement'] = 'Vrai' ||
-                             $rowData['Auto prélévement'] = 'V' ||
-                               $rowData['Auto prélévement'] = 1 ||
-                                $rowData['Auto prélévement'] === true){
-                                $eleve->setAutoPrelev(true);
-                            }    
-                            elseif ($rowData['Auto prélévement'] = 'Faux' ||
-                             $rowData['Auto prélévement'] = 'F' ||
-                               $rowData['Auto prélévement'] = 0 ||
-                                 $rowData['Auto prélévement'] === false) {
-                                $eleve->setAutoPrelev(false);
-                            }
-                            else{
-                                $eleve->setAutoPrelev(null);
-                            }
-                            $this->entityManager->persist($eleve);
-
-                            $eleveCreated++;
-                        }
-                        /*S'il n'existe pas alors on le créer
-                         en tant qu'un nouvel élève*/
-                        else
-                        {
-
                             $eleve = new Eleve();
 
                             $today = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
@@ -270,14 +190,12 @@ class EleveController extends AbstractController
                                 switch ($sexe) {
                                     case 'M':
                                         $categorie = $this->getDoctrine()->getRepository
-                                        (CategorieEleve::class)->findOneByLibelleCat
-                                        ("Junior Garçon");
+                                        (CategorieEleve::class)->findOneByLibelleCat("Junior Garçon");
                                         break;
                                     
                                     case 'F':
                                         $categorie = $this->getDoctrine()->getRepository
-                                        (CategorieEleve::class)->findOneByLibelleCat
-                                        ("Junior Fille");
+                                        (CategorieEleve::class)->findOneByLibelleCat("Junior Fille");
                                         break;
                                 }
                             }
@@ -286,13 +204,11 @@ class EleveController extends AbstractController
                                 switch ($sexe) {
                                     case 'M':
                                         $categorie = $this->getDoctrine()->getRepository
-                                        (CategorieEleve::class)->findOneByLibelleCat
-                                        ("Cadet");
+                                        (CategorieEleve::class)->findOneByLibelleCat("Cadet");
                                         break;               
                                     case 'F':
                                         $categorie = $this->getDoctrine()->getRepository
-                                        (CategorieEleve::class)->findOneByLibelleCat
-                                        ("Cadette");
+                                        (CategorieEleve::class)->findOneByLibelleCat("Cadette");
                                         break;
                                 }
                             }
@@ -314,13 +230,14 @@ class EleveController extends AbstractController
                                 ->setClasse($classe)
                                 ->setCategorie($categorie)
                                 ->setNumTelEleve($rowData['Numéro de Téléphone'])
-                                ->setNumTelParent($rowData['Numéro de Téléphone d\'un Parent'])
-                                ->setAutoPrelev(false);
+                                ->setNumTelParent($rowData['Numéro de Téléphone d\'un Parent']);
 
                             $this->entityManager->persist($eleve);
 
                             $eleveCreated++;
                         }
+                        /*S'il n'existe pas alors on le créer
+                         en tant qu'un nouvel élève*/
                     }
                 }
             }
