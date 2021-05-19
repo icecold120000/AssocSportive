@@ -9,6 +9,12 @@
 
     <h1>Inscription</h1>
 
+    {% for message in app.flashes('SuccessInscription') %}
+        <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <div>
         <p>Inscrivez vous maintenant dés maintenant pour vous connecter</p>
     </div>
@@ -53,15 +59,6 @@
                     </div>
                     <div class="erreur">
                         {{form_errors(registrationForm.plainPassword)}}
-                    </div>
-                    <div>
-                        {{form_label(registrationForm.agreeTerms)}}
-                    </div>
-                    <div id="check">
-                        {{form_widget(registrationForm.agreeTerms)}}
-                    </div>
-                    <div class="erreur">
-                        {{form_errors(registrationForm.agreeTerms)}}
                     </div>
                     <div>
                         <div id="divAjout" class="form-actions">

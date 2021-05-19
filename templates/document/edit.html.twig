@@ -5,6 +5,8 @@
 {% block body %}
     <h1>Editer un document</h1>
 
+    <p>Les champs avec '*' sont obligatoires </p>
+
     {% for message in app.flashes('SuccessDoc') %}
         <div class="flash-success">
             {{ message }}

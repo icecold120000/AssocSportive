@@ -43,7 +43,7 @@
     {% for evenement in evenements %}
         <section id="evenement">
             <div class="container-fluid">
-                {% if evenement.imageEvenement %}
+                {% if evenement.vignetteEvenement %}
                     <img src="{{ asset('uploads/eventVig/' ~ evenement.vignetteEvenement) }}" id="vignette" placeholder="vignette de l'événement">
                 {% else %}
                     <img src="{{ asset('static/images/placeholder.png') }}" id="vignette" placeholder="vignette de l'événement">

@@ -59,6 +59,7 @@
                 <th>Genre de l'élève</th>
                 <th>N° de téléphone</th>
                 <th>N° de téléphone d'un parent</th>
+
                 <th>Editer</th>
                 <th>Supprimer</th>
             </tr>
@@ -71,7 +72,7 @@
                 <td>{{ eleve.nomEleve }}</td>
                 <td>{{ eleve.dateNaissance ? eleve.dateNaissance|date('d/m/Y') : '' }}</td>
                 <td>
-                    {% if eleve.genreEleve == 'M' %}
+                    {% if eleve.genreEleve == 'H' %}
                         <p>Homme</p>
                     {% else %}
                         <p>Femme</p>
@@ -79,6 +80,7 @@
                 </td>
                 <td>+33 (0){{ eleve.numTelEleve }}</td>
                 <td>+33 (0){{ eleve.numTelParent }}</td>
+
                 <td>
                     <a href="{{ path('eleve_edit',
                     {'id': eleve.id}) }}">

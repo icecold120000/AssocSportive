@@ -5,18 +5,6 @@
 {% block body %}
 <body id="stat">
 	<h1>Bienvenue dans l'espace de statistique</h1>
-	{{form_start(form)}}
-		<div id="filtre">
-			<div id="left">
-				<span>{{form_label(form.Annee_scolaire)}}</span>
-				{{form_widget(form.Annee_scolaire)}}
-			</div>
-			<div>
-	            <button type="submit" class="btn btn-info" action="#">
-	                Afficher
-	            </button>
-	        </div>
-		</div>
 		<div>
 			<table class="table tableAdmin" id="tableStat">
 				<thead>
@@ -27,80 +15,83 @@
 				</thead>
 			    <tbody>
 				    <tr>
-					    <td>Nombre d'élèves licenciés total</td>
+					    <td>Nombre d'élèves inscrit total</td>
 					    <td>
-					    	0
+					    	{{inscriptions|length}} inscrits
 					    </td>
 				    </tr>
 				    <tr>
-					    <td>Nombre d'événements total</td>
+					    <td>Nombre d'événements actif total</td>
 					    <td>
-					    	{{events|length}}
+					    	{% set nbEventActif = 0 %}
+					    	{% for event in events %}
+					    		{% if event.dateDebut|date('d/m/Y') > "now"|date("d/m/Y") and "now"|date("d/m/Y") < event.dateFin|date('d/m/Y')%}
+					    			{% set nbEventActif = nbEventActif + 1 %}
+					    		{% else %}
+					    			{% set nbEventActif = nbEventActif %}
+					    		{% endif %}
+					    	{% endfor %}
+					    	{{nbEventActif}}
 					    </td>
 				    </tr>
 				</tbody>
 			</table>
 		</div>
-		<div id="canvas5">
-			<p>Répartiton des élèves par date de naissance</p>
-				<div class="selectStat">
-					<span>{{form_label(form.Annee_de_Naissance)}}</span>
-					{{form_widget(form.Annee_de_Naissance)}}
-		            <button type="submit" class="btn btn-info" action="#canvas5">
-		                Afficher
-		            </button>
-				</div>
-		    <div>
-		        {{ knp_pagination_render(eleves) }}
-		    </div>
-			<table class="table tableAdmin">
-				<thead>
-					<tr>
-						<th>Nom de l'élève</th>
-						<th>Prénom de l'élève</th>
-						<th>Classe de l'élève</th>
-					</tr>
-				</thead>
-			    <tbody>
-			    	{% for eleve in eleves %}
-				    	<tr>
-						    <td class="cols-lg-6">{{eleve.nomEleve}}</td>
-						    <td class="cols-lg-6">{{eleve.prenomEleve}}</td>
-						    <td class="cols-lg-6">{{eleve.Classe.libelle}}</td>
-				    	</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-		    <div>
-		        {{ knp_pagination_render(eleves) }}
-		    </div>
-		</div>
 		<div id="canvas1">
-			<p>Répartition des élèves licencés par sexe</p>
+			<p>Nombre d'inscrit par categorie</p>
 			<div id="canvas-holder">
-				<canvas id="sexeLicence"></canvas> 
+				<canvas id="nbInscritCateg"></canvas> 
 			</div>
 			<script>
 
-				var sexeData = {
-					labels: ['10€','25€'],
+				{% set nbInscritCadet = 0 %}
+				{% set nbInscritCadette = 0 %}
+				{% set nbInscritJFille = 0 %}
+				{% set nbInscritJGarçon = 0 %}
+				{% set nbInscritToutes = 0 %}
+
+				{% for inscription in inscriptions%}
+                    {% switch inscription.eleve.categorie.libelleCategorie %}
+                        {% case 'Cadet' %}
+							{% set nbInscritCadet = nbInscritCadet + 1 %}
+                        {% case 'Cadette' %}
+                            {% set nbInscritCadette = nbInscritCadette + 1 %}
+                        {% case 'Junior Garçon' %}
+                           {% set nbInscritJGarçon = nbInscritJGarçon + 1 %}
+                        {% case 'Junior Fille' %}
+                            {% set nbInscritJFille = nbInscritJFille + 1 %}
+                        {% default %}
+                            {% set nbInscritToutes = nbInscritToutes + 1 %}
+                    {% endswitch %}
+                {% endfor %}
+				var nbInscritCategorie = {
+					labels: [
+						'Cadet',
+						'Cadette',
+						'Junior Garçon',
+						'Junior Fille',
+						'Toutes'
+					],
 					datasets: [{
-						backgroundColor: ['Red','Yellow'],
+						backgroundColor: ['Red','Yellow', 'Green', 'Blue','Purple'],
 						borderColor: 'White',
 						borderWidth: 1,
 						data: [
-							0,
-							0
+							{{nbInscritCadet}},
+							{{nbInscritCadette}},
+							{{nbInscritJFille}},
+							{{nbInscritJGarçon}},
+							{{nbInscritToutes}}
 						]
 					}],
 				};
-				var ctx1 = document.getElementById('sexeLicence').getContext('2d');
+				var ctx1 = document.getElementById('nbInscritCateg').getContext('2d');
 				var chart1 = new Chart(ctx1, {
 				    // The type of chart we want to create
-				    type: 'doughnut',
+				    type: 'pie',
 
 				    // The data for our dataset
-				    data: sexeData,
+				    data: nbInscritCategorie,
 				    // Configuration options go here
 				    options: {}
 				});
@@ -113,14 +104,18 @@
 			</div>
 			<script>
 				var licenceData ={
-					labels: ['10€','25€'],
+					labels: [
+						dddd,
+						dddd
+
+					],
 					datasets: [{
 						backgroundColor: ['Red','Yellow'],
 						borderColor: 'White',
 						borderWidth: 1,
 						data: [
-							0,
-							0
+							50,
+							10
 						]
 					}],
 				};
@@ -136,82 +131,7 @@
 				});
 			</script>
 		</div>
-		<div id="canvas4">
-			<p>Répartiton des événements par sexe</p>
-				<div class="selectStat">
-					<span>{{form_label(form.EvenementFilter)}} </span>
-					{{form_widget(form.EvenementFilter)}}
-		            <button type="submit" class="btn btn-info" action="#canvas4">
-		                Afficher
-		            </button>
-				</div>
-			<div id="canvas-holder">
-				<canvas id="nbGenre"></canvas>
-			</div>
-			<script>
-				var ctx = document.getElementById('nbGenre').getContext('2d');
-				var chart3 = new Chart(ctx, {
-				    // The type of chart we want to create
-				    type: 'doughnut',
-
-				    // The data for our dataset
-				    data: {
-				        labels: [
-				        	'Homme',
-				        	'Femme',
-				        ],
-				        datasets: [{
-				            backgroundColor: ['Blue','Pink'],
-				            borderColor: 'White',
-				            data: [40,60]
-				        }]
-				    },
-				    // Configuration options go here
-				    options: {}
-				});
-			</script>
-		</div>
-		<div id="canvas6">
-			<p>Nombre d'événements par élèves</p>
-				<div class="selectStat">
-					<span>{{form_label(form.EleveFiltre)}}</span>
-					{{form_widget(form.EleveFiltre)}}
-		            <button type="submit" class="btn btn-info" action="#canvas6">
-		                Afficher
-		            </button>
-				</div>
-			<div id="canvas-holder">
-				<canvas id="nbEvent"></canvas>
-			</div>
-			<script>
-				var ctx = document.getElementById('nbEvent').getContext('2d');
-				var chart5 = new Chart(ctx, {
-				    // The type of chart we want to create
-				    type: 'line',
-
-				    // The data for our dataset
-				    data: {
-				        labels: ['Septembre', 'Octobre', 'Novembre', 'Decembre',
-				          'Janvier', 'Fevrier', 'Mars', 'Avril',
-				         'Mai', 'Juin', 'Juillet', 'Août'
-				          ],
-				        datasets: [{
-				        	label: 'nombre d\'événement',
-				            backgroundColor: ['Green','Red','Cyan',
-				            'Green','Pink','Brown','Lime','Purple','Grey','Magenta'],
-				            borderColor: 'Black',
-				            fill: false,
-				            data: [5,12,8,10,30,12,7,8,3,5]
-				        }]
-				    },
-
-				    // Configuration options go here
-				    options: {}
-				});
-			</script>
-		</div>
 	</div>
-	{{form_end(form)}}
 {% endblock %}
 
 

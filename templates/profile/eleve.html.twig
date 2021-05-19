@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {% extends 'base.html.twig' %}
 
 {% block title %}Votre Profile{% endblock %}
@@ -31,6 +30,7 @@
 	                <th scope="col">Date de début</th>
 	                <th scope="col">Date de fin</th>
 	                <th scope="col">Lieu</th>
+	                <th scope="col">Accéder</th>
 	            </tr>
 	        </thead>
 	        <tbody>
@@ -40,6 +40,12 @@
 	        		<td>{{inscription.Evenement.dateDebut ? inscription.Evenement.dateDebut|date('d/m/Y H:i') : '' }}</td>
 	        		<td>{{inscription.Evenement.dateFin  ? inscription.Evenement.dateFin|date('d/m/Y H:i') : '' }}</td>
 	        		<td>{{inscription.Evenement.lieuEvenement}}</td>
+	        		<td>
+	        			<div id="btnShow">
+                        <a href="{{ path('evenement_show',
+                         {'id': inscription.Evenement.id}) }}"><button class="btn btn-primary"> Voir l'évenement</button></a>
+                    </div>
+	        		</td>
 	        	</tr>
 	        {% else %}
 	            <tr>
@@ -50,56 +56,3 @@
 	    </table>
 	</div>
 {% endblock %}
-=======
-{% extends 'base.html.twig' %}
-
-{% block title %}Votre Profile{% endblock %}
-
-{% block body %}
-	<div id="profilHeader">
-	<h1>Bienvenue {{app.user.getEleve.getPrenomEleve}} {{app.user.getEleve.getNomEleve}}</h1> 
-
-	<p>Vous êtes enregistrer en tant <span id="typeUser">qu'élève sur cette plateforme</span></p>
-
-	<p>Ma classe : {{app.user.getEleve.getClasse.getLibelle}}</p>
-	</div>
-
-    <div class="dropdown" id="dropdownUser">
-		<button class="btn btn-info dropdown-toggle" type="button" id="mesAcces" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		    Mes accès
-		    <span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu" aria-labelledby="mesAcces">
-		    <li><a href="{{path('document_index')}}">Liste de document</a></li>
-		    <li><a href="{{path('evenement_index')}}">Liste d'événement</a></li>
-		</ul>
-	</div>
-	<div>
-		<p>Vos événements</p>
-		<table class="table tableAdmin">
-	        <thead>
-	            <tr>
-	                <th scope="col">Nom de l'événement</th>
-	                <th scope="col">Date de début</th>
-	                <th scope="col">Date de fin</th>
-	                <th scope="col">Lieu</th>
-	            </tr>
-	        </thead>
-	        <tbody>
-	        {% for inscription in app.user.GetEleve.inscriptions %}
-	        	<tr> 
-	        		<td>{{inscription.Evenement.nomEvenement}}</td>
-	        		<td>{{inscription.Evenement.dateDebut ? inscription.Evenement.dateDebut|date('d/m/Y H:i') : '' }}</td>
-	        		<td>{{inscription.Evenement.dateFin  ? inscription.Evenement.dateFin|date('d/m/Y H:i') : '' }}</td>
-	        		<td>{{inscription.Evenement.lieuEvenement}}</td>
-	        	</tr>
-	        {% else %}
-	            <tr>
-	                <td colspan="4" class="erreur">Aucune inscription n'a été effectuée</td>
-	            </tr>
-	        {% endfor %}
-	     	</tbody>
-	    </table>
-	</div>
-{% endblock %}
->>>>>>> f9b85e7e6b9ffdd3a97db09b949c8190b04b60fe

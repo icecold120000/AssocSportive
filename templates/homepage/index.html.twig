@@ -11,7 +11,11 @@
 	    {% for evenement in evenements %}
             <section id="evenement">
                 <div class="container-fluid">
-                    <img src="{{ evenement.vignetteEvenement }}" id="vignette">
+                    {% if evenement.vignetteEvenement %}
+                        <img src="{{ asset('uploads/eventVig/' ~ evenement.vignetteEvenement) }}" id="vignette" placeholder="vignette de l'événement">
+                    {% else %}
+                        <img src="{{ asset('static/images/placeholder.png') }}" id="vignette" placeholder="vignette de l'événement">
+                    {% endif %}
                     <div id="event">
                         <div>
                             <h3>{{ evenement.nomEvenement }}</h3>
@@ -34,7 +38,7 @@
                             <div id="place">
                                 <p>
                                     nombre de place restant :
-                                    {{ evenement.nbPlace }}
+                                    {{ evenement.nbPlace - evenement.inscriptions|length }}
                                 </p>
                             </div>
                         </div>

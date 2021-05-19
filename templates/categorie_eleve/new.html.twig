@@ -5,6 +5,8 @@
 {% block body %}
     <h1>Ajouter une nouvelle catégorie d'élève</h1>
 
+    <p>Les champs avec '*' sont obligatoires </p>
+
     {% for message in app.flashes('SuccessCategEleve') %}
         <div class="flash-success">
             {{ message }}
