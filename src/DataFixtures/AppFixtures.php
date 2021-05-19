@@ -42,6 +42,7 @@ class AppFixtures extends Fixture
         $user->setPassword($this->encoder->encodePassword($user, $password));
         $user->setNomUser("Jeff");
         $user->setPrenomUser("Martins");
+        $user->setIsVerified(true);
         $manager->persist($user);
         $this->addReference('user_admin_1', $user);
         $manager->flush();
@@ -55,6 +56,7 @@ class AppFixtures extends Fixture
             $user2->setPassword($this->encoder->encodePassword($user2, $password2));
             $user2->setNomUser("Luigi");
             $user2->setPrenomUser("Gonzales");
+            $user2->setIsVerified(true);
             $manager->persist($user2);
             $this->addReference('user_'. $i, $user2);
             $manager->flush();

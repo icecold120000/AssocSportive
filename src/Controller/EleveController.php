@@ -275,14 +275,13 @@ class EleveController extends AbstractController
                 } catch (FileException $e) {
                     throw new FileException("Fichier corrompu. Veuillez retransferer votre fichier");
                 }
+
+                $eleve->setPhotoEleve($newFileNameImg);
             }
-            // updates the 'PhotoEleve' property to store the file name
-            // instead of its contents
-            $eleve->setPhotoEleve($newFileNameImg);
+            
             
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($eleve);
-            $entityManager->flush();
 
             $this->addFlash(
                 'SuccessEleve',
@@ -337,10 +336,10 @@ class EleveController extends AbstractController
                 } catch (FileException $e) {
                     throw new FileException("Fichier corrompu. Veuillez retransferer votre fichier");
                 }
+
+                $eleve->setPhotoEleve($newFileNameImg);
             }
-            // updates the 'PhotoEleve' property to store the image file name
-            // instead of its contents
-            $eleve->setPhotoEleve($newFileNameImg);
+            
             
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();

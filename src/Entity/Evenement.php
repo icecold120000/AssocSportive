@@ -79,8 +79,15 @@ class Evenement
      */
     private $vignetteEvenement;
 
+    /**
+     * @Assert\NotBlank(message="Veuillez selectionner une image pour l'événement.")
+     */
     private $imgEvent;
 
+    /**
+     * @Assert\NotBlank(message="Veuillez selectionner une vignette pour l'événement.")
+
+     */
     private $vigEvent;
 
     /**
@@ -101,7 +108,7 @@ class Evenement
     private $inscriptions;
 
     /**
-     * @ORM\OneToMany(targetEntity=Document::class, mappedBy="evenement", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Document::class, mappedBy="evenement", cascade={"remove"})
      */
     private $documents;
 

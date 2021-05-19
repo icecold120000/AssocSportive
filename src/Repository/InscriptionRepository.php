@@ -36,23 +36,12 @@ class InscriptionRepository extends ServiceEntityRepository
     }
     */
 
-    
     public function findOneInscritption($eleve,$evenement): ?Inscription
     {
         return $this->createQueryBuilder('i')
             ->Where('i.eleve = :eleve')
             ->andWhere('i.evenement = :evenement')
             ->setParameters(array('eleve' => $eleve, 'evenement' => $evenement),array("integer","integer"))
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-
-    public function findOneByEleve($eleve): ?Inscription
-    {
-        return $this->createQueryBuilder('i')
-            ->andWhere('i.eleve = :val')
-            ->setParameter('val', $eleve)
             ->getQuery()
             ->getOneOrNullResult()
         ;

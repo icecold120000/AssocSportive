@@ -14,8 +14,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -29,7 +31,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, MailerInterface $mailer): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -51,18 +53,30 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
+            RegistrationController::sendEmail($mailer, $user);
+
             $this->addFlash(
                 'SuccessInscription',
                 'Votre demande d\'inscription a été envoyé'
             );
-
- 
         }
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
+
     }
 
-
+    public function sendEmail(MailerInterface $mailer, User $user)
+    {
+        
+        $email = (new Email())
+            ->from($user->getEmail())
+            ->to('assocstvincent@gmail.com')
+            ->subject('Demande de d\'inscription à la plateforme')
+            ->text('emande de d\'inscription à la plateforme')
+            ->html('<p>Bonjour je suis '.$user->getPrenomUser().' '.$user->getNomUser().'.
+                Je souhaite m\'inscrire sur votre plateforme.</p>'
+            );
+    }
 }

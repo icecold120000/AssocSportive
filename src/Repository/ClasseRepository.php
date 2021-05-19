@@ -19,6 +19,16 @@ class ClasseRepository extends ServiceEntityRepository
         parent::__construct($registry, Classe::class);
     }
 
+    public function findOneByLibelle($value): ?Classe
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.libelle = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
     // /**
     //  * @return Classe[] Returns an array of Classe objects
     //  */

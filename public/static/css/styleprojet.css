@@ -240,7 +240,7 @@ footer i
 {
 	font-size: 20px;
 	margin-top: 20px;
-	right: 17%;
+	right: 10%;
 	width: 80%;
 }
 
@@ -261,11 +261,6 @@ footer i
 	position: relative;
 	right: 37%;
 	width: 45%;
-}
-
-#formOubli label
-{
-	right: 57%;
 }
 
 #formOubli #divAjout
@@ -333,9 +328,9 @@ footer i
 {
 	width: 80%;
 	position: relative;
-	right: 10%;
 	height: 35px;
 	font-size: 20px;
+	margin-top: 15px;
 }
 
 .formEntité2 select
@@ -344,37 +339,8 @@ footer i
 	position: relative;
 }
 
-#formDoc.formEntité2 #eventDoc select
-{
-    right: 52%;
-}
-
-#formDoc.formEntité2 #categDoc select
-{
-    right: 54%;
-}
 
 /*Les Formulaires d'ajout et de modification des élèves*/
-
-#formEleve.formEntité2 #selectCategorie select
-{
-	right:52%;
-}
-
-#formEleve.formEntité2 #selectClasse select
-{
-	right:33%;
-}
-
-#formEleve.formEntité2 #selectGenre select
-{
-	right:54%;
-}
-
-#formEleve.formEntité2 #selectArchive select
-{
-	right:53%;
-}
 
 #formEleve.formEntité2 #selectAutoPrelev select
 {
@@ -1037,4 +1003,9 @@ canvas
 {
 	padding: 20px;
 	font-size: 20px;
+}
+
+.dropdown-menu li a
+{
+	color: black;
 }

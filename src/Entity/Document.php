@@ -60,8 +60,8 @@ class Document
 
     public function __construct()
     {
-        $this->evenement = new ArrayCollection();
-        $this->categorieDocument = new ArrayCollection();
+        $this->evenements = new ArrayCollection();
+        $this->categorieDocuments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -130,7 +130,7 @@ class Document
      */
     public function getEvenements(): Collection
     {
-        return $this->evenement;
+        return $this->evenements;
     }
 
 
@@ -151,7 +151,7 @@ class Document
      */
     public function getCategorieDocuments(): Collection
     {
-        return $this->categorieDocument;
+        return $this->categorieDocuments;
     }
 
     public function setCategorieDocument(?CategorieDocument $categorieDocument): self

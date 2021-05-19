@@ -40,8 +40,14 @@ security:
          - { path: ^/sport,   roles: [ ROLE_ADMIN] }
          - { path: ^/categorieEleve,   roles: [ ROLE_ADMIN] }
          - { path: ^/typeEvenement,   roles: [ ROLE_ADMIN] }
-         - { path: ^/new,   roles: [ ROLE_ADMIN] }
-         - { path: ^/edit,  roles: [ ROLE_ADMIN] }
-         - { path: ^/delete, roles: [ ROLE_ADMIN] }
-         - { path: ^/delete_view, roles: [ ROLE_ADMIN] }
+         - { path: ^/evenement/new,   roles: [ ROLE_ADMIN] }
+         - { path: ^/evenement/edit,   roles: [ ROLE_ADMIN] }
+         - { path: ^/evenement/admin,   roles: [ ROLE_ADMIN] }
+         - { path: ^/document/new,   roles: [ ROLE_ADMIN] }
+         - { path: ^/document/edit,   roles: [ ROLE_ADMIN] }
+         - { path: ^/document/admin,   roles: [ ROLE_ADMIN] }
+         - { path: ^/evenement/delete, roles: [ ROLE_ADMIN] }
+         - { path: ^/document/delete, roles: [ ROLE_ADMIN] }
          - { path: ^/statistique, roles: [ ROLE_ADMIN] }
+
+        # - { path: ^/profile, roles: ROLE_USER }
